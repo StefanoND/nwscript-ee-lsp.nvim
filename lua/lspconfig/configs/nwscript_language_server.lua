@@ -43,17 +43,20 @@ local serverCommand = function()
 end
 
 return {
-  default_config = {
-    cmd = { serverCommand() },
-    filetypes = { "nss", "nwscript" },
-    root_dir = util.root_pattern(".git", "nasher.cfg"),
-    single_file_support = true,
-  },
-  docs = {
-    description = [[
+  nwscript_language_server = {
+    default_config = {
+      name = "nwscript_language_server",
+      cmd = { serverCommand() },
+      filetypes = { "nss", "nwscript" },
+      root_dir = util.root_pattern(".git", "nasher.cfg"),
+      single_file_support = true,
+    },
+    docs = {
+      description = [[
       https://github.com/StefanoND/nwscript.nvim
 
       LSP for NWScript
       ]],
+    },
   },
 }
