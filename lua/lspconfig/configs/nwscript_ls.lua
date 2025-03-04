@@ -17,13 +17,6 @@ local lazyPath = function()
   end
 end
 
-vim.cmd(
-  [[
-  terminal! cd $HOME/.config/nvim && ./buildlsp.sh && sync
-  ]],
-  false
-)
-
 local nwServerJSPath = lazyPath() .. "/nwscript-ee-language-server/server/out/server.js"
 local nwLSPServerArgs = { "--stdio" } -- Required
 
