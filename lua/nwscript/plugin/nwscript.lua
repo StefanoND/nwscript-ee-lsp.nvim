@@ -88,9 +88,9 @@ lsp.setup()
 
 local lspconfig = require("lspconfig")
 local util = lspconfig.util
-local configs = require("lspconfig.configs")
+-- local configs = require("lspconfig.configs")
 local protocol = vim.lsp.protocol
-local methods = protocol.Methods
+-- local methods = protocol.Methods
 
 -- vim.api.nvim_exec(
 vim.cmd(
@@ -100,23 +100,23 @@ vim.cmd(
   false
 )
 
-local filetypes = { "nss", "nwscript" }
+-- local filetypes = { "nss", "nwscript" }
+--
+-- local lazyPath = function()
+--   if vim.uv.os_uname().sysname == "Linux" then
+--     return os.getenv("HOME") .. "/.local/share/nvim/lazy"
+--   end
+--   if vim.uv.os_uname().sysname == "Windows_NT" then
+--     return os.getenv("UserProfile") .. "/AppData/Local/nvim/lazy"
+--   end
+-- end
 
-local lazyPath = function()
-  if vim.uv.os_uname().sysname == "Linux" then
-    return os.getenv("HOME") .. "/.local/share/nvim/lazy"
-  end
-  if vim.uv.os_uname().sysname == "Windows_NT" then
-    return os.getenv("UserProfile") .. "/AppData/Local/nvim/lazy"
-  end
-end
-
-local nwLSPPath = lazyPath() .. "/nwscript-ee-language-server"
+-- local nwLSPPath = lazyPath() .. "/nwscript-ee-language-server"
 -- local nwClientJSPath = nwLSPPath .. "/client/out/extension.js" -- Unused
-local nwServerOutPath = nwLSPPath .. "/server/out"
-local nwServerJSPath = nwServerOutPath .. "/server.js"
+-- local nwServerOutPath = nwLSPPath .. "/server/out"
+-- local nwServerJSPath = nwServerOutPath .. "/server.js"
 -- local nwIndexerJSPath = nwServerOutPath .. "/indexer.js" -- Unused
-local nwLSPServerArgs = { "--stdio" } -- Required
+-- local nwLSPServerArgs = { "--stdio" } -- Required
 
 local nwSettings = {
   single_file_support = true,
@@ -148,45 +148,45 @@ local nwSettings = {
   },
 }
 
-local isSymlink = function(path)
-  local handle = io.popen("test -L " .. path .. "; echo $?")
-  if handle then
-    local result = handle:read("*a")
-    handle:close()
-    return tonumber(result:match("%d+")) == 0
-  else
-    return false
-  end
-end
-
-local findExecutable = function()
-  if vim.fn.executable("node") == 0 then
-    vim.notify("Did not find 'node' executable", vim.log.levels.ERROR)
-    return false
-  end
-  if vim.fn.filereadable(nwServerJSPath) == 0 and not isSymlink(nwServerJSPath) then
-    vim.notify("Did not find LSP server path", vim.log.levels.ERROR)
-    return false
-  end
-  return true
-end
-
-local serverCommand = function()
-  if findExecutable() then
-    return "node", nwServerJSPath, unpack(nwLSPServerArgs)
-  end
-  return nil
-end
-
-if not configs.nwscript_language_server then
-  configs.nwscript_language_server = {
-    default_config = {
-      cmd = { serverCommand() },
-      filetypes = filetypes,
-      root_dir = util.root_pattern(".git", "nasher.cfg"),
-    },
-  }
-end
+-- local isSymlink = function(path)
+--   local handle = io.popen("test -L " .. path .. "; echo $?")
+--   if handle then
+--     local result = handle:read("*a")
+--     handle:close()
+--     return tonumber(result:match("%d+")) == 0
+--   else
+--     return false
+--   end
+-- end
+--
+-- local findExecutable = function()
+--   if vim.fn.executable("node") == 0 then
+--     vim.notify("Did not find 'node' executable", vim.log.levels.ERROR)
+--     return false
+--   end
+--   if vim.fn.filereadable(nwServerJSPath) == 0 and not isSymlink(nwServerJSPath) then
+--     vim.notify("Did not find LSP server path", vim.log.levels.ERROR)
+--     return false
+--   end
+--   return true
+-- end
+--
+-- local serverCommand = function()
+--   if findExecutable() then
+--     return "node", nwServerJSPath, unpack(nwLSPServerArgs)
+--   end
+--  return nil
+-- end
+--
+-- if not configs.nwscript_language_server then
+--   configs.nwscript_language_server = {
+--     default_config = {
+--       cmd = { serverCommand() },
+--       filetypes = filetypes,
+--       root_dir = util.root_pattern(".git", "nasher.cfg"),
+--     },
+--   }
+-- end
 
 local augroup = vim.api.nvim_create_augroup("NWScript", {})
 local nwscriptrefresh = function(bufnr)
