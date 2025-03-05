@@ -68,29 +68,31 @@ local nwIgnores = {
 
 -- local lsp = { "nwscript-ee-lsp" }
 local nwscript = {
-  completion = {
-    addParamsToFunctions = true,
-  },
-  hovering = {
-    addCommentsToFunctions = true,
-  },
-  formatter = {
-    enabled = true,
-    verbose = true,
-    executable = "clang-format",
-    ignoreGlobs = nwIgnores,
-  },
-  compiler = {
-    enabled = true,
-    os = vim.uv.os_uname().sysname,
-    verbose = true,
-    reportWarnings = true,
-    nwnHome = nwnPaths.docs,
-    nwnInstallation = nwnPaths.root,
-    nwneeBaseIncludes = nwneeBaseIncludes,
-    nwnBaseIncludes = nwnBaseIncludes,
-    nwn2BaseIncludes = nwn2BaseIncludes,
-    workspaceIncludes = nwIncludes,
+  ["nwscript-ee-lsp"] = {
+    completion = {
+      addParamsToFunctions = true,
+    },
+    hovering = {
+      addCommentsToFunctions = true,
+    },
+    formatter = {
+      enabled = true,
+      verbose = true,
+      executable = "clang-format",
+      ignoreGlobs = nwIgnores,
+    },
+    compiler = {
+      enabled = true,
+      os = vim.uv.os_uname().sysname,
+      verbose = true,
+      reportWarnings = true,
+      nwnHome = nwnPaths.docs,
+      nwnInstallation = nwnPaths.root,
+      nwneeBaseIncludes = nwneeBaseIncludes,
+      nwnBaseIncludes = nwnBaseIncludes,
+      nwn2BaseIncludes = nwn2BaseIncludes,
+      workspaceIncludes = nwIncludes,
+    },
   },
 }
 
