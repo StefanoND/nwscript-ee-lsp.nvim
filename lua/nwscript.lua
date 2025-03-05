@@ -1,4 +1,13 @@
-local M = {}
+local M = {
+  lsp = require("lspconfig.configs.nwscript_ls"),
+  config = require("nwscript.configs.nwscript"),
+  neogen = require("nwscript.configs.neogen.nwscript"),
+  ft = require("ftplugin.nwscript"),
+}
+
+-- Opt-in to use filetype.lua
+-- ./nwscript-ee-lsp.nvim/filetype.lua
+vim.g.do_filetype_lua = 1
 
 -- Add support for NWN:EE's LSP
 -- Thanks to implicit-image and his repo: https://github.com/implicit-image/lsp-nwscript.el
@@ -55,36 +64,37 @@ local nwIgnores = {
   -- "/path/to/ignore/dir1/ignore2.nss",
 }
 
-local lsp = ["nwscript-ee-lsp"]
+-- local lsp = { "nwscript-ee-lsp" }
+local lsp = {
+  completion = {
+    addParamsToFunctions = true,
+  },
+  hovering = {
+    addCommentsToFunctions = true,
+  },
+  formatter = {
+    enabled = true,
+    verbose = true,
+    executable = "clang-format",
+    ignoreGlobs = nwIgnores,
+  },
+  compiler = {
+    enabled = true,
+    os = vim.uv.os_uname().sysname,
+    verbose = true,
+    reportWarnings = true,
+    nwnHome = nwnPaths.docs,
+    nwnInstallation = nwnPaths.root,
+    nwneeBaseIncludes = nwneeBaseIncludes,
+    nwnBaseIncludes = nwnBaseIncludes,
+    nwn2BaseIncludes = nwn2BaseIncludes,
+    workspaceIncludes = nwIncludes,
+  },
+}
 
 local nwSettings = {
   single_file_support = true,
-  M.lsp == {
-    completion = {
-      addParamsToFunctions = true,
-    },
-    hovering = {
-      addCommentsToFunctions = true,
-    },
-    formatter = {
-      enabled = true,
-      verbose = true,
-      executable = "clang-format",
-      ignoreGlobs = nwIgnores,
-    },
-    compiler = {
-      enabled = true,
-      os = vim.uv.os_uname().sysname,
-      verbose = true,
-      reportWarnings = true,
-      nwnHome = nwnPaths.docs,
-      nwnInstallation = nwnPaths.root,
-      nwneeBaseIncludes = nwneeBaseIncludes,
-      nwnBaseIncludes = nwnBaseIncludes,
-      nwn2BaseIncludes = nwn2BaseIncludes,
-      workspaceIncludes = nwIncludes,
-    },
-  },
+  ["nwscript-ee-lsp"] = lsp,
 }
 
 return M

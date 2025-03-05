@@ -1,12 +1,12 @@
 local lspconfig = require("lspconfig")
 local util = lspconfig.util
 
-vim.cmd(
-  [[
-  autocmd FileType nwscript setlocal lsp
-  ]],
-  false
-)
+-- vim.cmd(
+--   [[
+--   autocmd FileType nwscript setlocal lsp
+--   ]],
+--   false
+-- )
 
 local lazyPath = function()
   if vim.uv.os_uname().sysname == "Linux" then
@@ -128,7 +128,7 @@ local nwscript = require("nwscript")
 
 return {
   default_config = {
-    name = "nwscript_ls",
+    -- name = "nwscript_ls",
     cmd = { serverCommand() },
     filetypes = { "nss", "nwscript" },
     root_dir = util.root_pattern(".git", "nasher.cfg", ".vscode"),

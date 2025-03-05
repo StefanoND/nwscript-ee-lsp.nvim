@@ -35,7 +35,7 @@ local configNeogen = function()
     local neogen = require("neogen")
     neogen.configuration = {
       languages = {
-        nwscript = require("nwscript.plugin.neogen.nwscript"),
+        nwscript = require("nwscript.configs.neogen.nwscript"),
       },
     }
   end
