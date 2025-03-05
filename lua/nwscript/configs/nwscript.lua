@@ -33,40 +33,78 @@ end
 M.configNeogen = function()
   if require("neogen") ~= nil then
     local neogen = require("neogen")
-    neogen.configuration = {
+    neogen.setup({
+      snippet_engine = "luasnip",
       languages = {
         nwscript = require("nwscript.configs.neogen.nwscript"),
       },
-    }
+    })
   end
 end
 
-M.configNoneLS = function()
+M.configFormatter = function()
   if require("null-ls") ~= nil then
-    local clfPath = function()
-      if vim.uv.os_uname().sysname == "Windows_NT" then
-        return vim.fn.expand(os.getenv("UserProfile") .. "/.clang-format") -- Must create this folder
-      else -- I don't own/use a Mac, will update when/if I do
-        return vim.fn.expand(os.getenv("HOME") .. "/.clang-format") -- Must create this folder
+    local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+    local null_ls = require("null-ls")
+    local null_ls_utils = require("null-ls.utils")
+
+    local format = function(bufnr)
+      vim.lsp.buf.format({
+        bufnr = bufnr,
+        filter = function(client)
+          return client.name == "null-ls"
+        end,
+      })
+    end
+
+    local on_attach = function(client, bufnr)
+      if client.supports_method("textDocument/formatting") then
+        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+        vim.api.nvim_create_autocmd("BufWritePre", {
+          group = augroup,
+          buffer = bufnr,
+          callback = function()
+            format(bufnr)
+          end,
+        })
       end
     end
 
-    local null_ls = require("null-ls")
-
     local formatting = null_ls.builtins.formatting -- to setup formatters
+
+    local clfPath = function()
+      if vim.fn.has("win64") == 1 or vim.fn.has("win32") == 1 or vim.fn.has("win16") == 1 then
+        return os.getenv("UserProfile") .. "/.clang-format" -- Must create this folder
+      else -- I don't own/use a Mac, will update when/if I do
+        return os.getenv("HOME") .. "/.clang-format" -- Must create this folder
+      end
+    end
 
     local sources = {
       formatting.clang_format.with({
         filetypes = { "nss", "nwscript" },
+        disabled_filetypes = { "cs", "csharp" }, -- Don't want it messing with C#
         extra_args = {
-          "-style=file:" .. clfPath(),
+          "-style=file:" .. vim.fn.expand(clfPath()),
         },
       }),
 
       formatting.clang_format,
     }
 
-    null_ls.register({ sources })
+    local rootdir = function(fname)
+      return null_ls_utils.root_pattern(".null-ls-root", "Makefile", ".git", "nasher.cfg")(fname)
+    end
+
+    null_ls.register(sources)
+
+    local clients = vim.lsp.get_clients({ bufnr = 0 })
+
+    for _, client in ipairs(clients) do
+      if client.name == "null-ls" then
+        on_attach(client, 0)
+      end
+    end
   end
 end
 
@@ -95,7 +133,7 @@ M.configUltiSnips = function()
     return os.getenv("HOME") .. "/.local/share/nvim/lazy/vim-nwscript/UltiSnips"
   end
 
-  vim.g.UltiSnipsSnippetDirectories = { path, "UltiSnips" }
+  vim.g.UltiSnipsSnippetDirectories = { path(), "UltiSnips" }
 end
 
 -- {

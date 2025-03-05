@@ -12,11 +12,12 @@ Credits goes to everyone mentioned in the .lua files
 ## Features
 
 NWScript filetype support and extension
+Formatting
 LuaSnip/UltiSnips Snippets
 Treesitter highlighting
-Documentation Generation support (from [doxygen](https://github.com/doxygen/doxygen))
-Comment support (from [Comment.nvim](https://github.com/numToStr/Comment.nvim))
-[nwscript-ee-language-server](https://github.com/implicit-image/nwscript-ee-language-server) support and it's [features](https://github.com/implicit-image/nwscript-ee-language-server?tab=readme-ov-file#features)
+Documentation Generation (from [doxygen](https://github.com/doxygen/doxygen))
+Comment (from [Comment.nvim](https://github.com/numToStr/Comment.nvim))
+[nwscript-ee-language-server](https://github.com/implicit-image/nwscript-ee-language-server) and it's [features](https://github.com/implicit-image/nwscript-ee-language-server?tab=readme-ov-file#features)
 
 ## Dependencies
 
@@ -25,6 +26,7 @@ Comment support (from [Comment.nvim](https://github.com/numToStr/Comment.nvim))
       "implicit-image/nwscript-ee-language-server", -- Required, LSP Current maintainer
       "L3MON4D3/LuaSnip", -- Optional, Snippet Engine for Neovim
       "SirVer/ultisnips", -- Optional, Slution for snippets for Neovim
+      "danymat/neogen", -- Optional, Annotation generator
       "numToStr/Comment.nvim", -- Optional, comment plugin
       "nvim-lua/plenary.nvim", -- Optional, .nss extension
       "nvim-treesitter/nvim-treesitter", -- Optional, syntax highlighting

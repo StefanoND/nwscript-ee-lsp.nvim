@@ -103,10 +103,12 @@ M.setup = function()
   local config = require("nwscript.configs.nwscript")
   config.configComment()
   config.configTreesitter()
-  config.configNeogen()
-  config.configNoneLS()
+  config.configFormatter()
   config.configLuasnip()
   config.configUltiSnips()
+
+  -- TODO: Make neogen work
+  config.configNeogen()
 end
 
 return M

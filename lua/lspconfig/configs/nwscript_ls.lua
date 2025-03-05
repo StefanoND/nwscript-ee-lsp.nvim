@@ -103,7 +103,7 @@ return {
     -- name = "nwscript_ls",
     cmd = { serverCommand() },
     filetypes = { "nss", "nwscript" },
-    root_dir = util.root_pattern(".git", "nasher.cfg", ".vscode"),
+    root_dir = util.root_pattern(".git", "nasher.cfg", "Makefile"),
     single_file_support = true,
     on_attach = function(client, bufnr)
       nwscriptfuncs(client, bufnr)
