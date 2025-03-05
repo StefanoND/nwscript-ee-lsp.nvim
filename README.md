@@ -11,27 +11,36 @@ Credits goes to everyone mentioned in the .lua files
 
 ## Features
 
-Enhanced syntax highlighting
-Completion
-Hover information
-Goto definition
-Formatting
-Range formatting
-Signature help
-Diagnostics
-Document Symbols
-Snippets
+NWScript filetype support and extension
+LuaSnip/UltiSnips Snippets
+Treesitter highlighting
+Documentation Generation support (from [doxygen](https://github.com/doxygen/doxygen))
+Comment support (from [Comment.nvim](https://github.com/numToStr/Comment.nvim))
+[nwscript-ee-language-server](https://github.com/implicit-image/nwscript-ee-language-server) support and it's [features](https://github.com/implicit-image/nwscript-ee-language-server?tab=readme-ov-file#features)
 
 ## Dependencies
 
-### Formatting
-
-[clang-format](https://clang.llvm.org/docs/ClangFormat.html)
+    dependencies = {
+      -- "PhilippeChab/nwscript-ee-language-server", -- Deprecated(?), LSP Abandoned(?)
+      "implicit-image/nwscript-ee-language-server", -- Required, LSP Current maintainer
+      "L3MON4D3/LuaSnip", -- Optional, Snippet Engine for Neovim
+      "SirVer/ultisnips", -- Optional, Slution for snippets for Neovim
+      "numToStr/Comment.nvim", -- Optional, comment plugin
+      "nvim-lua/plenary.nvim", -- Optional, .nss extension
+      "nvim-treesitter/nvim-treesitter", -- Optional, syntax highlighting
+      "nvimtools/none-ls.nvim", -- Optional, LSP diagnostic, code actions, etc. Injection
+      "ray-x/lsp_signature.nvim", -- Optional, needed for rounded borders
+      "squattingmonk/vim-nwscript", -- Optional, auto-indention/wrapping of comments, snippets and ctags generation
+    }
 
 ### Tools
 
-[NodeJS](https://github.com/nodejs/node)
-[npm](https://github.com/npm/cli)
+[clang-format](https://clang.llvm.org/docs/ClangFormat.html) (Formatting)
+[NodeJS](https://github.com/nodejs/node) (Executable for LSP)
+[npm](https://github.com/npm/cli) (Package Manager for NodeJS)
+[Universal-CTags](https://github.com/universal-ctags/ctags) (If using squattingmonk's vim-nwscript)
+[doxygen](https://github.com/doxygen/doxygen) (Documentation Generation)
+[llvm](https://github.com/llvm/llvm-project)/[clang](https://clang.llvm.org/)
 
 ### [nwscript-ee-language-server](https://github.com/implicit-image/nwscript-ee-language-server)
 
@@ -57,8 +66,6 @@ Snippets
     # Builds the project. Also creates the .vsix file which we don't want/need
     vsce package
 
-### Diagnostics
-
-Neverwinter Nights home and installation folders.
-
 ## Usage
+
+## Credits
