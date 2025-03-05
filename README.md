@@ -68,6 +68,43 @@ Comment (from [Comment.nvim](https://github.com/numToStr/Comment.nvim))
     # Builds the project. Also creates the .vsix file which we don't want/need
     vsce package
 
+## Config
+
+### Lazy.vim
+
+    return {
+      {
+        "StefanoND/nwscript-ee-lsp.nvim",
+        dependencies = {
+          "implicit-image/nwscript-ee-language-server", -- Required, LSP Current maintainer
+          "L3MON4D3/LuaSnip", -- Optional, Snippet Engine for Neovim
+          "SirVer/ultisnips", -- Optional, Slution for snippets for Neovim
+          "danymat/neogen", -- Optional, Annotation generator
+          "numToStr/Comment.nvim", -- Optional, comment plugin
+          "nvim-lua/plenary.nvim", -- Optional, .nss extension
+          "nvim-treesitter/nvim-treesitter", -- Optional, syntax highlighting
+          "nvimtools/none-ls.nvim", -- Optional, LSP diagnostic, code actions, etc. Injection
+          "ray-x/lsp_signature.nvim", -- Optional, needed for rounded borders
+          {
+            "squattingmonk/vim-nwscript", -- Optional, auto-indention/wrapping of comments, snippets and ctags generation
+            config = function()
+              -- Luascript doesn't work, let's use vim.cmd([[]]) to run Vimscript inside it
+              vim.cmd([[
+            let g:nwscript#modules#enabled = ['ctags', 'format']
+            let g:nwscript#modules#disabled = ['fold']
+            let g:nwscript#format#textwidth = 105
+            let g:nwscript#format#options = 'croqwa2lj'
+            let g:nwscript#format#whitespace = 1
+          ]])
+            end,
+          },
+        },
+        config = function()
+          require("nwscript").setup()
+        end,
+      },
+    }
+
 ## Usage
 
 ## Credits

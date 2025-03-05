@@ -1,13 +1,6 @@
 local lspconfig = require("lspconfig")
 local util = lspconfig.util
 
--- vim.cmd(
---   [[
---   autocmd FileType nwscript setlocal lsp
---   ]],
---   false
--- )
-
 local lazyPath = function()
   if vim.uv.os_uname().sysname == "Linux" then
     return os.getenv("HOME") .. "/.local/share/nvim/lazy"
