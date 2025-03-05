@@ -1,4 +1,4 @@
--- local M = {
+-- M.M = {
 --   lsp = require("lspconfig.configs.nwscript_ls"),
 --   config = require("nwscript.configs.nwscript"),
 --   neogen = require("nwscript.configs.neogen.nwscript"),
@@ -20,7 +20,7 @@ vim.g.do_filetype_lua = 1
 -- Current maintainer: https://github.com/implicit-image/nwscript-ee-language-server
 
 -- Change these to the correct path
-local nwnPaths = {
+M.nwnPaths = {
   docs = os.getenv("NWN_HOME"),
   -- docs = os.getenv("HOME") .. "/Documents/Neverwinter Nights",
   -- docs = "/home/USERNAME/Documents/Neverwinter Nights",
@@ -37,7 +37,7 @@ local nwnPaths = {
 -- Includes
 -- Must be array, too lazy to make it work with tables
 -- Seems that the root path of the project is enough. I'm using Nasher so it might be helping
-local nwIncludes = {
+M.nwIncludes = {
   tostring(vim.fn.getcwd()),
   -- tostring(vim.fn.getcwd()) .. "/src",
   -- tostring(vim.fn.getcwd()) .. "/src/nss",
@@ -45,19 +45,19 @@ local nwIncludes = {
 
 -- "List of base include dirs for Neverwinter Nights Enhanced Edition."
 -- Must be array, too lazy to make it work with tables
-local nwneeBaseIncludes = {}
+M.nwneeBaseIncludes = {}
 
 -- "List of base include dirs for Neverwinter Nights Diamond."
 -- Must be array, too lazy to make it work with tables
-local nwnBaseIncludes = {}
+M.nwnBaseIncludes = {}
 
 -- "List of base include dirs for Neverwinter Nights 2"
 -- Must be array, too lazy to make it work with tables
-local nwn2BaseIncludes = {}
+M.nwn2BaseIncludes = {}
 
 -- Ignore
 -- Must be array, too lazy to make it work with tables
-local nwIgnores = {
+M.nwIgnores = {
   -- "/path/to/ignore",
   -- "/file/to/ignore.nss",
   -- "/path/to/ignore/dir1/subdir1",
@@ -66,39 +66,47 @@ local nwIgnores = {
   -- "/path/to/ignore/dir1/ignore2.nss",
 }
 
--- local lsp = { "nwscript-ee-lsp" }
-local nwscript = {
-  ["nwscript-ee-lsp"] = {
-    completion = {
-      addParamsToFunctions = true,
-    },
-    hovering = {
-      addCommentsToFunctions = true,
-    },
-    formatter = {
-      enabled = true,
-      verbose = true,
-      executable = "clang-format",
-      ignoreGlobs = nwIgnores,
-    },
-    compiler = {
-      enabled = true,
-      os = vim.uv.os_uname().sysname,
-      verbose = true,
-      reportWarnings = true,
-      nwnHome = nwnPaths.docs,
-      nwnInstallation = nwnPaths.root,
-      nwneeBaseIncludes = nwneeBaseIncludes,
-      nwnBaseIncludes = nwnBaseIncludes,
-      nwn2BaseIncludes = nwn2BaseIncludes,
-      workspaceIncludes = nwIncludes,
-    },
+-- M.lsp = { "nwscript-ee-lsp" }
+M.nwscript = {
+  completion = {
+    addParamsToFunctions = true,
+  },
+  hovering = {
+    addCommentsToFunctions = true,
+  },
+  formatter = {
+    enabled = true,
+    verbose = true,
+    executable = "clang-format",
+    ignoreGlobs = M.nwIgnores,
+  },
+  compiler = {
+    enabled = true,
+    os = vim.uv.os_uname().sysname,
+    verbose = true,
+    reportWarnings = true,
+    nwnHome = M.nwnPaths.docs,
+    nwnInstallation = M.nwnPaths.root,
+    nwneeBaseIncludes = M.nwneeBaseIncludes,
+    nwnBaseIncludes = M.nwnBaseIncludes,
+    nwn2BaseIncludes = M.nwn2BaseIncludes,
+    workspaceIncludes = M.nwIncludes,
   },
 }
 
-local nwSettings = {
+M.nwSettings = {
   single_file_support = true,
-  ["nwscript-ee-lsp"] = nwscript,
+  ["nwscript-ee-lsp"] = M.nwscript,
 }
+
+M.setup = function()
+  local config = require("nwscript.configs.nwscript")
+  config.configComment()
+  config.configTreesitter()
+  config.configNeogen()
+  config.configNoneLS()
+  config.configLuasnip()
+  config.configUltiSnips()
+end
 
 return M

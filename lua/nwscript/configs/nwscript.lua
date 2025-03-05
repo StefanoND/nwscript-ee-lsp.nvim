@@ -1,13 +1,13 @@
 local M = {}
 
-local configComment = function()
+M.configComment = function()
   if require("Comment.ft") ~= nil then
     local ft = require("Comment.ft")
     ft.set("nwscript", { "//%s", "/*%s*/" })
   end
 end
 
-local configTreesitter = function()
+M.configTreesitter = function()
   -- Create NWScript grammar
   if require("nvim-treesitter.parsers") ~= nil and require("nvim-treesitter.configs") ~= nil then
     local parser = require("nvim-treesitter.parsers").get_parser_configs()
@@ -30,7 +30,7 @@ local configTreesitter = function()
   end
 end
 
-local configNeogen = function()
+M.configNeogen = function()
   if require("neogen") ~= nil then
     local neogen = require("neogen")
     neogen.configuration = {
@@ -41,7 +41,7 @@ local configNeogen = function()
   end
 end
 
-local configNoneLS = function()
+M.configNoneLS = function()
   if require("null-ls") ~= nil then
     local clfPath = function()
       if vim.uv.os_uname().sysname == "Windows_NT" then
@@ -70,7 +70,7 @@ local configNoneLS = function()
   end
 end
 
-local configLuasnip = function()
+M.configLuasnip = function()
   if require("luasnip") ~= nil then
     local loaders = require("luasnip.loaders.from_lua")
 
@@ -85,9 +85,9 @@ local configLuasnip = function()
   end
 end
 
-local configVimNWScript = function() end
+M.configVimNWScript = function() end
 
-local configUltiSnips = function()
+M.configUltiSnips = function()
   local path = function()
     if vim.uv.os_uname().sysname == "Windows_NT" then
       return os.getenv("UserProfile") .. "/AppData/Local/nvim/lazy/vim-nwscript/UltiSnips"
@@ -97,13 +97,6 @@ local configUltiSnips = function()
 
   vim.g.UltiSnipsSnippetDirectories = { path, "UltiSnips" }
 end
-
-configComment()
-configTreesitter()
-configNeogen()
-configNoneLS()
-configLuasnip()
-configUltiSnips()
 
 -- {
 --   "squattingmonk/vim-nwscript",
