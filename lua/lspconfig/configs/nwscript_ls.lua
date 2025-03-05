@@ -96,35 +96,7 @@ local nwscriptrefresh = function(bufnr)
   })
 end
 
-local protocol = vim.lsp.protocol
-local cmpcapabilities = require("cmp_nvim_lsp").default_capabilities(protocol.make_client_capabilities())
-
-local capabilities = vim.tbl_deep_extend("force", util.default_config.capabilities, cmpcapabilities, {
-  textDocument = {
-    foldingRange = {
-      dynamicRegistration = true,
-      lineFoldingOnly = true,
-    },
-    completion = {
-      completionItem = {
-        snippetSupport = true,
-      },
-    },
-  },
-  workspace = {
-    configuration = true,
-    didChangeConfiguration = { dynamicRegistration = true },
-  },
-  offsetEncoding = { "utf-8" },
-  didChangeWatchedFiles = {
-    -- TODO(lewis6991): do not advertise didChangeWatchedFiles on Linux
-    -- or BSD since all the current backends are too limited.
-    -- Ref: #27807, #28058, #23291, #26520
-    relativePatternSupport = false,
-  },
-})
-
-local nwscript = require("nwscript")
+local nwSettings = require("nwscript").nwSettings
 
 return {
   default_config = {
@@ -133,7 +105,6 @@ return {
     filetypes = { "nss", "nwscript" },
     root_dir = util.root_pattern(".git", "nasher.cfg", ".vscode"),
     single_file_support = true,
-    capabilities = capabilities,
     on_attach = function(client, bufnr)
       nwscriptfuncs(client, bufnr)
       nwscriptrefresh(bufnr)
@@ -153,7 +124,7 @@ return {
         update_in_insert = true,
       })
     end,
-    settings = nwscript.nwSettings,
+    settings = nwSettings,
   },
   docs = {
     description = [[

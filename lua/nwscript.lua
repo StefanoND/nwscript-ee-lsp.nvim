@@ -65,7 +65,7 @@ local nwIgnores = {
 }
 
 -- local lsp = { "nwscript-ee-lsp" }
-local lsp = {
+local nwscript = {
   completion = {
     addParamsToFunctions = true,
   },
@@ -94,7 +94,7 @@ local lsp = {
 
 local nwSettings = {
   single_file_support = true,
-  ["nwscript-ee-lsp"] = lsp,
+  ["nwscript-ee-lsp"] = nwscript,
 }
 
 return M
