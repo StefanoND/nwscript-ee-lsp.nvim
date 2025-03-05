@@ -17,7 +17,13 @@ local lazyPath = function()
   end
 end
 
-local nwServerJSPath = lazyPath() .. "/nwscript-ee-language-server/server/out/server.js"
+local nwServerJSPath = function()
+  if os.getenv("NWN_LSP") then
+    return os.getenv("NWN_LSP")
+  end
+  return lazyPath() .. "/nwscript-ee-language-server/server/out/server.js"
+end
+
 local nwLSPServerArgs = { "--stdio" } -- Required
 
 local isSymlink = function(path)
@@ -36,8 +42,8 @@ local findExecutable = function()
     vim.notify("Did not find 'node' executable", vim.log.levels.ERROR)
     return false
   end
-  if vim.fn.filereadable(nwServerJSPath) == 0 and not isSymlink(nwServerJSPath) then
-    vim.notify("Did not find LSP server path", vim.log.levels.ERROR)
+  if vim.fn.filereadable(nwServerJSPath()) == 0 and not isSymlink(nwServerJSPath()) then
+    vim.notify("Did not find server.js file", vim.log.levels.ERROR)
     return false
   end
   return true
@@ -45,7 +51,7 @@ end
 
 local serverCommand = function()
   if findExecutable() then
-    return "node", nwServerJSPath, unpack(nwLSPServerArgs)
+    return "node", nwServerJSPath(), unpack(nwLSPServerArgs)
   end
   return nil
 end
