@@ -1,9 +1,11 @@
-local M = {
-  lsp = require("lspconfig.configs.nwscript_ls"),
-  config = require("nwscript.configs.nwscript"),
-  neogen = require("nwscript.configs.neogen.nwscript"),
-  ft = require("ftplugin.nwscript"),
-}
+-- local M = {
+--   lsp = require("lspconfig.configs.nwscript_ls"),
+--   config = require("nwscript.configs.nwscript"),
+--   neogen = require("nwscript.configs.neogen.nwscript"),
+--   ft = require("ftplugin.nwscript"),
+-- }
+
+local M = {}
 
 -- Opt-in to use filetype.lua
 -- ./nwscript-ee-lsp.nvim/filetype.lua
