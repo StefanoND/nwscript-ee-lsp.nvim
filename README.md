@@ -53,39 +53,40 @@ Credits goes to everyone mentioned in the .lua files
 
 With [lazy.nvim](https://github.com/folke/lazy.nvim)
 
-    return { -- This is my personal configuration, plug'n'play no extra configuration required
-      "StefanoND/nwscript-ee-lsp.nvim",
-      ft = "nwscript",
-      dependencies = {
-        -- "PhilippeChab/nwscript-ee-language-server", -- Deprecated(?), LSP. Abandoned(?)
-        "implicit-image/nwscript-ee-language-server", -- Required, LSP. Current maintainer
-        "L3MON4D3/LuaSnip", -- Optional, Snippet Engine for Neovim
-        "SirVer/ultisnips", -- Optional, Slution for snippets for Neovim
-        "danymat/neogen", -- Optional, Annotation generator
-        "folke/which-key.nvim", -- Optional, Displays keymap hints
-        "numToStr/Comment.nvim", -- Optional, comment plugin
-        "nvim-lua/plenary.nvim", -- Optional, Provides utility functions for plugins .nss extension
-        "nvim-treesitter/nvim-treesitter", -- Optional, syntax highlighting
-        "nvimtools/none-ls.nvim", -- Optional, LSP diagnostic, code actions, etc. Injection
-        "ray-x/lsp_signature.nvim", -- Optional, needed for rounded borders
-        {
-          "squattingmonk/vim-nwscript", -- Optional, auto-indention/wrapping of comments, snippets and ctags generation
-          config = function()
-            -- Luascript doesn't work, let's use vim.cmd([[]]) to run Vimscript inside it
-            vim.cmd([[
-              let g:nwscript#modules#enabled = ['ctags', 'format']
-              let g:nwscript#modules#disabled = ['fold']
-              let g:nwscript#format#textwidth = 105
-              let g:nwscript#format#options = 'croqwa2lj'
-              let g:nwscript#format#whitespace = 1
-            ]])
-          end,
-        },
-      }
+````lua
+return { -- This is my personal configuration, plug'n'play no extra configuration required
+  "StefanoND/nwscript-ee-lsp.nvim",
+  ft = "nwscript",
+  dependencies = {
+    -- "PhilippeChab/nwscript-ee-language-server", -- Deprecated(?), LSP. Abandoned(?)
+    "implicit-image/nwscript-ee-language-server", -- Required, LSP. Current maintainer
+    "L3MON4D3/LuaSnip", -- Optional, Snippet Engine for Neovim
+    "SirVer/ultisnips", -- Optional, Slution for snippets for Neovim
+    "danymat/neogen", -- Optional, Annotation generator
+    "folke/which-key.nvim", -- Optional, Displays keymap hints
+    "numToStr/Comment.nvim", -- Optional, comment plugin
+    "nvim-lua/plenary.nvim", -- Optional, Provides utility functions for plugins .nss extension
+    "nvim-treesitter/nvim-treesitter", -- Optional, syntax highlighting
+    "nvimtools/none-ls.nvim", -- Optional, LSP diagnostic, code actions, etc. Injection
+    "ray-x/lsp_signature.nvim", -- Optional, needed for rounded borders
+    {
+      "squattingmonk/vim-nwscript", -- Optional, auto-indention/wrapping of comments, snippets and ctags generation
       config = function()
-        require("nwscript").setup()
+        -- Luascript doesn't work, let's use vim.cmd([[]]) to run Vimscript inside it
+        vim.cmd([[
+          let g:nwscript#modules#enabled = ['ctags', 'format']
+          let g:nwscript#modules#disabled = ['fold']
+          let g:nwscript#format#textwidth = 105
+          let g:nwscript#format#options = 'croqwa2lj'
+          let g:nwscript#format#whitespace = 1
+        ]])
       end,
-    }
+    },
+  }
+  config = function()
+    require("nwscript").setup()
+  end,
+}```
 
 ### [nwscript-ee-language-server](https://github.com/implicit-image/nwscript-ee-language-server)
 
@@ -139,3 +140,4 @@ With [lazy.nvim](https://github.com/folke/lazy.nvim)
 - [@universal-ctags](https://github.com/universal-ctags) for [Universal-CTags](https://github.com/universal-ctags/ctags)
 - [@llvm](https://github.com/llvm) for [clang-format](https://clang.llvm.org/docs/ClangFormat.html)
 - [@doxygen](https://github.com/doxygen) for [doxygen](https://github.com/doxygen/doxygen)
+````
