@@ -42,6 +42,30 @@ NWScript: EE LSP is a Neovim plugin for the NWScript language
 ### External
 
 - [NodeJS](https://github.com/nodejs/node) -- Required, Executable for LSP
+
+<Install>
+<summary>NodeJS Install</summary>
+
+## Linux
+
+### Arch
+
+    sudo pacman -S nodejs --noconfirm --needed
+
+### Debian
+
+    sudo apt install nodejs -y
+
+### Fedora
+
+    sudo dnf install nodejs -y
+
+## Windows
+
+    winget install -e --id OpenJS.NodeJS
+
+</Install>
+
 - [Universal-CTags](https://github.com/universal-ctags/ctags) -- Optional, If using squattingmonk's vim-nwscript
 - [clang-format](https://clang.llvm.org/docs/ClangFormat.html) -- Optional, Formatting
 - [doxygen](https://github.com/doxygen/doxygen) -- Optional, Documentation Generation
