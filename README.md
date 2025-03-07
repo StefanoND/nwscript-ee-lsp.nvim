@@ -43,8 +43,7 @@ NWScript: EE LSP is a Neovim plugin for the NWScript language
 
 - [NodeJS](https://github.com/nodejs/node) -- Required, Executable for LSP
 
-<Install>
-<summary>NodeJS Install</summary>
+<details><summary>NodeJS Install</summary>
 
 ## Linux
 
@@ -64,7 +63,7 @@ NWScript: EE LSP is a Neovim plugin for the NWScript language
 
     winget install -e --id OpenJS.NodeJS
 
-</Install>
+</details>
 
 - [Universal-CTags](https://github.com/universal-ctags/ctags) -- Optional, If using squattingmonk's vim-nwscript
 - [clang-format](https://clang.llvm.org/docs/ClangFormat.html) -- Optional, Formatting
@@ -74,8 +73,7 @@ NWScript: EE LSP is a Neovim plugin for the NWScript language
 
 With [lazy.nvim](https://github.com/folke/lazy.nvim)
 
-<default>
-<summary>Default Options</summary>
+<details><summary>Default Options</summary>
 
 ## LSP
 
@@ -148,7 +146,7 @@ vim.tbl_deep_extend("force", util.default_config.capabilities, cmpcapabilities, 
 })
 ```
 
-</default>
+</details>
 
 ```lua
 return { -- This is my personal configuration, plug'n'play no extra configuration required
