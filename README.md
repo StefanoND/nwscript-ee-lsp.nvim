@@ -119,7 +119,7 @@ return { -- This is my personal configuration, plug'n'play no extra configuratio
 
 ## Credits
 
-- [@neovim](https://github.com/neovim) for [Neovim](https://github.com/neovim/neovim) >= 0.10.0
+- [@neovim](https://github.com/neovim) for [Neovim](https://github.com/neovim/neovim)
 - [@folke](https://github.com/folke) for [lazy.nvim](https://github.com/folke/lazy.nvim)
 - [@implicit-image](https://github.com/implicit-image) for [nwscript-ee-language-server](https://github.com/implicit-image/nwscript-ee-language-server)
 
