@@ -111,6 +111,10 @@ With [lazy.nvim](https://github.com/folke/lazy.nvim)
     # Builds the project. Also creates the .vsix file which we don't want/need
     vsce package
 
+## Special Thanks
+
+- [@squattingmonk](https://github.com/squattingmonk) for his nvim [config](https://github.com/squattingmonk/dotfiles/tree/master/nvim/.config/nvim) which I used as a starting point for my own config for nwscript
+
 ## Credits
 
 - [@neovim](https://github.com/neovim) for [Neovim](https://github.com/neovim/neovim) >= 0.10.0
