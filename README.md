@@ -89,7 +89,7 @@ return { -- This is my personal configuration, plug'n'play no extra configuratio
 }
 ```
 
-### [nwscript-ee-language-server](https://github.com/implicit-image/nwscript-ee-language-server)
+## [nwscript-ee-language-server](https://github.com/implicit-image/nwscript-ee-language-server)
 
 [building-and-running:](https://github.com/implicit-image/nwscript-ee-language-server?tab=readme-ov-file#building-and-running)
 
@@ -141,7 +141,3 @@ return { -- This is my personal configuration, plug'n'play no extra configuratio
 - [@universal-ctags](https://github.com/universal-ctags) for [Universal-CTags](https://github.com/universal-ctags/ctags)
 - [@llvm](https://github.com/llvm) for [clang-format](https://clang.llvm.org/docs/ClangFormat.html)
 - [@doxygen](https://github.com/doxygen) for [doxygen](https://github.com/doxygen/doxygen)
-
-```
-
-```
