@@ -70,12 +70,16 @@ M.configFormatter = function()
     end
 
     local formatting = null_ls.builtins.formatting -- to setup formatters
+    local functions = require("nwscript.configs.functions")
 
-    local clfPath = function()
-      if vim.fn.has("win64") == 1 or vim.fn.has("win32") == 1 or vim.fn.has("win16") == 1 then
-        return os.getenv("UserProfile") .. "/.clang-format" -- Must create this folder
-      else -- I don't own/use a Mac, will update when/if I do
-        return os.getenv("HOME") .. "/.clang-format" -- Must create this folder
+    local clangPath = function(path)
+      if path ~= nil then
+        if functions.clfPath(path) ~= nil then
+          return "-style=file:" .. vim.fn.expand(functions.clfPath(path))
+        end
+      end
+      if functions.clfPath() ~= nil then
+        return "-style=file:" .. vim.fn.expand(functions.clfPath())
       end
     end
 
@@ -83,9 +87,7 @@ M.configFormatter = function()
       formatting.clang_format.with({
         filetypes = { "nss", "nwscript" },
         disabled_filetypes = { "cs", "csharp" }, -- Don't want it messing with C#
-        extra_args = {
-          "-style=file:" .. vim.fn.expand(clfPath()),
-        },
+        extra_args = { clangPath() },
       }),
 
       formatting.clang_format,
@@ -108,7 +110,7 @@ M.configLuasnip = function()
     local loaders = require("luasnip.loaders.from_lua")
 
     local path = function()
-      if vim.uv.os_uname().sysname == "Windows_NT" then
+      if vim.uv.os_uname().sysname == "Windows" then
         return os.getenv("UserProfile") .. "/AppData/Local/nvim/lazy/nwscript-ee-lsp.nvim/snippets"
       end
       return os.getenv("HOME") .. "/.local/share/nvim/lazy/nwscript-ee-lsp.nvim/snippets"
@@ -122,7 +124,7 @@ M.configVimNWScript = function() end
 
 M.configUltiSnips = function()
   local path = function()
-    if vim.uv.os_uname().sysname == "Windows_NT" then
+    if vim.uv.os_uname().sysname == "Windows" then
       return os.getenv("UserProfile") .. "/AppData/Local/nvim/lazy/vim-nwscript/UltiSnips"
     end
     return os.getenv("HOME") .. "/.local/share/nvim/lazy/vim-nwscript/UltiSnips"

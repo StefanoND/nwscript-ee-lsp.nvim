@@ -1,13 +1,5 @@
 local M = {}
 
--- Add support for NWN:EE's LSP
--- Thanks to implicit-image and his repo: https://github.com/implicit-image/lsp-nwscript.el
--- Which I somehow manged to "convert" from emacs to neovim
-
--- NWN:EE's LSP
--- Original author: https://github.com/PhilippeChab/nwscript-ee-language-server
--- Current maintainer: https://github.com/implicit-image/nwscript-ee-language-server
-
 -- Change these to the correct path
 M.nwnPaths = {
   docs = os.getenv("NWN_HOME"),

@@ -53,6 +53,82 @@ Credits goes to everyone mentioned in the .lua files
 
 With [lazy.nvim](https://github.com/folke/lazy.nvim)
 
+<default>
+<summary>Default Options</summary>
+
+## LSP
+
+### Config
+
+```lua
+-- Setup with default config
+lspconfig.nwscript_ls.setup()
+
+-- This is the default config, if you don't want to change anything, use the setup command above
+lspconfig.nwscript_ls.setup({
+  capabilities = capabilities,
+  single_file_support = true,
+  ["nwscript-ee-lsp"] = {
+    completion = {
+      addParamsToFunctions = true,
+    },
+    hovering = {
+      addCommentsToFunctions = true,
+    },
+    formatter = {
+      enabled = true,
+      verbose = true,
+      executable = "clang-format",
+      ignoreGlobs = {},
+    },
+    compiler = {
+      enabled = true,
+      -- Return OS' name: Linux, Darwin (MacOS), FreeBSD, NetBSD, OpenBSD, Windows, CYGWIN_NT, MSYS_NT
+      os = vim.uv.os_uname().sysname,
+      verbose = true,
+      reportWarnings = true,
+      nwnHome = os.getenv("NWN_HOME"), -- Environment Variable in my PC
+      nwnInstallation = os.getenv("NWN_ROOT"), -- Environment Variable in my PC
+      nwneeBaseIncludes = {},
+      nwnBaseIncludes = {},
+      nwn2BaseIncludes = {},
+      workspaceIncludes = tostring(vim.fn.getcwd()), -- "Current Working Directory"
+    },
+  }
+})
+```
+
+### Capabilities
+
+```lua
+vim.tbl_deep_extend("force", util.default_config.capabilities, cmpcapabilities, {
+  textDocument = {
+    foldingRange = {
+      dynamicRegistration = false,
+      lineFoldingOnly = true,
+    },
+    completion = {
+      completionItem = {
+        snippetSupport = true,
+      },
+    },
+  },
+  workspace = {
+    configuration = true,
+    didChangeConfiguration = { dynamicRegistration = true },
+  },
+  offsetEncoding = { "utf-8" },
+  didChangeWatchedFiles = {
+    -- TODO(lewis6991): do not advertise didChangeWatchedFiles on Linux
+    -- or BSD since all the current backends are too limited.
+    -- Ref: #27807, #28058, #23291, #26520
+    relativePatternSupport = false,
+  },
+})
+```
+
+</default>
+
 ```lua
 return { -- This is my personal configuration, plug'n'play no extra configuration required
   "StefanoND/nwscript-ee-lsp.nvim",
@@ -89,6 +165,19 @@ return { -- This is my personal configuration, plug'n'play no extra configuratio
 }
 ```
 
+## Keymap
+
+Keymaps not listed here are using your own configured keymaps or the plugin's default keymaps
+
+| Keymap      | Function                | Description                                    |
+| ----------- | ----------------------- | ---------------------------------------------- |
+| <leader>nwc | nasher compile -f '%:p' | Compile current script                         |
+| <leader>nwC | nasher compile all      | Compile all scripts                            |
+| <leader>nwi | nasher install -y main  | Pack project into module                       |
+| <leader>nwu | nasher unpack -y main   | Unpack module to project folder                |
+| <leader>tg  | NWScriptTagGen          | Generate ctags for current project             |
+| <leader>tG  | NWScriptTagGenAll       | Generate ctags for project inc. external dirs. |
+
 ## [nwscript-ee-language-server](https://github.com/implicit-image/nwscript-ee-language-server)
 
 [building-and-running:](https://github.com/implicit-image/nwscript-ee-language-server?tab=readme-ov-file#building-and-running)
@@ -116,12 +205,14 @@ return { -- This is my personal configuration, plug'n'play no extra configuratio
 ## Special Thanks
 
 - [@squattingmonk](https://github.com/squattingmonk) for his nvim [config](https://github.com/squattingmonk/dotfiles/tree/master/nvim/.config/nvim) which I used as a starting point for my own config for nwscript
+- [@implicit-image](https://github.com/implicit-image) for his emacs [config](https://github.com/implicit-image/lsp-nwscript.el) which I used as base to "translate" to neovim
 
 ## Credits
 
 - [@neovim](https://github.com/neovim) for [Neovim](https://github.com/neovim/neovim)
 - [@folke](https://github.com/folke) for [lazy.nvim](https://github.com/folke/lazy.nvim)
-- [@implicit-image](https://github.com/implicit-image) for [nwscript-ee-language-server](https://github.com/implicit-image/nwscript-ee-language-server)
+- [@PhilippeChab](https://github.com/PhilippeChab) for creating [nwscript-ee-language-server](https://github.com/PhilippeChab/nwscript-ee-language-server)
+- [@implicit-image](https://github.com/implicit-image) for maintaining [nwscript-ee-language-server](https://github.com/implicit-image/nwscript-ee-language-server)
 
 - [@numToStr](https://github.com/numToStr) for [Comment](https://github.com/numToStr/Comment.nvim)
 - [@L3MON4D3](https://github.com/L3MON4D3) for [LuaSnip](https://github.com/L3MON4D3/LuaSnip)

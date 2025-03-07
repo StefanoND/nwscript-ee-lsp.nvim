@@ -20,31 +20,21 @@ M.setKeymaps = function(client, bufnr)
       {
         mode = { "n" },
         {
-          { "<leader>nb", compile .. "-f '%:p'<CR>", ext("Compile current script") },
-          { "<leader>ncb", compile .. "--clean -f '%:p'<CR>", ext("Clear cache and compile current script") },
-          { "<leader>nB", compile .. "all<CR>", ext("Compile all scripts") },
-          { "<leader>ncB", compile .. "--clean all<CR>", ext("Clear cache and Compile all scripts") },
-          { "<leader>ni", install .. "-y main<CR>", ext("Pack project into module") },
-          { "<leader>nci", install .. "--clean -y main<CR>", ext("Clear cache and Pack project into module") },
-          { "<leader>nu", unpack .. "-y main<CR>", ext("Unpack module to project folder") },
-          { "<leader>ncu", unpack .. "--clean -y main<CR>", ext("Unpack module to project folder") },
+          { "<leader>nwc", compile .. "-f '%:p'<CR>", ext("Compile current script") },
+          { "<leader>nwC", compile .. "all<CR>", ext("Compile all scripts") },
+          { "<leader>nwi", install .. "-y main<CR>", ext("Pack project into module") },
+          { "<leader>nwu", unpack .. "-y main<CR>", ext("Unpack module to project folder") },
           { "<leader>tg", ":NWScriptTagGen<CR>", ext("Generate ctags for current project") },
           { "<leader>tG", ":NWScriptTagGenAll<CR>", ext("Generate ctags for project inc. external dirs.") },
         },
       },
     })
   else
-    kmn("<leader>nb", compile .. "-f '%:p'<CR>", ext("Compile current script"))
-    kmn("<leader>ncb", compile .. "--clean -f '%:p'<CR>", ext("Clear cache and compile current script"))
-    kmn("<leader>nB", compile .. "all<CR>", ext("Compile all scripts"))
-    kmn("<leader>ncB", compile .. "--clean all<CR>", ext("Clear cache and Compile all scripts"))
-    kmn("<leader>ni", install .. "-y main<CR>", ext("Pack project into module"))
-    kmn("<leader>nci", install .. "--clean -y main<CR>", ext("Clear cache and Pack project into module"))
-    kmn("<leader>nu", unpack .. "-y main<CR>", ext("Unpack module to project folder"))
-    kmn("<leader>ncu", unpack .. "--clean -y main<CR>", ext("Unpack module to project folder"))
+    kmn("<leader>nwc", compile .. "-f '%:p'<CR>", ext("Compile current script"))
+    kmn("<leader>nwC", compile .. "all<CR>", ext("Compile all scripts"))
+    kmn("<leader>nwi", install .. "-y main<CR>", ext("Pack project into module"))
+    kmn("<leader>nwu", unpack .. "-y main<CR>", ext("Unpack module to project folder"))
     kmn("<leader>tg", ":NWScriptTagGen<CR>", ext("Generate ctags for current project"))
-
-    -- Check plugins/lsp/nwscript.lua for more information.
     kmn("<leader>tG", ":NWScriptTagGenAll<CR>", ext("Generate ctags for project inc. external dirs."))
   end
 end

@@ -5,7 +5,7 @@ local lazyPath = function()
   if vim.uv.os_uname().sysname == "Linux" then
     return os.getenv("HOME") .. "/.local/share/nvim/lazy"
   end
-  if vim.uv.os_uname().sysname == "Windows_NT" then
+  if vim.uv.os_uname().sysname == "Windows" then
     return os.getenv("UserProfile") .. "/AppData/Local/nvim/lazy"
   end
 end
@@ -19,31 +19,10 @@ end
 
 local nwLSPServerArgs = { "--stdio" } -- Required
 
-local isSymlink = function(path)
-  local handle = io.popen("test -L " .. path .. "; echo $?")
-  if handle then
-    local result = handle:read("*a")
-    handle:close()
-    return tonumber(result:match("%d+")) == 0
-  else
-    return false
-  end
-end
-
-local findExecutable = function()
-  if vim.fn.executable("node") == 0 then
-    vim.notify("Did not find 'node' executable", vim.log.levels.ERROR)
-    return false
-  end
-  if vim.fn.filereadable(nwServerJSPath()) == 0 and not isSymlink(nwServerJSPath()) then
-    vim.notify("Did not find server.js file", vim.log.levels.ERROR)
-    return false
-  end
-  return true
-end
+local functions = require("nwscript.configs.functions")
 
 local serverCommand = function()
-  if findExecutable() then
+  if functions.findExecutable("node") and functions.findFile(nwServerJSPath()) then
     return "node", nwServerJSPath(), unpack(nwLSPServerArgs)
   end
   return nil
