@@ -2,6 +2,14 @@
 
 NWScript: EE LSP is a Neovim plugin for the NWScript language
 
+## TODO
+
+[x] Provide prebuilt [nwscript-ee-language-server](https://github.com/implicit-image/nwscript-ee-language-server) binary so [building-and-running](https://github.com/StefanoND/nwscript-ee-lsp.nvim/blob/trunk/README.md#nwscript-ee-language-server) isn't needed
+[ ] Add documentation
+[ ] Provide NodeJS's binary
+[ ] Keymap configuration
+[ ] Make all snippets from LuaSnip work in UltiSnips and Vice-Versa
+
 ## Features
 
 - NWScript filetype support and extension
@@ -128,7 +136,8 @@ return { -- This is my personal configuration, plug'n'play no extra configuratio
   ft = "nwscript",
   dependencies = {
     -- "PhilippeChab/nwscript-ee-language-server", -- Deprecated(?), LSP. Abandoned(?)
-    "implicit-image/nwscript-ee-language-server", -- Required, LSP. Current maintainer
+    -- "implicit-image/nwscript-ee-language-server", -- Required, LSP. Current maintainer
+    "StefanoND/nwscript-ee-language-server", -- Required, LSP. My fork with prebuilt binaries
     "L3MON4D3/LuaSnip", -- Optional, Snippet Engine for Neovim
     "SirVer/ultisnips", -- Optional, Slution for snippets for Neovim
     "danymat/neogen", -- Optional, Annotation generator
@@ -170,30 +179,6 @@ Keymaps not listed here are using your own configured keymaps or the plugin's de
 | <leader>nwu | nasher unpack -y main   | Unpack module to project folder                |
 | <leader>tg  | NWScriptTagGen          | Generate ctags for current project             |
 | <leader>tG  | NWScriptTagGenAll       | Generate ctags for project inc. external dirs. |
-
-## [nwscript-ee-language-server](https://github.com/implicit-image/nwscript-ee-language-server)
-
-[building-and-running:](https://github.com/implicit-image/nwscript-ee-language-server?tab=readme-ov-file#building-and-running)
-
-    # Make sure you have NodeJS and npm installed
-
-    # CD To the LSP folder downloaded from Lazy
-    # Linux
-    cd "$HOME"/.local/share/nvim/lazy/nwscript-ee-language-server
-    # Windows
-    cd "$UserProfile"/.local/share/nvim/lazy/nwscript-ee-language-server
-
-    # Installs Yarn (Dependency Manager) and vsce (VSCode's Package Manager)
-    sudo npm i -g yarn @vscode/vsce
-
-    # Updates old (vulnerable) dependencies
-    sudo npm audit fix
-
-    # Install all dependencies
-    yarn install
-
-    # Builds the project. Also creates the .vsix file which we don't want/need
-    vsce package
 
 ## Special Thanks
 
