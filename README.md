@@ -6,7 +6,6 @@ NWScript: EE LSP is a Neovim plugin for the NWScript language
 
 [x] Provide prebuilt [nwscript-ee-language-server](https://github.com/StefanoND/nwscript-ee-language-server) binary so [building-and-running](https://github.com/StefanoND/nwscript-ee-lsp.nvim/blob/trunk/README.md#nwscript-ee-language-server) isn't needed
 [ ] Add documentation
-[ ] Provide NodeJS's binary
 [ ] Keymap configuration
 [ ] Make all snippets from LuaSnip work in UltiSnips and Vice-Versa
 
