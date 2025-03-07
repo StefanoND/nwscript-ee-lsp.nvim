@@ -12,10 +12,15 @@ Credits goes to everyone mentioned in the .lua files
 ## Features
 
 NWScript filetype support and extension
+
 [Comment.nvim](https://github.com/numToStr/Comment.nvim) support
+
 [doxygen](https://github.com/doxygen/doxygen) support
+
 [LuaSnip](https://github.com/L3MON4D3/LuaSnip)/[ultisnips](https://github.com/SirVer/ultisnips) Snippets
+
 [treesitter](https://github.com/nvim-treesitter/nvim-treesitter) Syntax highlighting
+
 [nwscript-ee-language-server](https://github.com/implicit-image/nwscript-ee-language-server) and it's [features](https://github.com/implicit-image/nwscript-ee-language-server?tab=readme-ov-file#features)
 
 ## Requirements
@@ -114,24 +119,41 @@ With [lazy.nvim](https://github.com/folke/lazy.nvim)
 ## Credits
 
 for [Neovim](https://github.com/neovim/neovim) >= 0.10.0
+
 for [lazy.nvim](https://github.com/folke/lazy.nvim)
+
 for [nwscript-ee-language-server](https://github.com/implicit-image/nwscript-ee-language-server)
 
 for [Comment](https://github.com/numToStr/Comment.nvim) -- Optional, comment plugin
+
 for [LuaSnip](https://github.com/L3MON4D3/LuaSnip) -- Optional, Snippet Engine for Neovim
+
 for [lsp_signature](https://github.com/ray-x/lsp_signature.nvim) -- Optional, needed for rounded borders
+
 for [neogen](https://github.com/danymat/neogen) -- Optional, Annotation generator
+
 for [none-ls](https://github.com/nvimtools/none-ls.nvim) -- Optional, LSP diagnostic, code actions, etc. Injection
+
 for [plenary](https://github.com/nvim-lua/plenary.nvim) -- Optional, Provides utility functions for plugins .nss extension
+
 for [treesitter](https://github.com/nvim-treesitter/nvim-treesitter) -- Optional, syntax highlighting
+
 for [ultisnips](https://github.com/SirVer/ultisnips) -- Optional, Slution for snippets for Neovim
+
 for [vim-nwscript](https://github.com/squattingmonk/vim-nwscript) -- Optional, auto-indention/wrapping of comments, snippets and ctags generation
+
 for [which-key](https://github.com/folke/which-key.nvim) -- Optional, Displays keymap hints
 
 for [NodeJS](https://github.com/nodejs/node) -- Required, Executable for LSP
+
 for [npm](https://github.com/npm/cli) -- Required, Package Manager for NodeJS
+
 for [yarn](https://github.com/yarnpkg/yarn) -- Required, Dependency Manager for NodeJS
+
 for [vsce](https://github.com/microsoft/vscode-vsce) -- Required, VSCode's Package Manager
+
 for [Universal-CTags](https://github.com/universal-ctags/ctags) -- Optional, If using squattingmonk's vim-nwscript
+
 for [clang-format](https://clang.llvm.org/docs/ClangFormat.html) -- Optional, Formatting
+
 for [doxygen](https://github.com/doxygen/doxygen) -- Optional, Documentation Generation
