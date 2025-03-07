@@ -34,7 +34,6 @@ M.configNeogen = function()
   if require("neogen") ~= nil then
     local neogen = require("neogen")
     neogen.setup({
-      snippet_engine = "luasnip",
       languages = {
         nwscript = require("nwscript.configs.neogen.nwscript"),
       },
@@ -91,10 +90,6 @@ M.configFormatter = function()
 
       formatting.clang_format,
     }
-
-    local rootdir = function(fname)
-      return null_ls_utils.root_pattern(".null-ls-root", "Makefile", ".git", "nasher.cfg")(fname)
-    end
 
     null_ls.register(sources)
 
