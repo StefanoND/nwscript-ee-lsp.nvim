@@ -53,7 +53,7 @@ Credits goes to everyone mentioned in the .lua files
 
 With [lazy.nvim](https://github.com/folke/lazy.nvim)
 
-````lua
+```lua
 return { -- This is my personal configuration, plug'n'play no extra configuration required
   "StefanoND/nwscript-ee-lsp.nvim",
   ft = "nwscript",
@@ -86,7 +86,8 @@ return { -- This is my personal configuration, plug'n'play no extra configuratio
   config = function()
     require("nwscript").setup()
   end,
-}```
+}
+```
 
 ### [nwscript-ee-language-server](https://github.com/implicit-image/nwscript-ee-language-server)
 
@@ -140,4 +141,7 @@ return { -- This is my personal configuration, plug'n'play no extra configuratio
 - [@universal-ctags](https://github.com/universal-ctags) for [Universal-CTags](https://github.com/universal-ctags/ctags)
 - [@llvm](https://github.com/llvm) for [clang-format](https://clang.llvm.org/docs/ClangFormat.html)
 - [@doxygen](https://github.com/doxygen) for [doxygen](https://github.com/doxygen/doxygen)
-````
+
+```
+
+```
