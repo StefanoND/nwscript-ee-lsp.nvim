@@ -4,7 +4,7 @@ NWScript: EE LSP is a Neovim plugin for the NWScript language
 
 ## TODO
 
-[x] Provide prebuilt [nwscript-ee-language-server](https://github.com/implicit-image/nwscript-ee-language-server) binary so [building-and-running](https://github.com/StefanoND/nwscript-ee-lsp.nvim/blob/trunk/README.md#nwscript-ee-language-server) isn't needed
+[x] Provide prebuilt [nwscript-ee-language-server](https://github.com/StefanoND/nwscript-ee-language-server) binary so [building-and-running](https://github.com/StefanoND/nwscript-ee-lsp.nvim/blob/trunk/README.md#nwscript-ee-language-server) isn't needed
 [ ] Add documentation
 [ ] Provide NodeJS's binary
 [ ] Keymap configuration
@@ -43,9 +43,6 @@ NWScript: EE LSP is a Neovim plugin for the NWScript language
 ### External
 
 - [NodeJS](https://github.com/nodejs/node) -- Required, Executable for LSP
-- [npm](https://github.com/npm/cli) -- Required, Package Manager for NodeJS
-- [yarn](https://github.com/yarnpkg/yarn) -- Required, Dependency Manager for NodeJS
-- [vsce](https://github.com/microsoft/vscode-vsce) -- Required, VSCode's Package Manager
 - [Universal-CTags](https://github.com/universal-ctags/ctags) -- Optional, If using squattingmonk's vim-nwscript
 - [clang-format](https://clang.llvm.org/docs/ClangFormat.html) -- Optional, Formatting
 - [doxygen](https://github.com/doxygen/doxygen) -- Optional, Documentation Generation
@@ -204,9 +201,6 @@ Keymaps not listed here are using your own configured keymaps or the plugin's de
 - [@folke](https://github.com/folke) for [which-key](https://github.com/folke/which-key.nvim)
 
 - [@nodejs](https://github.com/nodejs) for [NodeJS](https://github.com/nodejs/node)
-- [@npm](https://github.com/npm) for [npm](https://github.com/npm/cli)
-- [@yarnpkg](https://github.com/yarnpkg) for [yarn](https://github.com/yarnpkg/yarn)
-- [@microsoft](https://github.com/microsoft) for [vsce](https://github.com/microsoft/vscode-vsce)
 - [@universal-ctags](https://github.com/universal-ctags) for [Universal-CTags](https://github.com/universal-ctags/ctags)
 - [@llvm](https://github.com/llvm) for [clang-format](https://clang.llvm.org/docs/ClangFormat.html)
 - [@doxygen](https://github.com/doxygen) for [doxygen](https://github.com/doxygen/doxygen)
