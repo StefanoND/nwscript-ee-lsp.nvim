@@ -2,13 +2,6 @@
 
 NWScript: EE LSP is a Neovim plugin for the NWScript language
 
-## TODO
-
-[x] Provide prebuilt [nwscript-ee-language-server](https://github.com/StefanoND/nwscript-ee-language-server) binary so [building-and-running](https://github.com/StefanoND/nwscript-ee-lsp.nvim/blob/trunk/README.md#nwscript-ee-language-server) isn't needed
-[ ] Add documentation
-[ ] Keymap configuration
-[ ] Make all snippets from LuaSnip work in UltiSnips and Vice-Versa
-
 ## Features
 
 - NWScript filetype support and extension
@@ -174,6 +167,13 @@ Keymaps not listed here are using your own configured keymaps or the plugin's de
 | <leader>nwu | nasher unpack -y main   | Unpack module to project folder                |
 | <leader>tg  | NWScriptTagGen          | Generate ctags for current project             |
 | <leader>tG  | NWScriptTagGenAll       | Generate ctags for project inc. external dirs. |
+
+## TODO
+
+[x] Provide prebuilt [nwscript-ee-language-server](https://github.com/StefanoND/nwscript-ee-language-server) binary so [building-and-running](https://github.com/StefanoND/nwscript-ee-lsp.nvim/blob/trunk/README.md#nwscript-ee-language-server) isn't needed
+[ ] Add documentation
+[ ] Keymap configuration
+[ ] Make all snippets from LuaSnip work in UltiSnips and Vice-Versa
 
 ## Special Thanks
 
