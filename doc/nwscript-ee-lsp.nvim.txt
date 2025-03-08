@@ -156,6 +156,7 @@ CAPABILITIES ~
         "folke/which-key.nvim", -- Optional, Displays keymap hints
         "numToStr/Comment.nvim", -- Optional, comment plugin
         "nvim-lua/plenary.nvim", -- Optional, Provides utility functions for plugins .nss extension
+        "nvim-tree/nvim-web-devicons", -- Optional, Adds icon for NWScript
         "nvim-treesitter/nvim-treesitter", -- Optional, syntax highlighting
         "nvimtools/none-ls.nvim", -- Optional, LSP diagnostic, code actions, etc. Injection
         "ray-x/lsp_signature.nvim", -- Optional, needed for rounded borders
