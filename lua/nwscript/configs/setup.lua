@@ -125,12 +125,33 @@ M.configVimNWScript = function() end
 M.configUltiSnips = function()
   local path = function()
     if vim.uv.os_uname().sysname == "Windows" then
-      return os.getenv("UserProfile") .. "/AppData/Local/nvim/lazy/vim-nwscript/UltiSnips"
+      return os.getenv("UserProfile") .. "/AppData/Local/nvim/lazy/nwscript-ee-lsp.nvim/UltiSnips"
     end
-    return os.getenv("HOME") .. "/.local/share/nvim/lazy/vim-nwscript/UltiSnips"
+    return os.getenv("HOME") .. "/.local/share/nvim/lazy/nwscript-ee-lsp.nvim/UltiSnips"
   end
 
   vim.g.UltiSnipsSnippetDirectories = { path(), "UltiSnips" }
+end
+
+M.configDevIcons = function()
+  if require("nvim-web-devicons") ~= nil then
+    local devicons = require("nvim-web-devicons")
+
+    devicons.set_icon_by_filetype({
+      nwscript = "nwscript",
+    })
+
+    devicons.set_icon({
+      nwscript = {
+        icon = " ",
+        color = "#b4befe",
+        cterm_color = "153",
+        name = "NWScript",
+      },
+    })
+
+    devicons.setup()
+  end
 end
 
 -- {

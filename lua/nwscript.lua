@@ -8,6 +8,7 @@ M.setup = function()
   setup.configLuasnip() -- Enable "LuaSnip" snippets for NWScript
   setup.configUltiSnips() -- Enable "UltiSnips" snippets for NWScript
   setup.configNeogen() -- Enable "neogen" comment generation functionality for NWScript
+  setup.configDevIcons() -- Adds a "nvim-web-devicons" icon for NWScript
 
   vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(event)
