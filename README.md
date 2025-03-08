@@ -7,6 +7,8 @@ NWScript: EE LSP is a Neovim plugin for the NWScript language
 - NWScript filetype support and extension
 - [Comment.nvim](https://github.com/numToStr/Comment.nvim) support
 - [doxygen](https://github.com/doxygen/doxygen) support
+- [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons) Icon support
+- [neogen](https://github.com/danymat/neogen) support
 - [LuaSnip](https://github.com/L3MON4D3/LuaSnip)/[ultisnips](https://github.com/SirVer/ultisnips) Snippets
 - [treesitter](https://github.com/nvim-treesitter/nvim-treesitter) Syntax highlighting
 - [nwscript-ee-language-server](https://github.com/implicit-image/nwscript-ee-language-server) and it's [features](https://github.com/implicit-image/nwscript-ee-language-server?tab=readme-ov-file#features)
@@ -26,6 +28,7 @@ NWScript: EE LSP is a Neovim plugin for the NWScript language
 - [lsp_signature](https://github.com/ray-x/lsp_signature.nvim) -- Optional, needed for rounded borders
 - [neogen](https://github.com/danymat/neogen) -- Optional, Annotation generator
 - [none-ls](https://github.com/nvimtools/none-ls.nvim) -- Optional, LSP diagnostic, code actions, etc. Injection
+- [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons) -- Optional, Icon support for NWScript
 - [plenary](https://github.com/nvim-lua/plenary.nvim) -- Optional, Provides utility functions for plugins .nss extension
 - [treesitter](https://github.com/nvim-treesitter/nvim-treesitter) -- Optional, syntax highlighting
 - [ultisnips](https://github.com/SirVer/ultisnips) -- Optional, Slution for snippets for Neovim
@@ -35,9 +38,9 @@ NWScript: EE LSP is a Neovim plugin for the NWScript language
 ### External
 
 - [NodeJS](https://github.com/nodejs/node) -- Required, Executable for LSP
-- [Universal-CTags](https://github.com/universal-ctags/ctags) -- Optional, If using squattingmonk's vim-nwscript
 - [clang-format](https://clang.llvm.org/docs/ClangFormat.html) -- Optional, Formatting
 - [doxygen](https://github.com/doxygen/doxygen) -- Optional, Documentation Generation
+- [Universal-CTags](https://github.com/universal-ctags/ctags) -- Optional, If using squattingmonk's vim-nwscript
 
 ## Installation/Configuration
 
@@ -174,7 +177,7 @@ Keymaps not listed here are using your own configured keymaps or the plugin's de
 [x] Provide prebuilt [nwscript-ee-language-server](https://github.com/StefanoND/nwscript-ee-language-server) binary so [building-and-running](https://github.com/StefanoND/nwscript-ee-lsp.nvim/blob/trunk/README.md#nwscript-ee-language-server) isn't needed
 [x] Add documentation
 [ ] Keymap configuration
-[ ] Make all snippets from LuaSnip work in UltiSnips and Vice-Versa
+[x] Make all snippets from LuaSnip work in UltiSnips and Vice-Versa
 
 ## Special Thanks
 
@@ -198,6 +201,7 @@ Keymaps not listed here are using your own configured keymaps or the plugin's de
 - [@SirVer](https://github.com/SirVer) for [ultisnips](https://github.com/SirVer/ultisnips)
 - [@squattingmonk](https://github.com/squattingmonk) for [vim-nwscript](https://github.com/squattingmonk/vim-nwscript)
 - [@folke](https://github.com/folke) for [which-key](https://github.com/folke/which-key.nvim)
+- [@nvim-tree](https://github.com/nvim-tree) for [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
 
 - [@nodejs](https://github.com/nodejs) for [NodeJS](https://github.com/nodejs/node)
 - [@universal-ctags](https://github.com/universal-ctags) for [Universal-CTags](https://github.com/universal-ctags/ctags)
