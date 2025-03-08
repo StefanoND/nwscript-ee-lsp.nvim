@@ -75,16 +75,98 @@ end --}}}
 
 -- Snippets go here --
 
--- [for([%w_]+)] For loop snippet {{{
+-- -- placeholder snippet {{{
+-- cs(
+--   "",
+--   fmt(
+--     [[
+-- {}
+--     ]],
+--     {
+--       i(0),
+--     }
+--   )
+-- ) --}}}
+
+-- void main snippet {{{
 cs(
-  { trig = "for([%w_]+)", regTrig = true, hidden = true },
+  "main",
+  fmt(
+    [[
+void main()
+{{
+    {}
+}}
+{}
+    ]],
+    {
+      i(1, "// TODO"),
+      i(0),
+    }
+  )
+) --}}}
+
+-- Starting Conditional function snippet {{{
+cs(
+  "condit",
+  fmt(
+    [[
+int StartingConditional()
+{{
+	return {};
+}}
+{}
+    ]],
+    {
+      i(1, "// TODO"),
+      i(0),
+    }
+  )
+) --}}}
+
+-- #include directive {{{
+cs(
+  "#inc",
+  fmt(
+    [[
+#include "{}"
+{}
+    ]],
+    {
+      i(1, "file"),
+      i(0),
+    }
+  )
+) -- }}}
+
+-- if conditional snippet {{{
+cs(
+  "if",
+  fmt(
+    [[
+if ({})
+{{
+	{}
+}}
+{}
+    ]],
+    {
+      i(1, "condition"),
+      i(2, "// TODO"),
+      i(0),
+    }
+  )
+) --}}}
+
+-- for loop snippet {{{
+cs(
+  "for",
   fmt(
     [[
 for ({} = 0; {} < {}; {}++)
 {{
     {}
 }}
-
 {}
     ]],
     {
@@ -96,6 +178,123 @@ for ({} = 0; {} < {}; {}++)
       rep(1),
       i(3, "// TODO"),
       i(4),
+    }
+  )
+) --}}}
+
+-- while loop snippet {{{
+cs(
+  "while",
+  fmt(
+    [[
+while ({})
+{{
+	{}
+}}
+{}
+    ]],
+    {
+      i(1, "condition"),
+      i(2, "// TODO"),
+      i(0),
+    }
+  )
+) --}}}
+
+-- do while loop snippet {{{
+cs(
+  "dowhile",
+  fmt(
+    [[
+do
+{{
+	{}
+}}
+while ({})
+{}
+    ]],
+    {
+      i(1, "// TODO"),
+      i(2, "condition"),
+      i(0),
+    }
+  )
+) --}}}
+
+-- struct snippet {{{
+cs(
+  "struct",
+  fmt(
+    [[
+struct {}
+{{
+  {}
+}};
+{}
+    ]],
+    {
+      i(1, "name"),
+      i(2, "// TODO"),
+      i(0),
+    }
+  )
+) --}}}
+
+-- function definition snippet {{{
+cs(
+  "funcdef",
+  fmt(
+    [[
+{} {}({})
+{{
+	{}
+}}
+{}
+    ]],
+    {
+      i(1, "void"),
+      i(2, "FunctionName"),
+      i(3, "overloads"),
+      i(4, "// TODO"),
+      i(0),
+    }
+  )
+) --}}}
+
+-- function prototype snippet {{{
+cs(
+  "funcprot",
+  fmt(
+    [[
+// ---< {} >---
+// ---< {} >---
+// {}
+{} {}({});
+{}
+    ]],
+    {
+      i(1, "FunctionName"),
+      f(function(_, snip)
+        return snip.env["TM_FILENAME_BASE"]
+      end),
+      i(2, "description"),
+      i(3, "definition"),
+      rep(1),
+      i(4, "overloads"),
+      i(0),
+    }
+  )
+) --}}}
+
+-- constant definition snippet {{{
+cs(
+  "const",
+  fmt(
+    [[
+{}
+    ]],
+    {
+      i(0),
     }
   )
 ) --}}}
@@ -117,8 +316,7 @@ cs(
       i(1, "header title"),
       i(0),
     }
-  ),
-  "auto"
+  )
 ) -- }}}
 
 -- Commented divider line {{{
@@ -132,8 +330,7 @@ cs(
     {
       i(0),
     }
-  ),
-  "auto"
+  )
 ) -- }}}
 
 -- Commented divider line with text {{{
@@ -151,22 +348,7 @@ cs(
       end, { 1 }),
       i(0),
     }
-  ),
-  "auto"
-) -- }}}
-
--- #include directive {{{
-cs(
-  "#inc",
-  fmt(
-    [[
-    #include "{}"
-    ]],
-    {
-      i(1, "file"),
-    }
-  ),
-  "auto"
+  )
 ) -- }}}
 
 -- File metadata {{{
@@ -176,8 +358,7 @@ cs(
     [[
 /// ----------------------------------------------------------------------------
 /// @file   {}
-/// @author Michael A. Sinclair (Squatting Monk) <squattingmonk@gmail.com>
-/// @author Ed Burke (tinygiant98) <af.hog.pilot@gmail.com>
+/// @author {} ({}) <{}>
 /// @brief  {}
 /// ----------------------------------------------------------------------------
 {}
@@ -186,7 +367,10 @@ cs(
       f(function(_, snip)
         return snip.env["TM_FILENAME"]
       end),
-      i(1, "Description"),
+      i(1, "Name"),
+      i(2, "Nick"),
+      i(3, "email"),
+      i(4, "Description"),
       i(0),
     }
   )

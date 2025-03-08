@@ -107,7 +107,10 @@ end
 
 M.configLuasnip = function()
   if require("luasnip") ~= nil then
+    local luasnip = require("luasnip")
     local loaders = require("luasnip.loaders.from_lua")
+
+    luasnip.filetype_extend("nwscript", { "nwdocs" })
 
     local path = function()
       if vim.uv.os_uname().sysname == "Windows" then
