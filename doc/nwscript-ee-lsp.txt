@@ -1,26 +1,10 @@
-*nwscript-ee-lsp.nvim.txt*      For NVIM v0.8.0     Last change: 2025 March 08
-
-==============================================================================
-Table of Contents                     *nwscript-ee-lsp.nvim-table-of-contents*
-
-1. nwscript-ee-lsp.nvim            |nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim|
-  - Features              |nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-features|
-  - Requirements      |nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-requirements|
-  - Installation/Configuration|nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-installation/configuration|
-  - LSP                        |nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-lsp|
-  - Keymap                  |nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-keymap|
-  - TODO                      |nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-todo|
-  - Special Thanks  |nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-special-thanks|
-  - Credits                |nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-credits|
-2. Links                                          |nwscript-ee-lsp.nvim-links|
-
-==============================================================================
-1. nwscript-ee-lsp.nvim            *nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim*
+*nwscript-ee-lsp.txt*                a Neovim plugin for the NWScript language
 
 NWScript: EE LSP is a Neovim plugin for the NWScript language
 
 
-FEATURES                  *nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-features*
+==============================================================================
+1. Features                                         *nwscript-ee-lsp-features*
 
 - NWScript filetype support and extension
 - Comment.nvim <https://github.com/numToStr/Comment.nvim> support
@@ -30,17 +14,18 @@ FEATURES                  *nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-features*
 - nwscript-ee-language-server <https://github.com/implicit-image/nwscript-ee-language-server> and it’s features <https://github.com/implicit-image/nwscript-ee-language-server?tab=readme-ov-file#features>
 
 
-REQUIREMENTS          *nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-requirements*
+==============================================================================
+2. Requirements                                 *nwscript-ee-lsp-requirements*
 
 
-REQUIRED ~
+REQUIRED                                            *nwscript-ee-lsp-required*
 
 - Neovim <https://github.com/neovim/neovim> >= 0.10.0
 - lazy.nvim <https://github.com/folke/lazy.nvim>
 - nwscript-ee-language-server <https://github.com/implicit-image/nwscript-ee-language-server>
 
 
-OPTIONAL ~
+OPTIONAL                                            *nwscript-ee-lsp-optional*
 
 - Comment <https://github.com/numToStr/Comment.nvim> – Optional, comment plugin
 - LuaSnip <https://github.com/L3MON4D3/LuaSnip> – Optional, Snippet Engine for Neovim
@@ -54,7 +39,7 @@ OPTIONAL ~
 - which-key <https://github.com/folke/which-key.nvim> – Optional, Displays keymap hints
 
 
-EXTERNAL ~
+EXTERNAL                                            *nwscript-ee-lsp-external*
 
 - NodeJS <https://github.com/nodejs/node> – Required, Executable for LSP
 - Universal-CTags <https://github.com/universal-ctags/ctags> – Optional, If using squattingmonk’s vim-nwscript
@@ -62,17 +47,19 @@ EXTERNAL ~
 - doxygen <https://github.com/doxygen/doxygen> – Optional, Documentation Generation
 
 
-INSTALLATION/CONFIGURATION*nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-installation/configuration*
+==============================================================================
+3. Installation/Configuration     *nwscript-ee-lsp-installation/configuration*
 
 With lazy.nvim <https://github.com/folke/lazy.nvim>
 
 Default Options ~
 
 
-LSP                            *nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-lsp*
+==============================================================================
+4. LSP                                                   *nwscript-ee-lsp-lsp*
 
 
-CONFIG ~
+CONFIG                                                *nwscript-ee-lsp-config*
 
 >lua
     -- Setup with default config
@@ -113,7 +100,7 @@ CONFIG ~
 <
 
 
-CAPABILITIES ~
+CAPABILITIES                                    *nwscript-ee-lsp-capabilities*
 
 >lua
     vim.tbl_deep_extend("force", util.default_config.capabilities, cmpcapabilities, {
@@ -180,7 +167,8 @@ CAPABILITIES ~
 <
 
 
-KEYMAP                      *nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-keymap*
+==============================================================================
+5. Keymap                                             *nwscript-ee-lsp-keymap*
 
 Keymaps not listed here are using your own configured keymaps or the plugin’s
 default keymaps
@@ -205,7 +193,8 @@ default keymaps
                                  dirs.
   -----------------------------------------------------------------------
 
-TODO                          *nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-todo*
+==============================================================================
+6. TODO                                                 *nwscript-ee-lsp-todo*
 
 [x] Provide prebuilt nwscript-ee-language-server
 <https://github.com/StefanoND/nwscript-ee-language-server> binary so
@@ -215,13 +204,15 @@ isn’t needed [x] Add documentation [ ] Keymap configuration [ ] Make all
 snippets from LuaSnip work in UltiSnips and Vice-Versa
 
 
-SPECIAL THANKS      *nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-special-thanks*
+==============================================================================
+7. Special Thanks                             *nwscript-ee-lsp-special-thanks*
 
 - @squattingmonk <https://github.com/squattingmonk> for his nvim config <https://github.com/squattingmonk/dotfiles/tree/master/nvim/.config/nvim> which I used as a starting point for my own config for nwscript
 - @implicit-image <https://github.com/implicit-image> for his emacs config <https://github.com/implicit-image/lsp-nwscript.el> which I used as base to "translate" to neovim
 
 
-CREDITS                    *nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-credits*
+==============================================================================
+8. Credits                                           *nwscript-ee-lsp-credits*
 
 - @neovim <https://github.com/neovim> for Neovim
     <https://github.com/neovim/neovim>
@@ -262,7 +253,7 @@ CREDITS                    *nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-credits*
     <https://github.com/doxygen/doxygen>
 
 ==============================================================================
-2. Links                                          *nwscript-ee-lsp.nvim-links*
+9. Links                                               *nwscript-ee-lsp-links*
 
 1. *@squattingmonk*: 
 2. *@implicit-image*: 
