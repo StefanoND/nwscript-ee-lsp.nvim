@@ -171,7 +171,7 @@ Keymaps not listed here are using your own configured keymaps or the plugin's de
 ## TODO
 
 [x] Provide prebuilt [nwscript-ee-language-server](https://github.com/StefanoND/nwscript-ee-language-server) binary so [building-and-running](https://github.com/StefanoND/nwscript-ee-lsp.nvim/blob/trunk/README.md#nwscript-ee-language-server) isn't needed
-[ ] Add documentation
+[x] Add documentation
 [ ] Keymap configuration
 [ ] Make all snippets from LuaSnip work in UltiSnips and Vice-Versa
 

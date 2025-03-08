@@ -6,6 +6,11 @@ on:
     paths:
       - README.md
       - .github/workflows/panvimdoc.yml
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -16,10 +21,26 @@ jobs:
     name: pandoc to vimdoc
     steps:
       - uses: actions/checkout@v2
+
+      - name: panvimdoc
+        uses: kdheepak/panvimdoc@main
+        with:
+          vimdoc: nwscript-ee-lsp # Output vimdoc project name (required)
+          # The following are all optional
+          pandoc: "README.md" # Input pandoc file
+          toc: false # Table of contents
+          description: "a Neovim plugin for the NWScript language" # Project description used in title (if empty, uses neovim version and current date)
+          demojify: false # Strip emojis from the vimdoc
+          dedupsubheadings: false # Add heading to subheading anchor links to ensure that subheadings are unique
+          ignorerawblocks: true # Ignore raw html blocks in markdown when converting to vimdoc
+          shiftheadinglevelby: -1 # Shift heading levels by specified number
+
       - uses: kdheepak/panvimdoc@main
         with:
           vimdoc: ${{ github.event.repository.name }}
-      - uses: stefanzweifel/git-auto-commit-action@v4
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "Auto generate docs"
+          commit_user_name: github-actions[bot]
+          commit_message: "chore(docs): Auto generate docs"
           branch: ${{ github.head_ref }}
