@@ -13,6 +13,7 @@ NWScript: EE LSP is a Neovim plugin for the NWScript language
 - neogen <https://github.com/danymat/neogen> support
 - LuaSnip <https://github.com/L3MON4D3/LuaSnip>/ultisnips <https://github.com/SirVer/ultisnips> Snippets
 - treesitter <https://github.com/nvim-treesitter/nvim-treesitter> Syntax highlighting
+- vim-nwscript <https://github.com/squattingmonk/vim-nwscript> and it’s features <https://github.com/squattingmonk/vim-nwscript?tab=readme-ov-file#features>
 - nwscript-ee-language-server <https://github.com/implicit-image/nwscript-ee-language-server> and it’s features <https://github.com/implicit-image/nwscript-ee-language-server?tab=readme-ov-file#features>
 
 
@@ -137,11 +138,9 @@ CAPABILITIES                                    *nwscript-ee-lsp-capabilities*
       "StefanoND/nwscript-ee-lsp.nvim",
       ft = "nwscript",
       dependencies = {
-        -- "PhilippeChab/nwscript-ee-language-server", -- Deprecated(?), LSP. Abandoned(?)
-        -- "implicit-image/nwscript-ee-language-server", -- Required, LSP. Current maintainer
         "StefanoND/nwscript-ee-language-server", -- Required, LSP. My fork with prebuilt binaries
         "L3MON4D3/LuaSnip", -- Optional, Snippet Engine for Neovim
-        "SirVer/ultisnips", -- Optional, Slution for snippets for Neovim
+        -- "SirVer/ultisnips", -- Optional, Solution for snippets for Neovim
         "danymat/neogen", -- Optional, Annotation generator
         "folke/which-key.nvim", -- Optional, Displays keymap hints
         "numToStr/Comment.nvim", -- Optional, comment plugin
