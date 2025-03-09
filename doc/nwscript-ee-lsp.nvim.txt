@@ -1,4 +1,4 @@
-*nwscript-ee-lsp.nvim.txt*      For NVIM v0.8.0     Last change: 2025 March 08
+*nwscript-ee-lsp.nvim.txt*      For NVIM v0.8.0     Last change: 2025 March 09
 
 ==============================================================================
 Table of Contents                     *nwscript-ee-lsp.nvim-table-of-contents*
@@ -215,7 +215,7 @@ TODO                          *nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-todo*
 <https://github.com/StefanoND/nwscript-ee-language-server> binary so
 building-and-running
 <https://github.com/StefanoND/nwscript-ee-lsp.nvim/blob/trunk/README.md#nwscript-ee-language-server>
-isn’t needed [x] Add documentation [ ] Keymap configuration [x] Make all
+isn’t needed [x] Add documentation [x] Keymap configuration [x] Make all
 snippets from LuaSnip work in UltiSnips and Vice-Versa
 
 
