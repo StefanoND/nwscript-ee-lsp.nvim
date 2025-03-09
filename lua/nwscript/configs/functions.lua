@@ -87,4 +87,84 @@ M.clfPath = function(path)
   return nil
 end
 
+-- Compile the script using Nasher
+---@param all boolean: True compiles all files, false compiles only the current file
+---Default: false
+---@param flags string: nasher's flags, NOT COMPILE FLAGS (compiler flags should be configured in nasher.cfg)
+--- Example: "--clean -y"
+M.nasherCompile = function(all, flags)
+  all = all or false
+  flags = flags or ""
+  assert(type(all) == "boolean", "Expected a boolean value")
+  assert(type(flags) == "string", "Expected a string value")
+  if flags ~= "" then
+    flags = " " .. flags
+  end
+  local compile = "!nasher compile"
+  local command = compile .. flags
+  if not all then
+    command = command .. " -f '%:p'"
+  else
+    command = command .. " all"
+  end
+  vim.api.nvim_command(command)
+end
+
+-- Packs current project into a Module using Nasher
+---@param target string: Name of the target defined under your nasher.cfg's "[target] name: NAME"
+---@param flags string: nasher's flags, NOT COMPILE FLAGS (compiler flags should be configured in nasher.cfg)
+--- Example: "--clean -y"
+M.nasherInstallMod = function(target, flags)
+  target = target or ""
+  flags = flags or ""
+  assert(type(flags) == "string", "Expected a string value")
+  assert(type(target) == "string", "Expected a string value")
+  assert(target and #target > 0, "Expected a non-empty string")
+  if flags ~= "" then
+    flags = " " .. flags
+  end
+  if target ~= "" then
+    target = " " .. target
+  end
+  local install = "!nasher install"
+  local command = install .. flags .. target
+  vim.api.nvim_command(command)
+end
+
+-- Unpacks the Module into the project using Nasher
+---@param target string: Name of the target defined under your nasher.cfg's "[target] name: NAME"
+---@param flags string: nasher's flags, NOT COMPILE FLAGS (compiler flags should be configured in nasher.cfg)
+--- Example: "--clean -y"
+M.nasherUnpackMod = function(target, flags)
+  target = target or ""
+  flags = flags or ""
+  assert(type(flags) == "string", "Expected a string value")
+  assert(type(target) == "string", "Expected a string value")
+  assert(target and #target > 0, "Expected a non-empty string")
+  if flags ~= "" then
+    flags = " " .. flags
+  end
+  if target ~= "" then
+    target = " " .. target
+  end
+  local unpack = "!nasher unpack"
+  local command = unpack .. flags .. target
+  vim.api.nvim_command(command)
+end
+
+-- Generates tags for NWScript files
+---@param all boolean: True generates tags for all files in project, false generates only for the current file
+---Default: false
+M.nwScriptTagGen = function(all)
+  all = all or false
+  assert(type(all) == "boolean", "Expected a boolean value")
+  local command = ""
+  if not all then
+    command = "NWScriptTagGen"
+  else
+    command = "NWScriptTagGenAll"
+  end
+  vim.api.nvim_command(command)
+end
+
 return M
