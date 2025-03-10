@@ -52,7 +52,6 @@ local capabilities = vim.tbl_deep_extend("force", util.default_config.capabiliti
 })
 
 local nwSettings = require("nwscript.configs.settings").nwSettings
-local nwCodelens = require("nwscript.configs.settings").codelens
 
 return {
   default_config = {
@@ -64,7 +63,6 @@ return {
     single_file_support = true,
     settings = nwSettings,
   },
-  codelens = nwCodelens,
   docs = {
     description = [[
       https://github.com/StefanoND/nwscript-ee-lsp.nvim

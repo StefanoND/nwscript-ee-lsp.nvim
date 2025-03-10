@@ -1,41 +1,10 @@
 local M = {}
 
-local config_aug = vim.api.nvim_create_augroup("nwscript_ls_lsp_setup", { clear = true })
-
-M.enableCodelens = function(events)
-  local codelens_aug = vim.api.nvim_create_augroup("nwscript_ls_codelens", { clear = true })
-
-  vim.api.nvim_create_autocmd("LspAttach", {
-    group = config_aug,
-    callback = function(args)
-      local client = vim.lsp.get_client_by_id(args.data.client_id)
-      if client and client.name == "nwscript_ls" then
-        vim.api.nvim_create_autocmd(events, {
-          group = codelens_aug,
-          buffer = args.buf,
-          callback = vim.lsp.codelens.refresh,
-          desc = "Refresh nwscript_ls codelens",
-        })
-        vim.lsp.codelens.refresh()
-      end
-    end,
-    desc = "Create codelens autocmd on Lsp Attach",
-  })
-
-  vim.api.nvim_create_autocmd("LspDetach", {
-    group = config_aug,
-    callback = function(args)
-      local client = vim.lsp.get_client_by_id(args.data.client_id)
-      if client and client.name == "nwscript_ls" then
-        vim.api.nvim_clear_autocmds({ group = codelens_aug, buffer = args.buf })
-      end
-    end,
-    desc = "Clear codelens autocmd on Lsp Detach",
-  })
-end
+local config_aug = vim.api.nvim_create_augroup("nwscript_ls_setup", { clear = true })
 
 M.setup = function(opts)
   local functions = require("nwscript.configs.functions")
+  local config = require("nwscript.configs.settings")
   local autoBuild = opts.autoBuild or false
   if autoBuild then
     if not functions.findExecutable("node") then
@@ -63,12 +32,6 @@ M.setup = function(opts)
   setup.configUltiSnips() -- Enable "UltiSnips" snippets for NWScript
   setup.configNeogen() -- Enable "neogen" comment generation functionality for NWScript
   setup.configDevIcons() -- Adds a "nvim-web-devicons" icon for NWScript
-
-  local config = require("nwscript.configs.settings")
-
-  if config.codelens.enable then
-    M.enableCodelens(config.codelens.events)
-  end
 
   vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(event)

@@ -213,7 +213,6 @@ Keymaps not listed here are using your own configured keymaps or the plugin's de
 ## TODO
 
 [-] Add more snippets (Needs mode snippets)
-[ ] Add Codelens support (Not a promise)
 [x] Provide prebuilt [nwscript-ee-language-server](https://github.com/implicit-image/nwscript-ee-language-server) binary so [building-and-running](https://github.com/implicit-image/nwscript-ee-language-server/blob/main/README.md#building-and-running) isn't needed\*
 [x] Add documentation
 [x] Keymap configuration

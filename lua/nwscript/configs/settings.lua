@@ -78,9 +78,4 @@ M.nwSettings = {
   ["nwscript-ee-lsp"] = M.lspSettings,
 }
 
-M.codelens = {
-  enable = false,
-  events = { "BufEnter", "BufWritePost" },
-}
-
 return M
