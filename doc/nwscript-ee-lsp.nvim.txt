@@ -8,7 +8,7 @@ Table of Contents                     *nwscript-ee-lsp.nvim-table-of-contents*
   - Requirements      |nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-requirements|
   - Installation/Configuration|nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-installation/configuration|
   - LSP                        |nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-lsp|
-  - Keymap                  |nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-keymap|
+  - Keymaps                |nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-keymaps|
   - TODO                      |nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-todo|
   - Special Thanks  |nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-special-thanks|
   - Credits                |nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-credits|
@@ -225,30 +225,22 @@ The above will run this
 script silently, there’ll be a nwscript.log at the plugin’s root folder.
 
 
-KEYMAP                      *nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-keymap*
+KEYMAPS                    *nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-keymaps*
 
 Keymaps not listed here are using your own configured keymaps or the plugin’s
 default keymaps
 
-  -----------------------------------------------------------------------
-  Keymap    Function             Description
-  --------- -------------------- ----------------------------------------
-  nwc       nasher compile -f    Compile current script
-            ‘%:p’                
 
-  nwC       nasher compile all   Compile all scripts
+DEFAULT ~
 
-  nwi       nasher install -y    Pack project into module
-            main                 
-
-  nwu       nasher unpack -y     Unpack module to project folder
-            main                 
-
-  tg        NWScriptTagGen       Generate ctags for current project
-
-  tG        NWScriptTagGenAll    Generate ctags for project inc. external
-                                 dirs.
-  -----------------------------------------------------------------------
+  Keymap   Description
+  -------- ------------------------------------------------
+  nwc      Compile current script
+  nwC      Compile all scripts
+  nwi      Pack project into module
+  nwu      Unpack module to project folder
+  tg       Generate ctags for current project
+  tG       Generate ctags for project inc. external dirs.
 
 TODO                          *nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-todo*
 
@@ -261,7 +253,7 @@ isn’t needed* [x] Add documentation [x] Keymap configuration [x] Make all
 snippets from LuaSnip work in UltiSnips and Vice-Versa
 
 *: Not exactly pre-built but auto-build option. Check here
-<https://github.com/StefanoND/nwscript-ee-lsp.nvim?tab=readme-ov-file#Buildingnwscript-ee-language-serverautomatically>
+<https://github.com/StefanoND/nwscript-ee-lsp.nvim?tab=readme-ov-file#building-nwscript-ee-language-server-automatically>
 for more info.
 
 

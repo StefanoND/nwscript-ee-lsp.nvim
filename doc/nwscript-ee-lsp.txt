@@ -213,30 +213,22 @@ script silently, there’ll be a nwscript.log at the plugin’s root folder.
 
 
 ==============================================================================
-5. Keymap                                             *nwscript-ee-lsp-keymap*
+5. Keymaps                                           *nwscript-ee-lsp-keymaps*
 
 Keymaps not listed here are using your own configured keymaps or the plugin’s
 default keymaps
 
-  -----------------------------------------------------------------------
-  Keymap    Function             Description
-  --------- -------------------- ----------------------------------------
-  nwc       nasher compile -f    Compile current script
-            ‘%:p’                
 
-  nwC       nasher compile all   Compile all scripts
+DEFAULT                                              *nwscript-ee-lsp-default*
 
-  nwi       nasher install -y    Pack project into module
-            main                 
-
-  nwu       nasher unpack -y     Unpack module to project folder
-            main                 
-
-  tg        NWScriptTagGen       Generate ctags for current project
-
-  tG        NWScriptTagGenAll    Generate ctags for project inc. external
-                                 dirs.
-  -----------------------------------------------------------------------
+  Keymap   Description
+  -------- ------------------------------------------------
+  nwc      Compile current script
+  nwC      Compile all scripts
+  nwi      Pack project into module
+  nwu      Unpack module to project folder
+  tg       Generate ctags for current project
+  tG       Generate ctags for project inc. external dirs.
 
 ==============================================================================
 6. TODO                                                 *nwscript-ee-lsp-todo*
@@ -250,7 +242,7 @@ isn’t needed* [x] Add documentation [x] Keymap configuration [x] Make all
 snippets from LuaSnip work in UltiSnips and Vice-Versa
 
 *: Not exactly pre-built but auto-build option. Check here
-<https://github.com/StefanoND/nwscript-ee-lsp.nvim?tab=readme-ov-file#Buildingnwscript-ee-language-serverautomatically>
+<https://github.com/StefanoND/nwscript-ee-lsp.nvim?tab=readme-ov-file#building-nwscript-ee-language-server-automatically>
 for more info.
 
 
