@@ -198,6 +198,9 @@ If you don’t want to manually building-and-running
 <https://github.com/implicit-image/nwscript-ee-language-server/blob/main/README.md#building-and-running>
 the LSP server, you can just add "autoBuild = true" in your setup() like so:
 
+You must have at least Node.js <https://github.com/nodejs/node> and npm
+<https://github.com/npm/cli> installed for this to work
+
 >lua
         nwscript.setup({
           autoBuild = true,
