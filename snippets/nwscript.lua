@@ -88,6 +88,44 @@ end --}}}
 --   )
 -- ) --}}}
 
+-- switch case statement snippet {{{
+cs(
+  "switch",
+  fmt(
+    [[
+switch ({})
+{{
+    case {}: {}; break;
+    default: {}; break;
+}}
+{}
+    ]],
+    {
+      i(1, "condition"),
+      i(2, "case"),
+      i(3, "/*TODO*/"),
+      i(4, "/*TODO*/"),
+      i(0),
+    }
+  )
+) --}}}
+
+-- case statement snippet {{{
+cs(
+  "case",
+  fmt(
+    [[
+case {}: {}; break;
+{}
+    ]],
+    {
+      i(1, "case"),
+      i(2, "/*TODO*/"),
+      i(0),
+    }
+  )
+) --}}}
+
 -- void main snippet {{{
 cs(
   "main",
@@ -145,6 +183,92 @@ cs(
   fmt(
     [[
 if ({})
+{{
+	{}
+}}
+{}
+    ]],
+    {
+      i(1, "condition"),
+      i(2, "// TODO"),
+      i(0),
+    }
+  )
+) --}}}
+
+-- else  snippet {{{
+cs(
+  "else",
+  fmt(
+    [[
+else
+{{
+	{}
+}}
+{}
+    ]],
+    {
+      i(1, "// TODO"),
+      i(0),
+    }
+  )
+) --}}}
+
+-- if with else conditional snippet {{{
+cs(
+  "ifelse",
+  fmt(
+    [[
+if ({})
+{{
+	{}
+}}
+else
+{{
+	{}
+}}
+{}
+    ]],
+    {
+      i(1, "condition"),
+      i(2, "// TODO"),
+      i(3, "// TODO"),
+      i(0),
+    }
+  )
+) --}}}
+
+-- if with else if conditional snippet {{{
+cs(
+  "ifelseif",
+  fmt(
+    [[
+if ({})
+{{
+	{}
+}}
+else if ({})
+{{
+	{}
+}}
+{}
+    ]],
+    {
+      i(1, "condition"),
+      i(2, "// TODO"),
+      i(3, "condition"),
+      i(4, "// TODO"),
+      i(0),
+    }
+  )
+) --}}}
+
+-- else if conditional snippet {{{
+cs(
+  "elseif",
+  fmt(
+    [[
+else if ({})
 {{
 	{}
 }}
@@ -278,7 +402,7 @@ cs(
         return snip.env["TM_FILENAME_BASE"]
       end),
       i(2, "description"),
-      i(3, "definition"),
+      i(3, "void"),
       rep(1),
       i(4, "overloads"),
       i(0),
@@ -356,6 +480,59 @@ cs(
   "meta",
   fmt(
     [[
+//::///////////////////////////////////////////////////////////////
+//:: {}
+//:: {}
+//::///////////////////////////////////////////////////////////////
+/*
+{}
+*/
+//::///////////////////////////////////////////////////////////////
+//::Created By: {} ({}) <{}>, {}
+//::///////////////////////////////////////////////////////////////
+{}
+    ]],
+    {
+      i(1, "scriptName"),
+      f(function(_, snip)
+        return snip.env["TM_FILENAME"]
+      end),
+      i(2, "description"),
+      i(3, "name"),
+      i(4, "nick"),
+      i(5, "email"),
+      f(function()
+        return os.date("%d/%b/%Y")
+      end),
+      i(0),
+    }
+  )
+) -- }}}
+
+-- File metadata modified {{{
+cs(
+  "metamod",
+  fmt(
+    [[
+//::Modified By: {} ({}) <{}>, {} {}
+    ]],
+    {
+      i(1, "name"),
+      i(2, "nick"),
+      i(3, "email"),
+      f(function()
+        return os.date("%d/%b/%Y")
+      end),
+      i(0),
+    }
+  )
+) -- }}}
+
+-- Alternate File metadata {{{
+cs(
+  "metaalt",
+  fmt(
+    [[
 /// ----------------------------------------------------------------------------
 /// @file   {}
 /// @author {} ({}) <{}>
@@ -371,6 +548,85 @@ cs(
       i(2, "Nick"),
       i(3, "email"),
       i(4, "Description"),
+      i(0),
+    }
+  )
+) -- }}}
+
+-- File metadata {{{
+cs(
+  "metasystem",
+  fmt(
+    [[
+-- // -----------------------------------------------------------------------------
+-- //    File: {}
+-- //  System: {} ({})
+-- //     URL: {}
+-- // Authors: {} ({}) <{}>
+-- // -----------------------------------------------------------------------------
+-- // {}
+-- // -----------------------------------------------------------------------------
+{}
+    ]],
+    {
+      f(function(_, snip)
+        return snip.env["TM_FILENAME"]
+      end),
+      i(1, "SystemName"),
+      i(2, "ScriptType"),
+      i(3, "repo"),
+      i(4, "name"),
+      i(5, "nick"),
+      i(6, "email"),
+      i(7, "Description"),
+      i(0),
+    }
+  )
+) -- }}}
+
+-- Current date {{{
+cs(
+  "curdate",
+  fmt(
+    [[
+{} {}
+    ]],
+    {
+      f(function()
+        return os.date("%d/%b/%Y")
+      end),
+      i(0),
+    }
+  )
+) -- }}}
+
+-- Current date alternate {{{
+cs(
+  "curdatealt",
+  fmt(
+    [[
+{} {}
+    ]],
+    {
+      f(function()
+        return os.date("%d/%m/%Y")
+      end),
+      i(0),
+    }
+  )
+) -- }}}
+
+-- Current date alternate {{{
+cs(
+  "date",
+  fmt(
+    [[
+{}/{}/{} {}
+    ]],
+    {
+      i(1, "date"),
+      i(2, "month"),
+      i(3, "year"),
       i(0),
     }
   )

@@ -38,12 +38,19 @@ NWScript: EE LSP is a Neovim plugin for the NWScript language
 
 ### External
 
-- [NodeJS](https://github.com/nodejs/node) -- Required, Executable for LSP
+- [Node.js](https://github.com/nodejs/node) -- Required, Executable for LSP
+- [npm](https://github.com/npm/cli) -- Required, JavaScript package manager (Needed for Node.js)
+- [yarn](https://github.com/yarnpkg/berry) -- Required, "Dependency" manager
+- [vsce](https://github.com/microsoft/vscode-vsce) -- Required, VS Code extension manager
 - [clang-format](https://clang.llvm.org/docs/ClangFormat.html) -- Optional, Formatting
 - [doxygen](https://github.com/doxygen/doxygen) -- Optional, Documentation Generation
 - [Universal-CTags](https://github.com/universal-ctags/ctags) -- Optional, If using squattingmonk's vim-nwscript
 
 ## Installation/Configuration
+
+### LSP
+
+[building-and-running](https://github.com/implicit-image/nwscript-ee-language-server/blob/main/README.md#building-and-running)
 
 With [lazy.nvim](https://github.com/folke/lazy.nvim)
 
@@ -127,7 +134,7 @@ return { -- This is my personal configuration, plug'n'play no extra configuratio
   "StefanoND/nwscript-ee-lsp.nvim",
   ft = "nwscript",
   dependencies = {
-    "StefanoND/nwscript-ee-language-server", -- Required, LSP. My fork with prebuilt binaries
+    "implicit-image/nwscript-ee-language-server", -- Required, LSP.
     "L3MON4D3/LuaSnip", -- Optional, Snippet Engine for Neovim
     -- "SirVer/ultisnips", -- Optional, Solution for snippets for Neovim
     "danymat/neogen", -- Optional, Annotation generator
@@ -173,7 +180,9 @@ Keymaps not listed here are using your own configured keymaps or the plugin's de
 
 ## TODO
 
-[x] Provide prebuilt [nwscript-ee-language-server](https://github.com/StefanoND/nwscript-ee-language-server) binary so [building-and-running](https://github.com/StefanoND/nwscript-ee-lsp.nvim/blob/trunk/README.md#nwscript-ee-language-server) isn't needed
+[ ] Add more snippets
+[ ] Add Codelens support (Not a promise)
+[ ] Provide prebuilt [nwscript-ee-language-server](https://github.com/implicit-image/nwscript-ee-language-server) binary so [building-and-running](https://github.com/implicit-image/nwscript-ee-language-server/blob/main/README.md#building-and-running) isn't needed
 [x] Add documentation
 [x] Keymap configuration
 [x] Make all snippets from LuaSnip work in UltiSnips and Vice-Versa
@@ -202,7 +211,10 @@ Keymaps not listed here are using your own configured keymaps or the plugin's de
 - [@folke](https://github.com/folke) for [which-key](https://github.com/folke/which-key.nvim)
 - [@nvim-tree](https://github.com/nvim-tree) for [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
 
-- [@nodejs](https://github.com/nodejs) for [NodeJS](https://github.com/nodejs/node)
+- [@nodejs](https://github.com/nodejs) for [Node.js](https://github.com/nodejs/node)
+- [@npm](https://github.com/npm) for [npm](https://github.com/npm/cli)
+- [@yarnpkg](https://github.com/yarnpkg) for [yarn](https://github.com/yarnpkg/berry)
+- [@microsoft](https://github.com/microsoft) for [vsce](https://github.com/microsoft/vscode-vsce)
 - [@universal-ctags](https://github.com/universal-ctags) for [Universal-CTags](https://github.com/universal-ctags/ctags)
 - [@llvm](https://github.com/llvm) for [clang-format](https://clang.llvm.org/docs/ClangFormat.html)
 - [@doxygen](https://github.com/doxygen) for [doxygen](https://github.com/doxygen/doxygen)

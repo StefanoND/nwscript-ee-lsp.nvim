@@ -28,8 +28,6 @@ local serverCommand = function()
   return nil
 end
 
-local nwSettings = require("nwscript.configs.settings").nwSettings
-
 local protocol = vim.lsp.protocol
 local cmpcapabilities = require("cmp_nvim_lsp").default_capabilities(protocol.make_client_capabilities())
 
@@ -58,6 +56,9 @@ local capabilities = vim.tbl_deep_extend("force", util.default_config.capabiliti
   },
 })
 
+local nwSettings = require("nwscript.configs.settings").nwSettings
+local nwCodelens = require("nwscript.configs.settings").codelens
+
 return {
   default_config = {
     name = "nwscript_ls",
@@ -68,6 +69,7 @@ return {
     single_file_support = true,
     settings = nwSettings,
   },
+  codelens = nwCodelens,
   docs = {
     description = [[
       https://github.com/StefanoND/nwscript-ee-lsp.nvim
