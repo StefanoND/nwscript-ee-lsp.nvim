@@ -59,13 +59,6 @@ M.setKeymaps = function()
           end,
           desc = "Generate ctags for project inc. external dirs.",
         },
-
-        -- { "<leader>nwc", compile .. "-f '%:p'<CR>", desc = "Compile current script" },
-        -- { "<leader>nwC", compile .. "all<CR>", desc = "Compile all scripts" },
-        -- { "<leader>nwi", install .. "-y main<CR>", desc = "Pack project into module" },
-        -- { "<leader>nwu", unpack .. "-y main<CR>", desc = "Unpack module to project folder" },
-        -- { "<leader>tg", ":NWScriptTagGen<CR>", desc = "Generate ctags for current project" },
-        -- { "<leader>tG", ":NWScriptTagGenAll<CR>", desc = "Generate ctags for project inc. external dirs." },
       },
     })
   else
@@ -87,13 +80,6 @@ M.setKeymaps = function()
     kmn("<leader>tG", function()
       functions.nwScriptTagGen(true)
     end, "Generate ctags for project inc. external dirs.")
-
-    -- kmn("<leader>nwc", compile .. "-f '%:p'<CR>", "Compile current script")
-    -- kmn("<leader>nwC", compile .. "all<CR>", "Compile all scripts")
-    -- kmn("<leader>nwi", install .. "-y main<CR>", "Pack project into module")
-    -- kmn("<leader>nwu", unpack .. "-y main<CR>", "Unpack module to project folder")
-    -- kmn("<leader>tg", ":NWScriptTagGen<CR>", "Generate ctags for current project")
-    -- kmn("<leader>tG", ":NWScriptTagGenAll<CR>", "Generate ctags for project inc. external dirs.")
   end
 end
 

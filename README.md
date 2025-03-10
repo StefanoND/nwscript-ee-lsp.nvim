@@ -195,18 +195,20 @@ You must have at least [Node.js](https://github.com/nodejs/node) and [npm](https
 
 The above will run [this](https://github.com/StefanoND/nwscript-ee-lsp.nvim/blob/trunk/buildlsp.sh) script silently, there'll be a nwscript.log at the plugin's root folder.
 
-## Keymap
+## Keymaps
 
 Keymaps not listed here are using your own configured keymaps or the plugin's default keymaps
 
-| Keymap      | Function                | Description                                    |
-| ----------- | ----------------------- | ---------------------------------------------- |
-| <leader>nwc | nasher compile -f '%:p' | Compile current script                         |
-| <leader>nwC | nasher compile all      | Compile all scripts                            |
-| <leader>nwi | nasher install -y main  | Pack project into module                       |
-| <leader>nwu | nasher unpack -y main   | Unpack module to project folder                |
-| <leader>tg  | NWScriptTagGen          | Generate ctags for current project             |
-| <leader>tG  | NWScriptTagGenAll       | Generate ctags for project inc. external dirs. |
+### Default
+
+| Keymap      | Description                                    |
+| ----------- | ---------------------------------------------- |
+| <leader>nwc | Compile current script                         |
+| <leader>nwC | Compile all scripts                            |
+| <leader>nwi | Pack project into module                       |
+| <leader>nwu | Unpack module to project folder                |
+| <leader>tg  | Generate ctags for current project             |
+| <leader>tG  | Generate ctags for project inc. external dirs. |
 
 ## TODO
 
@@ -217,7 +219,7 @@ Keymaps not listed here are using your own configured keymaps or the plugin's de
 [x] Keymap configuration
 [x] Make all snippets from LuaSnip work in UltiSnips and Vice-Versa
 
-\*: Not exactly pre-built but auto-build option. Check [here](https://github.com/StefanoND/nwscript-ee-lsp.nvim?tab=readme-ov-file#Buildingnwscript-ee-language-serverautomatically) for more info.
+\*: Not exactly pre-built but auto-build option. Check [here](https://github.com/StefanoND/nwscript-ee-lsp.nvim?tab=readme-ov-file#building-nwscript-ee-language-server-automatically) for more info.
 
 ## Special Thanks
 

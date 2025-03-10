@@ -89,9 +89,10 @@ end
 
 -- Compile the script using Nasher
 ---@param all boolean: True compiles all files, false compiles only the current file
----Default: false
+-- Default: false
 ---@param flags string: nasher's flags, NOT COMPILE FLAGS (compiler flags should be configured in nasher.cfg)
---- Example: "--clean -y"
+-- Example: "--clean -y"
+-- Run "nasher compile -h" in your terminal for more info
 M.nasherCompile = function(all, flags)
   all = all or false
   flags = flags or ""
@@ -113,7 +114,8 @@ end
 -- Packs current project into a Module using Nasher
 ---@param target string: Name of the target defined under your nasher.cfg's "[target] name: NAME"
 ---@param flags string: nasher's flags, NOT COMPILE FLAGS (compiler flags should be configured in nasher.cfg)
---- Example: "--clean -y"
+-- Example: "--clean -y"
+-- Run "nasher install -h" in your terminal for more info
 M.nasherInstallMod = function(target, flags)
   target = target or ""
   flags = flags or ""
@@ -134,7 +136,8 @@ end
 -- Unpacks the Module into the project using Nasher
 ---@param target string: Name of the target defined under your nasher.cfg's "[target] name: NAME"
 ---@param flags string: nasher's flags, NOT COMPILE FLAGS (compiler flags should be configured in nasher.cfg)
---- Example: "--clean -y"
+-- Example: "--clean -y"
+-- Run "nasher unpack -h" in your terminal for more info
 M.nasherUnpackMod = function(target, flags)
   target = target or ""
   flags = flags or ""
@@ -154,7 +157,8 @@ end
 
 -- Generates tags for NWScript files
 ---@param all boolean: True generates tags for all files in project, false generates only for the current file
----Default: false
+-- Default: false
+-- Requires vim-nwscript(https://github.com/squattingmonk/vim-nwscript) plugin installed
 M.nwScriptTagGen = function(all)
   all = all or false
   assert(type(all) == "boolean", "Expected a boolean value")
