@@ -35,15 +35,24 @@ M.enableCodelens = function(events)
 end
 
 M.setup = function(opts)
+  local functions = require("nwscript.configs.functions")
   local autoBuild = opts.autoBuild or false
   if autoBuild then
-    local path = vim.fn.stdpath("data")
-    local pluginPath = path .. "/lazy/nwscript-ee-lsp.nvim"
-    local bashPath = pluginPath .. "/buildlsp.sh"
-    local chmod = "silent!!chmod +x " .. bashPath
-    local run = bashPath
-    local command = chmod .. " && " .. run
-    vim.api.nvim_command(command)
+    if not functions.findExecutable("node") then
+      vim.notify("You must have Node.js installed", vim.log.levels.ERROR)
+    end
+    if not functions.findExecutable("npm") then
+      vim.notify("You must have npm installed", vim.log.levels.ERROR)
+    end
+    if functions.findExecutable("node") and functions.findExecutable("npm") then
+      local path = vim.fn.stdpath("data")
+      local pluginPath = path .. "/lazy/nwscript-ee-lsp.nvim"
+      local bashPath = pluginPath .. "/buildlsp.sh"
+      local chmod = "silent!!chmod +x " .. bashPath
+      local run = bashPath
+      local command = chmod .. " && " .. run
+      vim.api.nvim_command(command)
+    end
   end
 
   local setup = require("nwscript.configs.setup")
@@ -66,7 +75,6 @@ M.setup = function(opts)
       local client = vim.lsp.get_client_by_id(event.data.client_id)
       if client and client.name == "nwscript_ls" then
         local bufnr = event.buf
-        local functions = require("nwscript.configs.functions")
         local keymaps = require("nwscript.configs.keymaps")
         keymaps.setKeymaps(client, bufnr) -- Set keymaps
         functions.nwscriptrefresh(bufnr) -- Enable auto-refresh on save
