@@ -1,12 +1,10 @@
 local M = {}
 
-local config_aug = vim.api.nvim_create_augroup("nwscript_ls_setup", { clear = true })
-
 M.setup = function(opts)
+  opts = opts or nil
   local functions = require("nwscript.configs.functions")
-  local config = require("nwscript.configs.settings")
-  local autoBuild = opts.autoBuild or false
-  if autoBuild then
+
+  if opts and opts.autoBuild then
     if not functions.findExecutable("node") then
       vim.notify("You must have Node.js installed", vim.log.levels.ERROR)
     end
