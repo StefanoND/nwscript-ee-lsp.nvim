@@ -48,54 +48,68 @@ NWScript: EE LSP is a Neovim plugin for the NWScript language
 
 ## Installation/Configuration
 
-### LSP
-
-[building-and-running](https://github.com/implicit-image/nwscript-ee-language-server/blob/main/README.md#building-and-running)
-
 With [lazy.nvim](https://github.com/folke/lazy.nvim)
 
 <details><summary>Default Options</summary>
 
 ## LSP
 
-### Config
+### lspconfig
 
 ```lua
 -- Setup with default config
-lspconfig.nwscript_ls.setup()
+-- nwscript_ls.lua
+local lsp = require("lsp-zero")
+lsp.extend_lspconfig()
 
+lsp.setup()
+
+local lspconfig = require("lspconfig")
+return { lspconfig.nwscript_ls.setup() }
+```
+
+```lua
 -- This is the default config, if you don't want to change anything, use the setup command above
-lspconfig.nwscript_ls.setup({
-  capabilities = capabilities,
-  single_file_support = true,
-  ["nwscript-ee-lsp"] = {
-    completion = {
-      addParamsToFunctions = true,
-    },
-    hovering = {
-      addCommentsToFunctions = true,
-    },
-    formatter = {
-      enabled = true,
-      verbose = true,
-      executable = "clang-format",
-      ignoreGlobs = {},
-    },
-    compiler = {
-      enabled = true,
-      -- Return OS' name: Linux, Darwin (MacOS), FreeBSD, NetBSD, OpenBSD, Windows, CYGWIN_NT, MSYS_NT
-      os = vim.uv.os_uname().sysname,
-      verbose = true,
-      reportWarnings = true,
-      nwnHome = os.getenv("NWN_HOME"), -- Environment Variable in my PC
-      nwnInstallation = os.getenv("NWN_ROOT"), -- Environment Variable in my PC
-      nwneeBaseIncludes = {},
-      nwnBaseIncludes = {},
-      nwn2BaseIncludes = {},
-      workspaceIncludes = tostring(vim.fn.getcwd()), -- "Current Working Directory"
-    },
-  }
-})
+-- nwscript_ls.lua
+local lsp = require("lsp-zero")
+lsp.extend_lspconfig()
+
+lsp.setup()
+
+local lspconfig = require("lspconfig")
+return {
+  lspconfig.nwscript_ls.setup({
+    capabilities = capabilities,
+    single_file_support = true,
+    ["nwscript-ee-lsp"] = {
+      completion = {
+        addParamsToFunctions = true,
+      },
+      hovering = {
+        addCommentsToFunctions = true,
+      },
+      formatter = {
+        enabled = true,
+        verbose = true,
+        executable = "clang-format",
+        ignoreGlobs = {},
+      },
+      compiler = {
+        enabled = true,
+        -- Return OS' name: Linux, Darwin (MacOS), FreeBSD, NetBSD, OpenBSD, Windows, CYGWIN_NT, MSYS_NT
+        os = vim.uv.os_uname().sysname,
+        verbose = true,
+        reportWarnings = true,
+        nwnHome = os.getenv("NWN_HOME"), -- Environment Variable in my PC
+        nwnInstallation = os.getenv("NWN_ROOT"), -- Environment Variable in my PC
+        nwneeBaseIncludes = {},
+        nwnBaseIncludes = {},
+        nwn2BaseIncludes = {},
+        workspaceIncludes = tostring(vim.fn.getcwd()), -- "Current Working Directory"
+      },
+    }
+  })
+}
 ```
 
 ### Capabilities
@@ -160,10 +174,24 @@ return { -- This is my personal configuration, plug'n'play no extra configuratio
     },
   }
   config = function()
-    require("nwscript").setup()
+    local nwscript = require("nwscript")
+    nwscript.setup()
   end,
 }
 ```
+
+### Building [nwscript-ee-language-server](https://github.com/implicit-image/nwscript-ee-language-server) automatically
+
+If you don't want to manually [building-and-running](https://github.com/implicit-image/nwscript-ee-language-server/blob/main/README.md#building-and-running) the LSP server,
+you can just add "autoBuild = true" in your setup() like so:
+
+```lua
+    nwscript.setup({
+      autoBuild = true,
+    })
+```
+
+The above will run [this](https://github.com/StefanoND/nwscript-ee-lsp.nvim/blob/trunk/buildlsp.sh) script silently, there'll be a nwscript.log at the plugin's root folder.
 
 ## Keymap
 
@@ -180,12 +208,14 @@ Keymaps not listed here are using your own configured keymaps or the plugin's de
 
 ## TODO
 
-[ ] Add more snippets
+[-] Add more snippets (Needs mode snippets)
 [ ] Add Codelens support (Not a promise)
-[ ] Provide prebuilt [nwscript-ee-language-server](https://github.com/implicit-image/nwscript-ee-language-server) binary so [building-and-running](https://github.com/implicit-image/nwscript-ee-language-server/blob/main/README.md#building-and-running) isn't needed
+[x] Provide prebuilt [nwscript-ee-language-server](https://github.com/implicit-image/nwscript-ee-language-server) binary so [building-and-running](https://github.com/implicit-image/nwscript-ee-language-server/blob/main/README.md#building-and-running) isn't needed\*
 [x] Add documentation
 [x] Keymap configuration
 [x] Make all snippets from LuaSnip work in UltiSnips and Vice-Versa
+
+\*: Not exactly pre-built but auto-build option. Check [here](https://github.com/StefanoND/nwscript-ee-lsp.nvim?tab=readme-ov-file#Buildingnwscript-ee-language-serverautomatically) for more info.
 
 ## Special Thanks
 

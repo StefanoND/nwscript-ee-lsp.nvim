@@ -2,12 +2,7 @@ local lspconfig = require("lspconfig")
 local util = lspconfig.util
 
 local lazyPath = function()
-  if vim.uv.os_uname().sysname == "Linux" then
-    return os.getenv("HOME") .. "/.local/share/nvim/lazy"
-  end
-  if vim.uv.os_uname().sysname == "Windows" then
-    return os.getenv("UserProfile") .. "/AppData/Local/nvim/lazy"
-  end
+  return vim.fn.stdpath("data") .. "/lazy"
 end
 
 local nwServerJSPath = function()

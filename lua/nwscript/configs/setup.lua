@@ -113,10 +113,7 @@ M.configLuasnip = function()
     luasnip.filetype_extend("nwscript", { "nwdocs" })
 
     local path = function()
-      if vim.uv.os_uname().sysname == "Windows" then
-        return os.getenv("UserProfile") .. "/AppData/Local/nvim/lazy/nwscript-ee-lsp.nvim/snippets"
-      end
-      return os.getenv("HOME") .. "/.local/share/nvim/lazy/nwscript-ee-lsp.nvim/snippets"
+      return vim.fn.stdpath("data") .. "/lazy/nwscript-ee-lsp.nvim/snippets"
     end
 
     loaders.load({ paths = path() })
@@ -127,10 +124,7 @@ M.configVimNWScript = function() end
 
 M.configUltiSnips = function()
   local path = function()
-    if vim.uv.os_uname().sysname == "Windows" then
-      return os.getenv("UserProfile") .. "/AppData/Local/nvim/lazy/nwscript-ee-lsp.nvim/UltiSnips"
-    end
-    return os.getenv("HOME") .. "/.local/share/nvim/lazy/nwscript-ee-lsp.nvim/UltiSnips"
+    return vim.fn.stdpath("data") .. "/lazy/nwscript-ee-lsp.nvim/UltiSnips"
   end
 
   vim.g.UltiSnipsSnippetDirectories = { path(), "UltiSnips" }

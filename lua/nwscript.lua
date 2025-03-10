@@ -34,7 +34,18 @@ M.enableCodelens = function(events)
   })
 end
 
-M.setup = function()
+M.setup = function(opts)
+  local autoBuild = opts.autoBuild or false
+  if autoBuild then
+    local path = vim.fn.stdpath("data")
+    local pluginPath = path .. "/lazy/nwscript-ee-lsp.nvim"
+    local bashPath = pluginPath .. "/buildlsp.sh"
+    local chmod = "silent!!chmod +x " .. bashPath
+    local run = bashPath
+    local command = chmod .. " && " .. run
+    vim.api.nvim_command(command)
+  end
+
   local setup = require("nwscript.configs.setup")
   setup.configComment() -- Enable "Comment.nvim" functionality for NWScript
   setup.configTreesitter() -- Enable "nvim-treesitter" syntax highlighting for NWScript
