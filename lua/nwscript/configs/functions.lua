@@ -155,20 +155,4 @@ M.nasherUnpackMod = function(target, flags)
   vim.api.nvim_command(command)
 end
 
--- Generates tags for NWScript files
----@param all boolean: True generates tags for all files in project, false generates only for the current file
--- Default: false
--- Requires vim-nwscript(https://github.com/squattingmonk/vim-nwscript) plugin installed
-M.nwScriptTagGen = function(all)
-  all = all or false
-  assert(type(all) == "boolean", "Expected a boolean value")
-  local command = ""
-  if not all then
-    command = "NWScriptTagGen"
-  else
-    command = "NWScriptTagGenAll"
-  end
-  vim.api.nvim_command(command)
-end
-
 return M

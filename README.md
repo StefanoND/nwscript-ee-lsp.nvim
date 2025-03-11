@@ -11,7 +11,6 @@ NWScript: EE LSP is a Neovim plugin for the NWScript language
 - [neogen](https://github.com/danymat/neogen) support
 - [LuaSnip](https://github.com/L3MON4D3/LuaSnip)/[ultisnips](https://github.com/SirVer/ultisnips) Snippets
 - [treesitter](https://github.com/nvim-treesitter/nvim-treesitter) Syntax highlighting
-- [vim-nwscript](https://github.com/squattingmonk/vim-nwscript) and it's [features](https://github.com/squattingmonk/vim-nwscript?tab=readme-ov-file#features)
 - [nwscript-ee-language-server](https://github.com/implicit-image/nwscript-ee-language-server) and it's [features](https://github.com/implicit-image/nwscript-ee-language-server?tab=readme-ov-file#features)
 
 ## Requirements
@@ -33,7 +32,6 @@ NWScript: EE LSP is a Neovim plugin for the NWScript language
 - [plenary](https://github.com/nvim-lua/plenary.nvim) -- Optional, Provides utility functions for plugins .nss extension
 - [treesitter](https://github.com/nvim-treesitter/nvim-treesitter) -- Optional, syntax highlighting
 - [ultisnips](https://github.com/SirVer/ultisnips) -- Optional, Slution for snippets for Neovim
-- [vim-nwscript](https://github.com/squattingmonk/vim-nwscript) -- Optional, auto-indention/wrapping of comments, snippets and ctags generation
 - [which-key](https://github.com/folke/which-key.nvim) -- Optional, Displays keymap hints
 
 ### External
@@ -44,7 +42,6 @@ NWScript: EE LSP is a Neovim plugin for the NWScript language
 - [vsce](https://github.com/microsoft/vscode-vsce) -- Required, VS Code extension manager
 - [clang-format](https://clang.llvm.org/docs/ClangFormat.html) -- Optional, Formatting
 - [doxygen](https://github.com/doxygen/doxygen) -- Optional, Documentation Generation
-- [Universal-CTags](https://github.com/universal-ctags/ctags) -- Optional, If using squattingmonk's vim-nwscript
 
 ## Installation/Configuration
 
@@ -159,19 +156,6 @@ return { -- This is my personal configuration, plug'n'play no extra configuratio
     "nvim-treesitter/nvim-treesitter", -- Optional, syntax highlighting
     "nvimtools/none-ls.nvim", -- Optional, LSP diagnostic, code actions, etc. Injection
     "ray-x/lsp_signature.nvim", -- Optional, needed for rounded borders
-    {
-      "squattingmonk/vim-nwscript", -- Optional, auto-indention/wrapping of comments, snippets and ctags generation
-      config = function()
-        -- Luascript doesn't work, let's use vim.cmd([[]]) to run Vimscript inside it
-        vim.cmd([[
-          let g:nwscript#modules#enabled = ['ctags', 'format']
-          let g:nwscript#modules#disabled = ['fold']
-          let g:nwscript#format#textwidth = 105
-          let g:nwscript#format#options = 'croqwa2lj'
-          let g:nwscript#format#whitespace = 1
-        ]])
-      end,
-    },
   }
   config = function()
     local nwscript = require("nwscript")
@@ -201,14 +185,12 @@ Keymaps not listed here are using your own configured keymaps or the plugin's de
 
 ### Default
 
-| Keymap      | Description                                    |
-| ----------- | ---------------------------------------------- |
-| <leader>nwc | Compile current script                         |
-| <leader>nwC | Compile all scripts                            |
-| <leader>nwi | Pack project into module                       |
-| <leader>nwu | Unpack module to project folder                |
-| <leader>tg  | Generate ctags for current project             |
-| <leader>tG  | Generate ctags for project inc. external dirs. |
+| Keymap      | Description                     |
+| ----------- | ------------------------------- |
+| <leader>nwc | Compile current script          |
+| <leader>nwC | Compile all scripts             |
+| <leader>nwi | Pack project into module        |
+| <leader>nwu | Unpack module to project folder |
 
 ## TODO
 
@@ -240,7 +222,6 @@ Keymaps not listed here are using your own configured keymaps or the plugin's de
 - [@nvim-lua](https://github.com/nvim-lua) for [plenary](https://github.com/nvim-lua/plenary.nvim)
 - [@nvim-treesitter](https://github.com/nvim-treesitter) for [treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 - [@SirVer](https://github.com/SirVer) for [ultisnips](https://github.com/SirVer/ultisnips)
-- [@squattingmonk](https://github.com/squattingmonk) for [vim-nwscript](https://github.com/squattingmonk/vim-nwscript)
 - [@folke](https://github.com/folke) for [which-key](https://github.com/folke/which-key.nvim)
 - [@nvim-tree](https://github.com/nvim-tree) for [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
 
@@ -248,6 +229,5 @@ Keymaps not listed here are using your own configured keymaps or the plugin's de
 - [@npm](https://github.com/npm) for [npm](https://github.com/npm/cli)
 - [@yarnpkg](https://github.com/yarnpkg) for [yarn](https://github.com/yarnpkg/berry)
 - [@microsoft](https://github.com/microsoft) for [vsce](https://github.com/microsoft/vscode-vsce)
-- [@universal-ctags](https://github.com/universal-ctags) for [Universal-CTags](https://github.com/universal-ctags/ctags)
 - [@llvm](https://github.com/llvm) for [clang-format](https://clang.llvm.org/docs/ClangFormat.html)
 - [@doxygen](https://github.com/doxygen) for [doxygen](https://github.com/doxygen/doxygen)

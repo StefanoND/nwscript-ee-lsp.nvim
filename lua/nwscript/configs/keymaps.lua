@@ -45,20 +45,6 @@ M.setKeymaps = function()
           end,
           desc = "Unpack module to project folder",
         },
-        {
-          "<leader>tg",
-          function()
-            functions.nwScriptTagGen(false)
-          end,
-          desc = "Generate ctags for current project",
-        },
-        {
-          "<leader>tG",
-          function()
-            functions.nwScriptTagGen(true)
-          end,
-          desc = "Generate ctags for project inc. external dirs.",
-        },
       },
     })
   else
@@ -74,12 +60,6 @@ M.setKeymaps = function()
     kmn("<leader>nwu", function()
       functions.nasherUnpackMod("main", "-y")
     end, "Unpack module to project folder")
-    kmn("<leader>tg", function()
-      functions.nwScriptTagGen(false)
-    end, "Generate ctags for current project")
-    kmn("<leader>tG", function()
-      functions.nwScriptTagGen(true)
-    end, "Generate ctags for project inc. external dirs.")
   end
 end
 

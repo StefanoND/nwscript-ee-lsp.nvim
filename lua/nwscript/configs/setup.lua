@@ -151,18 +151,4 @@ M.configDevIcons = function()
   end
 end
 
--- {
---   "squattingmonk/vim-nwscript",
---   config = function()
---     -- Luascript doesn't work, let's use vim.cmd([[]]) to run Vimscript inside it
---     vim.cmd([[
---       let g:nwscript#modules#enabled = ['ctags', 'format']
---       let g:nwscript#modules#disabled = ['fold']
---       let g:nwscript#format#textwidth = 105
---       let g:nwscript#format#options = 'croqwa2lj'
---       let g:nwscript#format#whitespace = 1
---     ]])
---   end,
--- },
-
 return M
