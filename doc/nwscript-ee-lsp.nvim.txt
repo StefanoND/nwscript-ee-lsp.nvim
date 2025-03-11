@@ -20,7 +20,9 @@ Table of Contents                     *nwscript-ee-lsp.nvim-table-of-contents*
 NWScript: EE LSP is a Neovim plugin for the NWScript language
 
 The plugin can be considered complete and no further work will be done unless
-for bug fixing and/or adding/removing features and/or snippets
+for bug fixing and/or adding/removing features and/or snippets.
+
+Contributions and PRs are welcome.
 
 
 FEATURES                  *nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-features*
