@@ -3,7 +3,9 @@
 NWScript: EE LSP is a Neovim plugin for the NWScript language
 
 The plugin can be considered complete and no further work will be done unless for bug fixing and/or
-adding/removing features and/or snippets
+adding/removing features and/or snippets.
+
+Contributions and PRs are welcome.
 
 ## Features
 
