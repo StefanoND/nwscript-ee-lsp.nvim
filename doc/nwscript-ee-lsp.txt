@@ -2,6 +2,9 @@
 
 NWScript: EE LSP is a Neovim plugin for the NWScript language
 
+The plugin can be considered complete and no further work will be done unless
+for bug fixing and/or adding/removing features and/or snippets
+
 
 ==============================================================================
 1. Features                                         *nwscript-ee-lsp-features*
@@ -30,14 +33,13 @@ REQUIRED                                            *nwscript-ee-lsp-required*
 OPTIONAL                                            *nwscript-ee-lsp-optional*
 
 - Comment <https://github.com/numToStr/Comment.nvim> – Optional, comment plugin
-- LuaSnip <https://github.com/L3MON4D3/LuaSnip> – Optional, Snippet Engine for Neovim
+- LuaSnip <https://github.com/L3MON4D3/LuaSnip>/ultisnips <https://github.com/SirVer/ultisnips> – Optional, Snippets for NWScript
 - lsp_signature <https://github.com/ray-x/lsp_signature.nvim> – Optional, needed for rounded borders
 - neogen <https://github.com/danymat/neogen> – Optional, Annotation generator
 - none-ls <https://github.com/nvimtools/none-ls.nvim> – Optional, LSP diagnostic, code actions, etc. Injection
 - nvim-web-devicons <https://github.com/nvim-tree/nvim-web-devicons> – Optional, Icon support for NWScript
 - plenary <https://github.com/nvim-lua/plenary.nvim> – Optional, Provides utility functions for plugins .nss extension
 - treesitter <https://github.com/nvim-treesitter/nvim-treesitter> – Optional, syntax highlighting
-- ultisnips <https://github.com/SirVer/ultisnips> – Optional, Slution for snippets for Neovim
 - which-key <https://github.com/folke/which-key.nvim> – Optional, Displays keymap hints
 
 
