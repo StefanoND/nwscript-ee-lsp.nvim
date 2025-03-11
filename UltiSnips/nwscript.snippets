@@ -1,3 +1,17 @@
+snippet 'swi*(t)*(c)*(h)*' "switch case statement snippet" br
+switch ($1)
+{
+    case $2: ${3:/* TODO */}; break;
+    default: ${4:/* TODO */}; break;
+}
+$0
+endsnippet
+
+snippet 'cas*(e)*' "case statement snippet" br
+case ${1}: ${2:/* TODO */}; break;
+$0
+endsnippet
+
 snippet main "void main function" b
 void main()
 {
@@ -5,7 +19,7 @@ void main()
 }
 endsnippet
 
-snippet "cond*(i)*(t)*" "StartingConditional function" br
+snippet 'cond*(i)*(t)*' "StartingConditional function" br
 int StartingConditional()
 {
 	return $0;
@@ -22,6 +36,46 @@ if (${1})
 {
 	${VISUAL}$0
 }
+endsnippet
+
+snippet 'els*(e)*' "else" br
+else
+{
+	${1:// TODO};
+}
+$0
+endsnippet
+
+snippet ifelse "if with else conditional snippet" b
+if (${1:condition})
+{
+	${2:// TODO};
+}
+else
+{
+	${3:// TODO};
+}
+$0
+endsnippet
+
+snippet ifelseif "if with else if conditional snippet" b
+if (${1:condition})
+{
+	${2:// TODO};
+}
+else if (${3:condition})
+{
+	${4:// TODO};
+}
+$0
+endsnippet
+
+snippet elseif "else if conditional snippet" b
+else if (${1:condition})
+{
+	${2:// TODO};
+}
+$0
 endsnippet
 
 snippet for "for loop" b
@@ -60,7 +114,7 @@ ${1:void} ${2:FunctionName}(${3})
 }
 endsnippet
 
-snippet funcp "Function prototype" b
+snippet 'funcp*(r)*(o)*(t)*' "Function prototype" br
 // ---< ${1:FunctionName} >---
 // ---< `!v expand('%:t:r')` >---
 // $4
@@ -91,10 +145,52 @@ $0
 endsnippet
 
 snippet meta "File metadata" b
+//::///////////////////////////////////////////////////////////////
+//:: `!v expand('%:t')`
+//:: `!v expand('%:t:r')`
+//::///////////////////////////////////////////////////////////////
+/*
+${1:Description}
+*/
+//::///////////////////////////////////////////////////////////////
+//::Created By: ${2:Name} (${3:Nick}) <${4:e-mail}>, `date +'%d/%b/%Y'`
+//::///////////////////////////////////////////////////////////////
+$0
+endsnippet
+
+snippet metamod "File metadata modified" b
+//::Modified By: ${1:Name} (${2:Nick}) <${3:e-mail}>, `date +'%d/%b/%Y'` $0
+endsnippet
+
+snippet metaalt "Alternate File metadata" b
 /// ----------------------------------------------------------------------------
 /// @file   `!v expand('%:t')`
 /// @author ${1:Name} (${2:Nick}) <${3:e-mail}>
 /// @brief  ${4:Description}
 /// ----------------------------------------------------------------------------
 $0
+endsnippet
+
+snippet metasystem "File metadata" b
+-- // -----------------------------------------------------------------------------
+-- //    File: `!v expand('%:t')`
+-- //  System: ${1:SystemName} (${2:ScriptType})
+-- //     URL: ${3:repo}
+-- // Authors: ${4:name} (${5:nick}) <${6:email}>
+-- // -----------------------------------------------------------------------------
+-- // ${7:description}
+-- // -----------------------------------------------------------------------------
+$0
+endsnippet
+
+snippet curdate "Current date" b
+`date +'%d/%b/%Y'`$0
+endsnippet
+
+snippet curdatealt "Alternate Current date" b
+`date +'%d/%m/%Y'`$0
+endsnippet
+
+snippet date "Input date" b
+${1:day}/${2:month}/${3:year}$0
 endsnippet

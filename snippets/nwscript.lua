@@ -600,7 +600,7 @@ cs(
   )
 ) -- }}}
 
--- Current date alternate {{{
+-- Alternate current date {{{
 cs(
   "curdatealt",
   fmt(
@@ -616,7 +616,7 @@ cs(
   )
 ) -- }}}
 
--- Current date alternate {{{
+-- Input date {{{
 cs(
   "date",
   fmt(
