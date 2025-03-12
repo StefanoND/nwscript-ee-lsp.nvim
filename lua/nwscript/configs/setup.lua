@@ -8,7 +8,6 @@ M.configComment = function()
 end
 
 M.configTreesitter = function()
-  -- Create NWScript grammar
   if require("nvim-treesitter.parsers") ~= nil and require("nvim-treesitter.configs") ~= nil then
     local parser = require("nvim-treesitter.parsers").get_parser_configs()
     parser.nwscript = {
@@ -86,7 +85,6 @@ M.configFormatter = function()
     local sources = {
       formatting.clang_format.with({
         filetypes = { "nss", "nwscript" },
-        disabled_filetypes = { "cs", "csharp" }, -- Don't want it messing with C#
         extra_args = { clangPath() },
       }),
 
@@ -119,8 +117,6 @@ M.configLuasnip = function()
     loaders.load({ paths = path() })
   end
 end
-
-M.configVimNWScript = function() end
 
 M.configUltiSnips = function()
   local path = function()

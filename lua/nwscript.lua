@@ -39,8 +39,6 @@ M.setup = function(opts)
         local keymaps = require("nwscript.configs.keymaps")
         keymaps.setKeymaps(client, bufnr) -- Set keymaps
         functions.nwscriptrefresh(bufnr) -- Enable auto-refresh on save
-        functions.setRoundBorder(bufnr) -- Set rounded border for prompts
-        functions.setDiagnostic() -- Enable diagnostic's virtual_text, signs and update_in_insert
       end
     end,
   })

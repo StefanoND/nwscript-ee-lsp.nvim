@@ -12,25 +12,6 @@ M.nwscriptrefresh = function(bufnr)
   })
 end
 
-M.setRoundBorder = function(bufnr)
-  if require("lsp_signature") ~= nil then
-    require("lsp_signature").on_attach({
-      bind = true, -- This is mandatory, otherwise border config won't get registered.
-      handler_opts = {
-        border = "rounded",
-      },
-    }, bufnr)
-  end
-end
-
-M.setDiagnostic = function()
-  vim.diagnostic.config({
-    virtual_text = true,
-    signs = true,
-    update_in_insert = true,
-  })
-end
-
 M.isSymlink = function(path)
   if path == nil then
     return false
@@ -47,7 +28,6 @@ end
 
 M.findExecutable = function(executable)
   if vim.fn.executable(executable) == 0 then
-    -- vim.notify("Did not find '" .. tostring(executable) .. "' executable", vim.log.levels.ERROR)
     return false
   end
   return true
@@ -55,11 +35,9 @@ end
 
 M.findFile = function(path)
   if path == nil then
-    -- vim.notify("Did not find " .. tostring(path), vim.log.levels.ERROR)
     return false
   end
   if vim.fn.filereadable(path) == 0 and not M.isSymlink(path) then
-    -- vim.notify("Did not find " .. tostring(path), vim.log.levels.ERROR)
     return false
   end
   return true
