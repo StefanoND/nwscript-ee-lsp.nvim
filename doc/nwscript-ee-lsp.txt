@@ -36,10 +36,10 @@ OPTIONAL                                            *nwscript-ee-lsp-optional*
 
 - Comment <https://github.com/numToStr/Comment.nvim> – Optional, comment plugin
 - LuaSnip <https://github.com/L3MON4D3/LuaSnip>/ultisnips <https://github.com/SirVer/ultisnips> – Optional, Snippets for NWScript
-- lsp_signature <https://github.com/ray-x/lsp_signature.nvim> – Optional, needed for rounded borders
 - neogen <https://github.com/danymat/neogen> – Optional, Annotation generator
 - none-ls <https://github.com/nvimtools/none-ls.nvim> – Optional, LSP diagnostic, code actions, etc. Injection
 - nvim-web-devicons <https://github.com/nvim-tree/nvim-web-devicons> – Optional, Icon support for NWScript
+- lsp_signature.nvim <https://github.com/ray-x/lsp_signature.nvim> – Optional, Signature hint
 - plenary <https://github.com/nvim-lua/plenary.nvim> – Optional, Provides utility functions for plugins .nss extension
 - treesitter <https://github.com/nvim-treesitter/nvim-treesitter> – Optional, syntax highlighting
 - which-key <https://github.com/folke/which-key.nvim> – Optional, Displays keymap hints
@@ -70,57 +70,58 @@ Default Options ~
 LSPCONFIG                                          *nwscript-ee-lsp-lspconfig*
 
 >lua
-    -- Setup with default config
     -- nwscript_ls.lua
-    local lsp = require("lsp-zero")
-    lsp.extend_lspconfig()
-    
-    lsp.setup()
-    
     local lspconfig = require("lspconfig")
-    return { lspconfig.nwscript_ls.setup() }
+    
+    return {
+      lspconfig.nwscript_ls.setup()
+    }
 <
 
+This is my personal config, check out the nwscript-ee-language-server
+<https://github.com/implicit-image/nwscript-ee-language-server> repo for more
+info
+
 >lua
-    -- This is the default config, if you don't want to change anything, use the setup command above
     -- nwscript_ls.lua
-    local lsp = require("lsp-zero")
-    lsp.extend_lspconfig()
-    
-    lsp.setup()
-    
     local lspconfig = require("lspconfig")
+    
     return {
       lspconfig.nwscript_ls.setup({
-        capabilities = capabilities,
-        single_file_support = true,
-        ["nwscript-ee-lsp"] = {
-          completion = {
-            addParamsToFunctions = true,
+        capabilities = capabilities, -- Check out bellow for my personal capabilities
+        on_attach = function(client, bufnr)
+          require("lsp_signature").on_attach({
+            bind = true,
+            handler_opts = {
+              border = "rounded",
+            },
+          }, bufnr)
+        end,
+        settings = {
+          single_file_support = true,
+          ["nwscript-ee-lsp"] = {
+            completion = {
+              addParamsToFunctions = true,
+            },
+            hovering = {
+              addCommentsToFunctions = true,
+            },
+            formatter = {
+              enabled = true,
+              verbose = true,
+              executable = "clang-format",
+            },
+            compiler = {
+              enabled = true,
+              os = vim.uv.os_uname().sysname,
+              verbose = true,
+              reportWarnings = true,
+              nwnHome = os.getenv("NWN_HOME"),
+              nwnInstallation = os.getenv("NWN_ROOT"),
+              workspaceIncludes = { vim.fn.getcwd() },
+            },
           },
-          hovering = {
-            addCommentsToFunctions = true,
-          },
-          formatter = {
-            enabled = true,
-            verbose = true,
-            executable = "clang-format",
-            ignoreGlobs = {},
-          },
-          compiler = {
-            enabled = true,
-            -- Return OS' name: Linux, Darwin (MacOS), FreeBSD, NetBSD, OpenBSD, Windows, CYGWIN_NT, MSYS_NT
-            os = vim.uv.os_uname().sysname,
-            verbose = true,
-            reportWarnings = true,
-            nwnHome = os.getenv("NWN_HOME"), -- Environment Variable in my PC
-            nwnInstallation = os.getenv("NWN_ROOT"), -- Environment Variable in my PC
-            nwneeBaseIncludes = {},
-            nwnBaseIncludes = {},
-            nwn2BaseIncludes = {},
-            workspaceIncludes = tostring(vim.fn.getcwd()), -- "Current Working Directory"
-          },
-        }
+        },
       })
     }
 <
@@ -129,30 +130,34 @@ LSPCONFIG                                          *nwscript-ee-lsp-lspconfig*
 CAPABILITIES                                    *nwscript-ee-lsp-capabilities*
 
 >lua
-    vim.tbl_deep_extend("force", util.default_config.capabilities, cmpcapabilities, {
-      textDocument = {
-        foldingRange = {
-          dynamicRegistration = false,
-          lineFoldingOnly = true,
-        },
-        completion = {
-          completionItem = {
-            snippetSupport = true,
-          },
-        },
-      },
-      workspace = {
-        configuration = true,
-        didChangeConfiguration = { dynamicRegistration = true },
-      },
-      offsetEncoding = { "utf-8" },
+    local encoding = { offsetEncoding = { "utf-8", "utf-16", "utf-32" } }
+    
+    local workspace = {
+      configuration = true,
+      didChangeConfiguration = { dynamicRegistration = true },
+      didChangeWorkspaceFolders = { dynamicRegistration = true },
       didChangeWatchedFiles = {
-        -- TODO(lewis6991): do not advertise didChangeWatchedFiles on Linux
-        -- or BSD since all the current backends are too limited.
-        -- Ref: #27807, #28058, #23291, #26520
-        relativePatternSupport = false,
+        dynamicRegistration = true,
+        relativePatternSupport = false, -- Must be false if on Linux or BSD
       },
-    })
+    }
+    
+    local textDocument = {
+      completion = { completionItem = { snippetSupport = true } },
+      foldingRange = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true,
+      },
+    }
+    
+    local lspCapabilities = require("lspconfig.util").default_config.capabilities
+    local cmpCapabilities = require("cmp_nvim_lsp").default_capabilities()
+    local allCapabilities = vim.tbl_deep_extend("force", lspCapabilities, cmpCapabilities, encoding)
+    
+    allCapabilities.workspace = workspace
+    allCapabilities.textDocument = textDocument
+    
+    local capabilities = require("blink.cmp").get_lsp_capabilities(allCapabilities)
 <
 
 >lua
@@ -170,7 +175,7 @@ CAPABILITIES                                    *nwscript-ee-lsp-capabilities*
         "nvim-tree/nvim-web-devicons", -- Optional, Adds icon for NWScript
         "nvim-treesitter/nvim-treesitter", -- Optional, syntax highlighting
         "nvimtools/none-ls.nvim", -- Optional, LSP diagnostic, code actions, etc. Injection
-        "ray-x/lsp_signature.nvim", -- Optional, needed for rounded borders
+        "ray-x/lsp_signature.nvim" -- Optional, Signature hint
       }
       config = function()
         local nwscript = require("nwscript")
@@ -256,36 +261,45 @@ for more info.
     <https://github.com/numToStr/Comment.nvim>
 - @L3MON4D3 <https://github.com/L3MON4D3> for LuaSnip
     <https://github.com/L3MON4D3/LuaSnip>
-- @ray-x <https://github.com/ray-x> for lsp_signature
-    <https://github.com/ray-x/lsp_signature.nvim>
-- @danymat <https://github.com/danymat> for neogen
-    <https://github.com/danymat/neogen>
-- @nvimtools <https://github.com/nvimtools> for none-ls
-    <https://github.com/nvimtools/none-ls.nvim>
-- @nvim-lua <https://github.com/nvim-lua> for plenary
-    <https://github.com/nvim-lua/plenary.nvim>
-- @nvim-treesitter <https://github.com/nvim-treesitter> for treesitter
-    <https://github.com/nvim-treesitter/nvim-treesitter>
 - @SirVer <https://github.com/SirVer> for ultisnips
     <https://github.com/SirVer/ultisnips>
+- @danymat <https://github.com/danymat> for neogen
+    <https://github.com/danymat/neogen>
 - @folke <https://github.com/folke> for which-key
     <https://github.com/folke/which-key.nvim>
+- @nvim-lua <https://github.com/nvim-lua> for plenary
+    <https://github.com/nvim-lua/plenary.nvim>
 - @nvim-tree <https://github.com/nvim-tree> for nvim-web-devicons
     <https://github.com/nvim-tree/nvim-web-devicons>
+- @nvim-treesitter <https://github.com/nvim-treesitter> for treesitter
+    <https://github.com/nvim-treesitter/nvim-treesitter>
+- @nvimtools <https://github.com/nvimtools> for none-ls
+    <https://github.com/nvimtools/none-ls.nvim>
+- @ray-x <https://github.com/ray-x> for lsp_signature.nvim
+    <https://github.com/ray-x/lsp_signature.nvim>
 - @nodejs <https://github.com/nodejs> for Node.js
     <https://github.com/nodejs/node>
 - @npm <https://github.com/npm> for npm <https://github.com/npm/cli>
-- @yarnpkg <https://github.com/yarnpkg> for yarn
-    <https://github.com/yarnpkg/berry>
-- @microsoft <https://github.com/microsoft> for vsce
-    <https://github.com/microsoft/vscode-vsce>
-- @llvm <https://github.com/llvm> for clang-format
-    <https://clang.llvm.org/docs/ClangFormat.html>
 - @doxygen <https://github.com/doxygen> for doxygen
     <https://github.com/doxygen/doxygen>
+- @llvm <https://github.com/llvm> for clang-format
+    <https://clang.llvm.org/docs/ClangFormat.html>
+- @microsoft <https://github.com/microsoft> for vsce
+    <https://github.com/microsoft/vscode-vsce>
+- @yarnpkg <https://github.com/yarnpkg> for yarn
+    <https://github.com/yarnpkg/berry>
+
 
 ==============================================================================
-9. Links                                               *nwscript-ee-lsp-links*
+9. Changelog                                       *nwscript-ee-lsp-changelog*
+
+>
+    Removed default settings, I don't want to force my personal settings into others
+    Removed default capabilities, I don't want to force my personal settings into others
+<
+
+==============================================================================
+10. Links                                              *nwscript-ee-lsp-links*
 
 1. *@squattingmonk*: 
 2. *@implicit-image*: 
@@ -295,20 +309,20 @@ for more info.
 6. *@implicit-image*: 
 7. *@numToStr*: 
 8. *@L3MON4D3*: 
-9. *@ray-x*: 
+9. *@SirVer*: 
 10. *@danymat*: 
-11. *@nvimtools*: 
+11. *@folke*: 
 12. *@nvim-lua*: 
-13. *@nvim-treesitter*: 
-14. *@SirVer*: 
-15. *@folke*: 
-16. *@nvim-tree*: 
+13. *@nvim-tree*: 
+14. *@nvim-treesitter*: 
+15. *@nvimtools*: 
+16. *@ray-x*: 
 17. *@nodejs*: 
 18. *@npm*: 
-19. *@yarnpkg*: 
-20. *@microsoft*: 
-21. *@llvm*: 
-22. *@doxygen*: 
+19. *@doxygen*: 
+20. *@llvm*: 
+21. *@microsoft*: 
+22. *@yarnpkg*: 
 
 Generated by panvimdoc <https://github.com/kdheepak/panvimdoc>
 
