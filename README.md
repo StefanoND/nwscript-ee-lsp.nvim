@@ -33,7 +33,7 @@ Contributions and PRs are welcome.
 - [neogen](https://github.com/danymat/neogen) -- Optional, Annotation generator
 - [none-ls](https://github.com/nvimtools/none-ls.nvim) -- Optional, LSP diagnostic, code actions, etc. Injection
 - [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons) -- Optional, Icon support for NWScript
-- [lsp_signature.nvim](https://github.com/ray-x/lsp_signature.nvim) -- Optional, Signature hint
+- [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) -- Optional, Fold support
 - [plenary](https://github.com/nvim-lua/plenary.nvim) -- Optional, Provides utility functions for plugins .nss extension
 - [treesitter](https://github.com/nvim-treesitter/nvim-treesitter) -- Optional, syntax highlighting
 - [which-key](https://github.com/folke/which-key.nvim) -- Optional, Displays keymap hints
@@ -75,14 +75,6 @@ local lspconfig = require("lspconfig")
 return {
   lspconfig.nwscript_ls.setup({
     capabilities = capabilities, -- Check out bellow for my personal capabilities
-    on_attach = function(client, bufnr)
-      require("lsp_signature").on_attach({
-        bind = true,
-        handler_opts = {
-          border = "rounded",
-        },
-      }, bufnr)
-    end,
     settings = {
       single_file_support = true,
       ["nwscript-ee-lsp"] = {
@@ -157,12 +149,12 @@ return { -- This is my personal configuration, plug'n'play no extra configuratio
     -- "SirVer/ultisnips", -- Optional, Solution for snippets for Neovim
     "danymat/neogen", -- Optional, Annotation generator
     "folke/which-key.nvim", -- Optional, Displays keymap hints
+    "kevinhwang91/nvim-ufo", -- Optional, Fold support for NWScript
     "numToStr/Comment.nvim", -- Optional, comment plugin
     "nvim-lua/plenary.nvim", -- Optional, Provides utility functions for plugins .nss extension
     "nvim-tree/nvim-web-devicons", -- Optional, Adds icon for NWScript
     "nvim-treesitter/nvim-treesitter", -- Optional, syntax highlighting
     "nvimtools/none-ls.nvim", -- Optional, LSP diagnostic, code actions, etc. Injection
-    "ray-x/lsp_signature.nvim" -- Optional, Signature hint
   }
   config = function()
     local nwscript = require("nwscript")
@@ -226,11 +218,11 @@ Keymaps not listed here are using your own configured keymaps or the plugin's de
 - [@SirVer](https://github.com/SirVer) for [ultisnips](https://github.com/SirVer/ultisnips)
 - [@danymat](https://github.com/danymat) for [neogen](https://github.com/danymat/neogen)
 - [@folke](https://github.com/folke) for [which-key](https://github.com/folke/which-key.nvim)
+- [@kevinhwang91](https://github.com/kevinhwang91) for [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo)
 - [@nvim-lua](https://github.com/nvim-lua) for [plenary](https://github.com/nvim-lua/plenary.nvim)
 - [@nvim-tree](https://github.com/nvim-tree) for [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
 - [@nvim-treesitter](https://github.com/nvim-treesitter) for [treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 - [@nvimtools](https://github.com/nvimtools) for [none-ls](https://github.com/nvimtools/none-ls.nvim)
-- [@ray-x](https://github.com/ray-x) for [lsp_signature.nvim](https://github.com/ray-x/lsp_signature.nvim)
 
 - [@nodejs](https://github.com/nodejs) for [Node.js](https://github.com/nodejs/node)
 - [@npm](https://github.com/npm) for [npm](https://github.com/npm/cli)
@@ -241,5 +233,7 @@ Keymaps not listed here are using your own configured keymaps or the plugin's de
 
 ## Changelog
 
+    Added support for nvim-ufo's folding
+    Removed lsp_signature since I changed to blink.cmp and it has signature support
     Removed default settings, I don't want to force my personal settings into others
     Removed default capabilities, I don't want to force my personal settings into others

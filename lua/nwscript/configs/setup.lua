@@ -147,4 +147,21 @@ M.configDevIcons = function()
   end
 end
 
+M.configFolds = function()
+  if require("ufo") ~= nil then
+    require("ufo").config = function(_, opts)
+      local ftmap = {
+        nwscript = { "treesitter", "indent" },
+      }
+
+      return vim.tbl_extend("force", opts, {
+        provider_selector = function(_, filetype, _)
+          return ftmap[filetype] or { "treesitter", "indent" }
+        end,
+        close_fold_kinds_for_ft = { default = { "imports" } },
+      })
+    end
+  end
+end
+
 return M

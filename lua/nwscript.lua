@@ -30,6 +30,7 @@ M.setup = function(opts)
   setup.configUltiSnips() -- Enable "UltiSnips" snippets for NWScript
   setup.configNeogen() -- Enable "neogen" comment generation functionality for NWScript
   setup.configDevIcons() -- Adds a "nvim-web-devicons" icon for NWScript
+  setup.configFolds() -- Adds "ufo" fold support for NWScript
 
   vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(event)
