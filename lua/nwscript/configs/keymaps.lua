@@ -1,8 +1,8 @@
 local M = {}
 
-M.setKeymaps = function()
+M.setKeymaps = function(client, bufnr)
   local kmn = function(key, func, desc)
-    vim.keymap.set("n", key, func, { silent = true, desc = desc or "" })
+    vim.keymap.set("n", key, func, { buffer = bufnr, silent = true, desc = desc or "" })
   end
 
   local functions = require("nwscript.configs.functions")
