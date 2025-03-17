@@ -233,6 +233,8 @@ Keymaps not listed here are using your own configured keymaps or the plugin's de
 
 ## Changelog
 
+    Improved LuaSnip snippets
+    Dropped support for UltiSnips, its snippets will remain here as is
     Added support for nvim-ufo's folding
     Removed lsp_signature since I changed to blink.cmp and it has signature support
     Removed default settings, I don't want to force my personal settings into others
