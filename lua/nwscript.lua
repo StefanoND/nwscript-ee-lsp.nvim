@@ -4,6 +4,8 @@ M.setup = function(opts)
   opts = opts or nil
   local functions = require("nwscript.configs.functions")
 
+  vim.cmd([[autocmd FileType *.nss setfiletype nwscript]])
+
   if opts and opts.autoBuild then
     if not functions.findExecutable("node") then
       vim.notify("You must have Node.js installed", vim.log.levels.ERROR)

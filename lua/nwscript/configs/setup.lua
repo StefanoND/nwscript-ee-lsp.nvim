@@ -44,10 +44,10 @@ M.configFormatter = function()
   if require("null-ls") ~= nil then
     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
     local null_ls = require("null-ls")
-    local null_ls_utils = require("null-ls.utils")
 
     local format = function(bufnr)
       vim.lsp.buf.format({
+        async = false,
         bufnr = bufnr,
         filter = function(client)
           return client.name == "null-ls"

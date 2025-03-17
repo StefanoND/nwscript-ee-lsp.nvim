@@ -17,6 +17,9 @@ local nwLSPServerArgs = { "--stdio" } -- Required
 local functions = require("nwscript.configs.functions")
 
 local serverCommand = function()
+  if functions.findExecutable("nwscript-ee-language-server") then
+    return "nwscript-ee-language-server"
+  end
   if functions.findExecutable("node") and functions.findFile(nwServerJSPath()) then
     return "node", nwServerJSPath(), unpack(nwLSPServerArgs)
   end
@@ -25,10 +28,12 @@ end
 
 return {
   default_config = {
+    flags = { allow_incremental_sync = true, debounce_text_changes = 500 },
     name = "nwscript_ls",
     cmd = { serverCommand() },
     filetypes = { "nss", "nwscript" },
-    root_dir = util.root_pattern(".git", "nasher.cfg", "Makefile"),
+    root_dir = util.root_pattern(".git", "nasher.cfg"),
+    message_level = vim.lsp.protocol.MessageType.Error,
   },
   docs = {
     description = [[
