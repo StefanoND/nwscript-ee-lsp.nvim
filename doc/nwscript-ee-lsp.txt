@@ -35,6 +35,7 @@ REQUIRED                                            *nwscript-ee-lsp-required*
 OPTIONAL                                            *nwscript-ee-lsp-optional*
 
 - Comment <https://github.com/numToStr/Comment.nvim> – Optional, comment plugin
+- conform <https://github.com/stevearc/conform.nvim> – Optional, none-ls/null-ls "replacement"
 - LuaSnip <https://github.com/L3MON4D3/LuaSnip>/ultisnips <https://github.com/SirVer/ultisnips> – Optional, Snippets for NWScript
 - neogen <https://github.com/danymat/neogen> – Optional, Annotation generator
 - none-ls <https://github.com/nvimtools/none-ls.nvim> – Optional, LSP diagnostic, code actions, etc. Injection
@@ -47,6 +48,7 @@ OPTIONAL                                            *nwscript-ee-lsp-optional*
 
 EXTERNAL                                            *nwscript-ee-lsp-external*
 
+- nvm <https://github.com/nvm-sh/nvm> – Optional, automates installation of Node.JS and npm
 - Node.js <https://github.com/nodejs/node> – Required, Executable for LSP
 - npm <https://github.com/npm/cli> – Required, JavaScript package manager (Needed for Node.js)
 - yarn <https://github.com/yarnpkg/berry> – Required, "Dependency" manager
@@ -157,7 +159,6 @@ CAPABILITIES                                    *nwscript-ee-lsp-capabilities*
       "StefanoND/nwscript-ee-lsp.nvim",
       ft = "nwscript",
       dependencies = {
-        "implicit-image/nwscript-ee-language-server", -- Required, LSP.
         "L3MON4D3/LuaSnip", -- Optional, Snippet Engine for Neovim
         -- "SirVer/ultisnips", -- Optional, Solution for snippets for Neovim
         "danymat/neogen", -- Optional, Annotation generator
@@ -168,6 +169,7 @@ CAPABILITIES                                    *nwscript-ee-lsp-capabilities*
         "nvim-tree/nvim-web-devicons", -- Optional, Adds icon for NWScript
         "nvim-treesitter/nvim-treesitter", -- Optional, syntax highlighting
         "nvimtools/none-ls.nvim", -- Optional, LSP diagnostic, code actions, etc. Injection
+        "stevearc/conform.nvim", -- Optional, none-ls replacement.
       }
       config = function()
         local nwscript = require("nwscript")
@@ -179,12 +181,26 @@ CAPABILITIES                                    *nwscript-ee-lsp-capabilities*
 
 BUILDING NWSCRIPT-EE-LANGUAGE-SERVER AUTOMATICALLY*nwscript-ee-lsp-building-nwscript-ee-language-server-automatically*
 
+You must have at least nvm <https://github.com/nvm-sh/nvm> installed for this
+to work, you can copy-paste the code bellow
+
+>bash
+    NVM_VERSION=$(curl -s "https://api.github.com/repos/nvm-sh/nvm/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*') && \
+    curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh" | bash && \
+    export NVM_DIR="$HOME/.config/nvm" && \
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && \
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+<
+
+Same command as above but in a single line in case your terminal have issues with multi-line ~
+
+>bash
+    NVM_VERSION=$(curl -s "https://api.github.com/repos/nvm-sh/nvm/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*') && curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh" | bash && export NVM_DIR="$HOME/.config/nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+<
+
 If you don’t want to manually building-and-running
 <https://github.com/implicit-image/nwscript-ee-language-server/blob/main/README.md#building-and-running>
 the LSP server, you can just add "autoBuild = true" in your setup() like so:
-
-You must have at least Node.js <https://github.com/nodejs/node> and npm
-<https://github.com/npm/cli> installed for this to work
 
 >lua
         nwscript.setup({
@@ -249,8 +265,6 @@ for more info.
 - @implicit-image <https://github.com/implicit-image> for maintaining
     nwscript-ee-language-server
     <https://github.com/implicit-image/nwscript-ee-language-server>
-- @numToStr <https://github.com/numToStr> for Comment
-    <https://github.com/numToStr/Comment.nvim>
 - @L3MON4D3 <https://github.com/L3MON4D3> for LuaSnip
     <https://github.com/L3MON4D3/LuaSnip>
 - @SirVer <https://github.com/SirVer> for ultisnips
@@ -261,6 +275,8 @@ for more info.
     <https://github.com/folke/which-key.nvim>
 - @kevinhwang91 <https://github.com/kevinhwang91> for nvim-ufo
     <https://github.com/kevinhwang91/nvim-ufo>
+- @numToStr <https://github.com/numToStr> for Comment
+    <https://github.com/numToStr/Comment.nvim>
 - @nvim-lua <https://github.com/nvim-lua> for plenary
     <https://github.com/nvim-lua/plenary.nvim>
 - @nvim-tree <https://github.com/nvim-tree> for nvim-web-devicons
@@ -269,6 +285,9 @@ for more info.
     <https://github.com/nvim-treesitter/nvim-treesitter>
 - @nvimtools <https://github.com/nvimtools> for none-ls
     <https://github.com/nvimtools/none-ls.nvim>
+- @stevearc <https://github.com/stevearc> for conform
+    <https://github.com/stevearc/conform.nvim>
+- @nvm-sh <https://github.com/nvm-sh> for nvm <https://github.com/nvm-sh/nvm>
 - @nodejs <https://github.com/nodejs> for Node.js
     <https://github.com/nodejs/node>
 - @npm <https://github.com/npm> for npm <https://github.com/npm/cli>
@@ -286,6 +305,9 @@ for more info.
 9. Changelog                                       *nwscript-ee-lsp-changelog*
 
 >
+    Added support for Conform plugin
+    nwscript-ee-language-server plugin is no longer needed (buildlsp.sh takes care of it now)
+    Improved buildlsp.sh script
     Improved LuaSnip snippets
     Dropped support for UltiSnips, its snippets will remain here as is
     Added support for nvim-ufo's folding
@@ -303,22 +325,24 @@ for more info.
 4. *@folke*: 
 5. *@PhilippeChab*: 
 6. *@implicit-image*: 
-7. *@numToStr*: 
-8. *@L3MON4D3*: 
-9. *@SirVer*: 
-10. *@danymat*: 
-11. *@folke*: 
-12. *@kevinhwang91*: 
+7. *@L3MON4D3*: 
+8. *@SirVer*: 
+9. *@danymat*: 
+10. *@folke*: 
+11. *@kevinhwang91*: 
+12. *@numToStr*: 
 13. *@nvim-lua*: 
 14. *@nvim-tree*: 
 15. *@nvim-treesitter*: 
 16. *@nvimtools*: 
-17. *@nodejs*: 
-18. *@npm*: 
-19. *@doxygen*: 
-20. *@llvm*: 
-21. *@microsoft*: 
-22. *@yarnpkg*: 
+17. *@stevearc*: 
+18. *@nvm-sh*: 
+19. *@nodejs*: 
+20. *@npm*: 
+21. *@doxygen*: 
+22. *@llvm*: 
+23. *@microsoft*: 
+24. *@yarnpkg*: 
 
 Generated by panvimdoc <https://github.com/kdheepak/panvimdoc>
 
