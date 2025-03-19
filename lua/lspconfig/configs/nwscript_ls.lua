@@ -17,8 +17,8 @@ local nwLSPServerArgs = { "--stdio" } -- Required
 local functions = require("nwscript.configs.functions")
 
 local serverCommand = function()
-  if functions.findExecutable("nwscript-ee-language-server") then
-    return "nwscript-ee-language-server"
+  if functions.findExecutable("nwscript_ls") then
+    return "nwscript_ls"
   end
   if functions.findExecutable("node") and functions.findFile(nwServerJSPath()) then
     return "node", nwServerJSPath(), unpack(nwLSPServerArgs)

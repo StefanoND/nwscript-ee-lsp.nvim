@@ -29,6 +29,7 @@ Contributions and PRs are welcome.
 ### Optional
 
 - [Comment](https://github.com/numToStr/Comment.nvim) -- Optional, comment plugin
+- [conform](https://github.com/stevearc/conform.nvim) -- Optional, none-ls/null-ls "replacement"
 - [LuaSnip](https://github.com/L3MON4D3/LuaSnip)/[ultisnips](https://github.com/SirVer/ultisnips) -- Optional, Snippets for NWScript
 - [neogen](https://github.com/danymat/neogen) -- Optional, Annotation generator
 - [none-ls](https://github.com/nvimtools/none-ls.nvim) -- Optional, LSP diagnostic, code actions, etc. Injection
@@ -38,8 +39,10 @@ Contributions and PRs are welcome.
 - [treesitter](https://github.com/nvim-treesitter/nvim-treesitter) -- Optional, syntax highlighting
 - [which-key](https://github.com/folke/which-key.nvim) -- Optional, Displays keymap hints
 
+
 ### External
 
+- [nvm](https://github.com/nvm-sh/nvm) -- Optional, automates installation of Node.JS and npm
 - [Node.js](https://github.com/nodejs/node) -- Required, Executable for LSP
 - [npm](https://github.com/npm/cli) -- Required, JavaScript package manager (Needed for Node.js)
 - [yarn](https://github.com/yarnpkg/berry) -- Required, "Dependency" manager
@@ -144,7 +147,6 @@ return { -- This is my personal configuration, plug'n'play no extra configuratio
   "StefanoND/nwscript-ee-lsp.nvim",
   ft = "nwscript",
   dependencies = {
-    "implicit-image/nwscript-ee-language-server", -- Required, LSP.
     "L3MON4D3/LuaSnip", -- Optional, Snippet Engine for Neovim
     -- "SirVer/ultisnips", -- Optional, Solution for snippets for Neovim
     "danymat/neogen", -- Optional, Annotation generator
@@ -155,6 +157,7 @@ return { -- This is my personal configuration, plug'n'play no extra configuratio
     "nvim-tree/nvim-web-devicons", -- Optional, Adds icon for NWScript
     "nvim-treesitter/nvim-treesitter", -- Optional, syntax highlighting
     "nvimtools/none-ls.nvim", -- Optional, LSP diagnostic, code actions, etc. Injection
+    "stevearc/conform.nvim", -- Optional, none-ls replacement.
   }
   config = function()
     local nwscript = require("nwscript")
@@ -165,10 +168,27 @@ return { -- This is my personal configuration, plug'n'play no extra configuratio
 
 ### Building [nwscript-ee-language-server](https://github.com/implicit-image/nwscript-ee-language-server) automatically
 
+You must have at least [nvm](https://github.com/nvm-sh/nvm) installed for this to work, you can copy-paste the code bellow
+
+```bash
+NVM_VERSION=$(curl -s "https://api.github.com/repos/nvm-sh/nvm/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*') && \
+curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh" | bash && \
+export NVM_DIR="$HOME/.config/nvm" && \
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && \
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+```
+
+
+<details><summary>Same command as above but in a single line in case your terminal have issues with multi-line</summary>
+
+```bash
+NVM_VERSION=$(curl -s "https://api.github.com/repos/nvm-sh/nvm/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*') && curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh" | bash && export NVM_DIR="$HOME/.config/nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+```
+
+</details>
+
 If you don't want to manually [building-and-running](https://github.com/implicit-image/nwscript-ee-language-server/blob/main/README.md#building-and-running) the LSP server,
 you can just add "autoBuild = true" in your setup() like so:
-
-You must have at least [Node.js](https://github.com/nodejs/node) and [npm](https://github.com/npm/cli) installed for this to work
 
 ```lua
     nwscript.setup({
@@ -213,17 +233,19 @@ Keymaps not listed here are using your own configured keymaps or the plugin's de
 - [@PhilippeChab](https://github.com/PhilippeChab) for creating [nwscript-ee-language-server](https://github.com/PhilippeChab/nwscript-ee-language-server)
 - [@implicit-image](https://github.com/implicit-image) for maintaining [nwscript-ee-language-server](https://github.com/implicit-image/nwscript-ee-language-server)
 
-- [@numToStr](https://github.com/numToStr) for [Comment](https://github.com/numToStr/Comment.nvim)
 - [@L3MON4D3](https://github.com/L3MON4D3) for [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
 - [@SirVer](https://github.com/SirVer) for [ultisnips](https://github.com/SirVer/ultisnips)
 - [@danymat](https://github.com/danymat) for [neogen](https://github.com/danymat/neogen)
 - [@folke](https://github.com/folke) for [which-key](https://github.com/folke/which-key.nvim)
 - [@kevinhwang91](https://github.com/kevinhwang91) for [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo)
+- [@numToStr](https://github.com/numToStr) for [Comment](https://github.com/numToStr/Comment.nvim)
 - [@nvim-lua](https://github.com/nvim-lua) for [plenary](https://github.com/nvim-lua/plenary.nvim)
 - [@nvim-tree](https://github.com/nvim-tree) for [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
 - [@nvim-treesitter](https://github.com/nvim-treesitter) for [treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 - [@nvimtools](https://github.com/nvimtools) for [none-ls](https://github.com/nvimtools/none-ls.nvim)
+- [@stevearc](https://github.com/stevearc) for [conform](https://github.com/stevearc/conform.nvim)
 
+- [@nvm-sh](https://github.com/nvm-sh) for [nvm](https://github.com/nvm-sh/nvm)
 - [@nodejs](https://github.com/nodejs) for [Node.js](https://github.com/nodejs/node)
 - [@npm](https://github.com/npm) for [npm](https://github.com/npm/cli)
 - [@doxygen](https://github.com/doxygen) for [doxygen](https://github.com/doxygen/doxygen)
@@ -233,6 +255,9 @@ Keymaps not listed here are using your own configured keymaps or the plugin's de
 
 ## Changelog
 
+    Added support for Conform plugin
+    nwscript-ee-language-server plugin is no longer needed (buildlsp.sh takes care of it now)
+    Improved buildlsp.sh script
     Improved LuaSnip snippets
     Dropped support for UltiSnips, its snippets will remain here as is
     Added support for nvim-ufo's folding

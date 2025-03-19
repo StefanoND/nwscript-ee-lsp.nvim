@@ -1,14 +1,16 @@
 local M = {}
 
+local funcs = require("nwscript.configs.functions")
+
 M.configComment = function()
-  if require("Comment.ft") ~= nil then
+  if funcs.isLoaded("Comment.ft") then
     local ft = require("Comment.ft")
     ft.set("nwscript", { "//%s", "/*%s*/" })
   end
 end
 
 M.configTreesitter = function()
-  if require("nvim-treesitter.parsers") ~= nil and require("nvim-treesitter.configs") ~= nil then
+  if funcs.isLoaded("nvim-treesitter.parsers") and funcs.isLoaded("nvim-treesitter.configs") then
     local parser = require("nvim-treesitter.parsers").get_parser_configs()
     parser.nwscript = {
       install_info = {
@@ -30,7 +32,7 @@ M.configTreesitter = function()
 end
 
 M.configNeogen = function()
-  if require("neogen") ~= nil then
+  if funcs.isLoaded("neogen") then
     local neogen = require("neogen")
     neogen.setup({
       languages = {
@@ -41,7 +43,15 @@ M.configNeogen = function()
 end
 
 M.configFormatter = function()
-  if require("null-ls") ~= nil then
+  if funcs.isLoaded("conform") then
+    local conform = require("conform")
+    conform.opts = {
+      formatters_by_ft = {
+        nwscript = { "clang-format" },
+      },
+    }
+  end
+  if funcs.isLoaded("null-ls") then
     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
     local null_ls = require("null-ls")
 
@@ -104,7 +114,7 @@ M.configFormatter = function()
 end
 
 M.configLuasnip = function()
-  if require("luasnip") ~= nil then
+  if funcs.isLoaded("luasnip") then
     local luasnip = require("luasnip")
     local loaders = require("luasnip.loaders.from_lua")
 
@@ -127,7 +137,7 @@ M.configUltiSnips = function()
 end
 
 M.configDevIcons = function()
-  if require("nvim-web-devicons") ~= nil then
+  if funcs.isLoaded("nvim-web-devicons") then
     local devicons = require("nvim-web-devicons")
 
     devicons.set_icon_by_filetype({
@@ -148,7 +158,7 @@ M.configDevIcons = function()
 end
 
 M.configFolds = function()
-  if require("ufo") ~= nil then
+  if funcs.isLoaded("ufo") then
     require("ufo").config = function(_, opts)
       local ftmap = {
         nwscript = { "treesitter", "indent" },

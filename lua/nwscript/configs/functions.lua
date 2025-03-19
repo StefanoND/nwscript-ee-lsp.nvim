@@ -1,5 +1,15 @@
 local M = {}
 
+M.isInstalled = function(name)
+  assert(type(name) == "string", "Expected a string value")
+  return pcall(require, name)
+end
+
+M.isLoaded = function(name)
+  assert(type(name) == "string", "Expected a string value")
+  return package.loaded[name]
+end
+
 M.nwscriptrefresh = function(bufnr)
   local augroup = vim.api.nvim_create_augroup("NWScript", {})
   vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
