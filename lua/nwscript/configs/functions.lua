@@ -104,7 +104,7 @@ end
 ---@param flags string: nasher's flags, NOT COMPILE FLAGS (compiler flags should be configured in nasher.cfg)
 -- Example: "--clean -y"
 -- Run "nasher install -h" in your terminal for more info
-M.nasherInstallMod = function(target, flags)
+M.nasherInstall = function(target, flags)
   target = target or ""
   flags = flags or ""
   assert(type(flags) == "string", "Expected a string value")
@@ -126,7 +126,7 @@ end
 ---@param flags string: nasher's flags, NOT COMPILE FLAGS (compiler flags should be configured in nasher.cfg)
 -- Example: "--clean -y"
 -- Run "nasher unpack -h" in your terminal for more info
-M.nasherUnpackMod = function(target, flags)
+M.nasherUnpack = function(target, flags)
   target = target or ""
   flags = flags or ""
   assert(type(flags) == "string", "Expected a string value")
