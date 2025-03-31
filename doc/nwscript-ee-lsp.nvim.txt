@@ -72,8 +72,6 @@ EXTERNAL ~
       "StefanoND/nwscript-ee-lsp.nvim",
       ft = "nwscript",
       event = "VeryLazy"
-      dependencies = {
-      }
       config = function()
         local nwscript = require("nwscript")
         nwscript.setup()
