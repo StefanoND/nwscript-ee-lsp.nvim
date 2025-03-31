@@ -231,7 +231,7 @@ setup:
       }
 <
 
-### Building nwscript-ee-language-server
+## Building nwscript-ee-language-server
 <https://github.com/implicit-image/nwscript-ee-language-server> automatically
 
 You must have at least nvm <https://github.com/nvm-sh/nvm> installed for this
