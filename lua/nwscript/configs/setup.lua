@@ -146,10 +146,11 @@ M.configDevIcons = function()
 
     devicons.set_icon({
       nwscript = {
+        default = true,
         icon = " ",
         color = "#b4befe",
         cterm_color = "153",
-        name = "NWScript",
+        name = "nwscript",
       },
     })
 
