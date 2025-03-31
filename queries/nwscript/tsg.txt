@@ -19,3 +19,15 @@
     node @number.node
     attr(@number.node) kind = "number"
 }
+
+(string_literal) @string
+{
+    node @string.node
+    attr(@string.node) kind = "string"
+}
+
+(vector_specifier) @vector
+{
+    node @vector_specifier.node
+    attr (@vector_specifier.node) kind = "vector specifier"
+}
