@@ -210,16 +210,14 @@ return {
 <a name="BUFFERLINE"></a>
 ### Bufferline
 
-To make it work with bufferline you must change your bufferline configuration:
+You must add "get_element_icon" somewhere in your "options" table in bufferline setup:
 
 ```lua
 return {
   "akinsho/bufferline.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
-    local bufferline = require("bufferline")
-    bufferline.setup({
-      -- Code
+    require("bufferline").setup({
       options = {
         get_element_icon = function(element)
           local icon, hl =
@@ -227,9 +225,7 @@ return {
           return icon, hl
         end,
       }
-      -- Code
     })
-      -- Code
   }
 ```
 
