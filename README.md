@@ -29,13 +29,14 @@ Contributions and PRs are welcome.
 ### Optional
 
 - [Comment](https://github.com/numToStr/Comment.nvim) -- Optional, comment plugin
-- [conform](https://github.com/stevearc/conform.nvim) -- Optional, none-ls/null-ls "replacement"
 - [LuaSnip](https://github.com/L3MON4D3/LuaSnip)/[ultisnips](https://github.com/SirVer/ultisnips) -- Optional, Snippets for NWScript
+- [conform](https://github.com/stevearc/conform.nvim) -- Optional, none-ls/null-ls "replacement"
 - [neogen](https://github.com/danymat/neogen) -- Optional, Annotation generator
 - [none-ls](https://github.com/nvimtools/none-ls.nvim) -- Optional, LSP diagnostic, code actions, etc. Injection
-- [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons) -- Optional, Icon support for NWScript
 - [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) -- Optional, Fold support
+- [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons) -- Optional, Icon support for NWScript
 - [plenary](https://github.com/nvim-lua/plenary.nvim) -- Optional, Provides utility functions for plugins .nss extension
+- [rainbow-delimiters](https://github.com/HiPhish/rainbow-delimiters.nvim) -- Optional, Colored Parentheses and Brackets
 - [treesitter](https://github.com/nvim-treesitter/nvim-treesitter) -- Optional, syntax highlighting
 - [which-key](https://github.com/folke/which-key.nvim) -- Optional, Displays keymap hints
 
@@ -149,6 +150,7 @@ return { -- This is my personal configuration, plug'n'play no extra configuratio
   dependencies = {
     "L3MON4D3/LuaSnip", -- Optional, Snippet Engine for Neovim
     -- "SirVer/ultisnips", -- Optional, Solution for snippets for Neovim
+    "HiPhish/rainbow-delimiters.nvim" -- Optional, Colored Parentheses and Brackets
     "danymat/neogen", -- Optional, Annotation generator
     "folke/which-key.nvim", -- Optional, Displays keymap hints
     "kevinhwang91/nvim-ufo", -- Optional, Fold support for NWScript
@@ -244,6 +246,7 @@ Keymaps not listed here are using your own configured keymaps or the plugin's de
 - [@nvim-treesitter](https://github.com/nvim-treesitter) for [treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 - [@nvimtools](https://github.com/nvimtools) for [none-ls](https://github.com/nvimtools/none-ls.nvim)
 - [@stevearc](https://github.com/stevearc) for [conform](https://github.com/stevearc/conform.nvim)
+- [@HiPhish](https://github.com/HiPhish) for [rainbow-delimiters](https://github.com/HiPhish/rainbow-delimiters.nvim)
 
 - [@nvm-sh](https://github.com/nvm-sh) for [nvm](https://github.com/nvm-sh/nvm)
 - [@nodejs](https://github.com/nodejs) for [Node.js](https://github.com/nodejs/node)
@@ -255,6 +258,7 @@ Keymaps not listed here are using your own configured keymaps or the plugin's de
 
 ## Changelog
 
+    Added support for rainbow-delimiters
     Added support for Conform plugin
     nwscript-ee-language-server plugin is no longer needed (buildlsp.sh takes care of it now)
     Improved buildlsp.sh script
