@@ -63,6 +63,8 @@ Contributions and PRs are welcome.
 <a name="INSTALLATION"></a>
 ## Installation
 
+With [lazy.nvim](https://github.com/folke/lazy.nvim)
+
 ```lua
 return { -- Plug'n'play no extra configuration required
   "StefanoND/nwscript-ee-lsp.nvim",
@@ -117,8 +119,6 @@ return { -- NWScript
 
 <a name="CONFIGURATION"></a>
 ## Configuration
-
-With [lazy.nvim](https://github.com/folke/lazy.nvim)
 
 <a name="CONFIGURATION_LSPCONFIG"></a>
 ### lpsconfig
