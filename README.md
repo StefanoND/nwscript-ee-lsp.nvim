@@ -68,8 +68,6 @@ return { -- Plug'n'play no extra configuration required
   "StefanoND/nwscript-ee-lsp.nvim",
   ft = "nwscript",
   event = "VeryLazy"
-  dependencies = {
-  }
   config = function()
     local nwscript = require("nwscript")
     nwscript.setup()
