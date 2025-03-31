@@ -231,7 +231,7 @@ return {
 
 
 <a name="NVM"></a>
-### Building [nwscript-ee-language-server](https://github.com/implicit-image/nwscript-ee-language-server) automatically
+## Building [nwscript-ee-language-server](https://github.com/implicit-image/nwscript-ee-language-server) automatically
 
 You must have at least [nvm](https://github.com/nvm-sh/nvm) installed for this to work, you can copy-paste the code bellow
 
