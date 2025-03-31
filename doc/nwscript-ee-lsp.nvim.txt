@@ -3,20 +3,8 @@
 ==============================================================================
 Table of Contents                     *nwscript-ee-lsp.nvim-table-of-contents*
 
-1. nwscript-ee-lsp.nvim            |nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim|
-  - Features              |nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-features|
-  - Requirements      |nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-requirements|
-  - Installation/Configuration|nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-installation/configuration|
-  - LSP                        |nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-lsp|
-  - Keymaps                |nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-keymaps|
-  - TODO                      |nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-todo|
-  - Special Thanks  |nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-special-thanks|
-  - Credits                |nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-credits|
-  - Changelog            |nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-changelog|
-2. Links                                          |nwscript-ee-lsp.nvim-links|
-
-==============================================================================
-1. nwscript-ee-lsp.nvim            *nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim*
+1. Links                                          |nwscript-ee-lsp.nvim-links|
+# nwscript-ee-lsp.nvim
 
 NWScript: EE LSP is a Neovim plugin for the NWScript language
 
@@ -25,36 +13,40 @@ for bug fixing and/or adding/removing features and/or snippets.
 
 Contributions and PRs are welcome.
 
-
-FEATURES                  *nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-features*
+## Features
 
 - NWScript filetype support and extension
-- Comment.nvim <https://github.com/numToStr/Comment.nvim> support
-- doxygen <https://github.com/doxygen/doxygen> support
-- nvim-web-devicons <https://github.com/nvim-tree/nvim-web-devicons> Icon support
-- neogen <https://github.com/danymat/neogen> support
-- LuaSnip <https://github.com/L3MON4D3/LuaSnip>/ultisnips <https://github.com/SirVer/ultisnips> Snippets
-- treesitter <https://github.com/nvim-treesitter/nvim-treesitter> Syntax highlighting
 - nwscript-ee-language-server <https://github.com/implicit-image/nwscript-ee-language-server> and it’s features <https://github.com/implicit-image/nwscript-ee-language-server?tab=readme-ov-file#features>
+- Bufferline <https://github.com/akinsho/bufferline.nvim> support
+- Comment.nvim <https://github.com/numToStr/Comment.nvim> support
+- LuaSnip <https://github.com/L3MON4D3/LuaSnip>/ultisnips <https://github.com/SirVer/ultisnips> Snippets support
+- conform <https://github.com/stevearc/conform.nvim> support
+- doxygen <https://github.com/doxygen/doxygen> support
+- neogen <https://github.com/danymat/neogen> support
+- nvim-ufo <https://github.com/kevinhwang91/nvim-ufo> fold support
+- nvim-web-devicons <https://github.com/nvim-tree/nvim-web-devicons> Icon support
+- plenary <https://github.com/nvim-lua/plenary.nvim> support
+- rainbow-delimiters <https://github.com/HiPhish/rainbow-delimiters.nvim> Colored Parentheses and Brackets support
+- treesitter <https://github.com/nvim-treesitter/nvim-treesitter> Syntax highlighting
+- which-key <https://github.com/folke/which-key.nvim> keymap hints support
 
-
-REQUIREMENTS          *nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-requirements*
+## Requirements
 
 
 REQUIRED ~
 
-- Neovim <https://github.com/neovim/neovim> >= 0.10.0
+- Neovim <https://github.com/neovim/neovim> (Tested on 0.11.0, may work on lower versions)
 - lazy.nvim <https://github.com/folke/lazy.nvim>
 - nwscript-ee-language-server <https://github.com/implicit-image/nwscript-ee-language-server>
 
 
 OPTIONAL ~
 
+- Bufferline <https://github.com/akinsho/bufferline.nvim> – Optional, Bufferline
 - Comment <https://github.com/numToStr/Comment.nvim> – Optional, comment plugin
 - LuaSnip <https://github.com/L3MON4D3/LuaSnip>/ultisnips <https://github.com/SirVer/ultisnips> – Optional, Snippets for NWScript
 - conform <https://github.com/stevearc/conform.nvim> – Optional, none-ls/null-ls "replacement"
 - neogen <https://github.com/danymat/neogen> – Optional, Annotation generator
-- none-ls <https://github.com/nvimtools/none-ls.nvim> – Optional, LSP diagnostic, code actions, etc. Injection
 - nvim-ufo <https://github.com/kevinhwang91/nvim-ufo> – Optional, Fold support
 - nvim-web-devicons <https://github.com/nvim-tree/nvim-web-devicons> – Optional, Icon support for NWScript
 - plenary <https://github.com/nvim-lua/plenary.nvim> – Optional, Provides utility functions for plugins .nss extension
@@ -73,21 +65,68 @@ EXTERNAL ~
 - clang-format <https://clang.llvm.org/docs/ClangFormat.html> – Optional, Formatting
 - doxygen <https://github.com/doxygen/doxygen> – Optional, Documentation Generation
 
+## Installation
 
-INSTALLATION/CONFIGURATION*nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-installation/configuration*
+>lua
+    return { -- Plug'n'play no extra configuration required
+      "StefanoND/nwscript-ee-lsp.nvim",
+      ft = "nwscript",
+      event = "VeryLazy"
+      dependencies = {
+      }
+      config = function()
+        local nwscript = require("nwscript")
+        nwscript.setup()
+      end,
+    }
+<
+
+My Personal Install ~
+
+>lua
+    return { -- NWScript
+      "StefanoND/nwscript-ee-lsp.nvim",
+      ft = "nwscript",
+      event = "VeryLazy",
+      dependencies = {
+        "HiPhish/rainbow-delimiters.nvim",
+        "L3MON4D3/LuaSnip",
+        "akinsho/bufferline.nvim",
+        "danymat/neogen",
+        "folke/which-key.nvim",
+        "kevinhwang91/nvim-ufo",
+        "numToStr/Comment.nvim",
+        "nvim-lua/plenary.nvim",
+        "nvim-tree/nvim-web-devicons",
+        "nvim-treesitter/nvim-treesitter",
+        "stevearc/conform.nvim",
+        {
+          "StefanoND/vim-nwscript",
+          config = function()
+            vim.cmd([[
+              let g:nwscript#modules#enabled = ['ctags', 'format']
+              let g:nwscript#modules#disabled = ['fold']
+              let g:nwscript#format#textwidth = 105
+              let g:nwscript#format#options = 'croqwa2lj'
+              let g:nwscript#format#whitespace = 1
+            ]])
+          end,
+        },
+      },
+      config = function()
+        require("nwscript").setup()
+      end,
+    }
+<
+
+## Configuration
 
 With lazy.nvim <https://github.com/folke/lazy.nvim>
 
-Default Options ~
-
-
-LSP                            *nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-lsp*
-
-
-LSPCONFIG ~
+### lpsconfig
 
 >lua
-    -- nwscript_ls.lua
+    -- lua/plugins/lsp/servers/nwscript_ls.lua
     local lspconfig = require("lspconfig")
     
     return {
@@ -95,13 +134,50 @@ LSPCONFIG ~
     }
 <
 
-This is my personal config, check out the nwscript-ee-language-server
+Default Options ~
+
+
+LSPCONFIG ~
+
+These are set automatically using the configuration
+|nwscript-ee-lsp.nvim-above|.
+
+Check out the nwscript-ee-language-server
 <https://github.com/implicit-image/nwscript-ee-language-server> repo for more
 info
 
 >lua
-    -- nwscript_ls.lua
+    -- lua/plugins/lsp/servers/nwscript_ls.lua
     local lspconfig = require("lspconfig")
+    
+    local encoding = { offsetEncoding = { "utf-8", "utf-16", "utf-32" } }
+    
+    local workspace = {
+      configuration = true,
+      didChangeConfiguration = { dynamicRegistration = true },
+      didChangeWorkspaceFolders = { dynamicRegistration = true },
+      didChangeWatchedFiles = {
+        dynamicRegistration = true,
+        relativePatternSupport = false, -- Must be false if on Linux or BSD
+      },
+    }
+    
+    local textDocument = {
+      completion = { completionItem = { snippetSupport = true } },
+      foldingRange = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true,
+      },
+    }
+    
+    local lspCapabilities = require("lspconfig.util").default_config.capabilities
+    local cmpCapabilities = require("cmp_nvim_lsp").default_capabilities()
+    local allCapabilities = vim.tbl_deep_extend("force", lspCapabilities, cmpCapabilities, encoding)
+    
+    allCapabilities.workspace = workspace
+    allCapabilities.textDocument = textDocument
+    
+    local capabilities = require("blink.cmp").get_lsp_capabilities(allCapabilities)
     
     return {
       lspconfig.nwscript_ls.setup({
@@ -135,70 +211,38 @@ info
     }
 <
 
+### Bufferline
 
-CAPABILITIES ~
-
->lua
-    local encoding = { offsetEncoding = { "utf-8", "utf-16", "utf-32" } }
-    
-    local workspace = {
-      configuration = true,
-      didChangeConfiguration = { dynamicRegistration = true },
-      didChangeWorkspaceFolders = { dynamicRegistration = true },
-      didChangeWatchedFiles = {
-        dynamicRegistration = true,
-        relativePatternSupport = false, -- Must be false if on Linux or BSD
-      },
-    }
-    
-    local textDocument = {
-      completion = { completionItem = { snippetSupport = true } },
-      foldingRange = {
-        dynamicRegistration = false,
-        lineFoldingOnly = true,
-      },
-    }
-    
-    local lspCapabilities = require("lspconfig.util").default_config.capabilities
-    local cmpCapabilities = require("cmp_nvim_lsp").default_capabilities()
-    local allCapabilities = vim.tbl_deep_extend("force", lspCapabilities, cmpCapabilities, encoding)
-    
-    allCapabilities.workspace = workspace
-    allCapabilities.textDocument = textDocument
-    
-    local capabilities = require("blink.cmp").get_lsp_capabilities(allCapabilities)
-<
+To make it work with bufferline you must change your bufferline configuration:
 
 >lua
-    return { -- This is my personal configuration, plug'n'play no extra configuration required
-      "StefanoND/nwscript-ee-lsp.nvim",
-      ft = "nwscript",
-      dependencies = {
-        "L3MON4D3/LuaSnip", -- Optional, Snippet Engine for Neovim
-        -- "SirVer/ultisnips", -- Optional, Solution for snippets for Neovim
-        "HiPhish/rainbow-delimiters.nvim" -- Optional, Colored Parentheses and Brackets
-        "danymat/neogen", -- Optional, Annotation generator
-        "folke/which-key.nvim", -- Optional, Displays keymap hints
-        "kevinhwang91/nvim-ufo", -- Optional, Fold support for NWScript
-        "numToStr/Comment.nvim", -- Optional, comment plugin
-        "nvim-lua/plenary.nvim", -- Optional, Provides utility functions for plugins .nss extension
-        "nvim-tree/nvim-web-devicons", -- Optional, Adds icon for NWScript
-        "nvim-treesitter/nvim-treesitter", -- Optional, syntax highlighting
-        "nvimtools/none-ls.nvim", -- Optional, LSP diagnostic, code actions, etc. Injection
-        "stevearc/conform.nvim", -- Optional, none-ls replacement.
-      }
+    return {
+      "akinsho/bufferline.nvim",
+      dependencies = { "nvim-tree/nvim-web-devicons" },
       config = function()
-        local nwscript = require("nwscript")
-        nwscript.setup()
-      end,
-    }
+        local bufferline = require("bufferline")
+        bufferline.setup({
+          -- Code
+          options = {
+            get_element_icon = function(element)
+              local icon, hl =
+                require("nvim-web-devicons").get_icon_by_filetype(element.filetype, { default = false })
+              return icon, hl
+            end,
+          }
+          -- Code
+        })
+          -- Code
+      }
 <
 
-
-BUILDING NWSCRIPT-EE-LANGUAGE-SERVER AUTOMATICALLY ~
+### Building nwscript-ee-language-server
+<https://github.com/implicit-image/nwscript-ee-language-server> automatically
 
 You must have at least nvm <https://github.com/nvm-sh/nvm> installed for this
 to work, you can copy-paste the code bellow
+
+### Bash
 
 >bash
     NVM_VERSION=$(curl -s "https://api.github.com/repos/nvm-sh/nvm/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*') && \
@@ -218,6 +262,8 @@ If you don’t want to manually building-and-running
 <https://github.com/implicit-image/nwscript-ee-language-server/blob/main/README.md#building-and-running>
 the LSP server, you can just add "autoBuild = true" in your setup() like so:
 
+Make sure you have nvm installed mentioned |nwscript-ee-lsp.nvim-above|
+
 >lua
         nwscript.setup({
           autoBuild = true,
@@ -228,14 +274,12 @@ The above will run this
 <https://github.com/StefanoND/nwscript-ee-lsp.nvim/blob/trunk/buildlsp.sh>
 script silently, there’ll be a nwscript.log at the plugin’s root folder.
 
-
-KEYMAPS                    *nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-keymaps*
+## Keymaps
 
 Keymaps not listed here are using your own configured keymaps or the plugin’s
 default keymaps
 
-
-DEFAULT ~
+### Default
 
   Keymap   Description
   -------- ---------------------------------
@@ -243,8 +287,7 @@ DEFAULT ~
   nwC      Compile all scripts
   nwi      Pack project into module
   nwu      Unpack module to project folder
-
-TODO                          *nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-todo*
+## TODO
 
 [-] Add more snippets (Needs mode snippets) [x] Provide prebuilt
 nwscript-ee-language-server
@@ -258,14 +301,12 @@ snippets from LuaSnip work in UltiSnips and Vice-Versa
 <https://github.com/StefanoND/nwscript-ee-lsp.nvim?tab=readme-ov-file#building-nwscript-ee-language-server-automatically>
 for more info.
 
-
-SPECIAL THANKS      *nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-special-thanks*
+## Special Thanks
 
 - @squattingmonk <https://github.com/squattingmonk> for his nvim config <https://github.com/squattingmonk/dotfiles/tree/master/nvim/.config/nvim> which I used as a starting point for my own config for nwscript
 - @implicit-image <https://github.com/implicit-image> for his emacs config <https://github.com/implicit-image/lsp-nwscript.el> which I used as base to "translate" to neovim
 
-
-CREDITS                    *nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-credits*
+## Credits
 
 - @neovim <https://github.com/neovim> for Neovim
     <https://github.com/neovim/neovim>
@@ -277,6 +318,8 @@ CREDITS                    *nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-credits*
 - @implicit-image <https://github.com/implicit-image> for maintaining
     nwscript-ee-language-server
     <https://github.com/implicit-image/nwscript-ee-language-server>
+- @akinsho <https://github.com/akinsho> for Bufferline
+    <https://github.com/akinsho/bufferline.nvim>
 - @L3MON4D3 <https://github.com/L3MON4D3> for LuaSnip
     <https://github.com/L3MON4D3/LuaSnip>
 - @SirVer <https://github.com/SirVer> for ultisnips
@@ -295,8 +338,6 @@ CREDITS                    *nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-credits*
     <https://github.com/nvim-tree/nvim-web-devicons>
 - @nvim-treesitter <https://github.com/nvim-treesitter> for treesitter
     <https://github.com/nvim-treesitter/nvim-treesitter>
-- @nvimtools <https://github.com/nvimtools> for none-ls
-    <https://github.com/nvimtools/none-ls.nvim>
 - @stevearc <https://github.com/stevearc> for conform
     <https://github.com/stevearc/conform.nvim>
 - @HiPhish <https://github.com/HiPhish> for rainbow-delimiters
@@ -314,8 +355,7 @@ CREDITS                    *nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-credits*
 - @yarnpkg <https://github.com/yarnpkg> for yarn
     <https://github.com/yarnpkg/berry>
 
-
-CHANGELOG                *nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-changelog*
+## Changelog
 
 >
     Added support for rainbow-delimiters
@@ -331,7 +371,7 @@ CHANGELOG                *nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-changelog*
 <
 
 ==============================================================================
-2. Links                                          *nwscript-ee-lsp.nvim-links*
+1. Links                                          *nwscript-ee-lsp.nvim-links*
 
 1. *@squattingmonk*: 
 2. *@implicit-image*: 
@@ -339,16 +379,16 @@ CHANGELOG                *nwscript-ee-lsp.nvim-nwscript-ee-lsp.nvim-changelog*
 4. *@folke*: 
 5. *@PhilippeChab*: 
 6. *@implicit-image*: 
-7. *@L3MON4D3*: 
-8. *@SirVer*: 
-9. *@danymat*: 
-10. *@folke*: 
-11. *@kevinhwang91*: 
-12. *@numToStr*: 
-13. *@nvim-lua*: 
-14. *@nvim-tree*: 
-15. *@nvim-treesitter*: 
-16. *@nvimtools*: 
+7. *@akinsho*: 
+8. *@L3MON4D3*: 
+9. *@SirVer*: 
+10. *@danymat*: 
+11. *@folke*: 
+12. *@kevinhwang91*: 
+13. *@numToStr*: 
+14. *@nvim-lua*: 
+15. *@nvim-tree*: 
+16. *@nvim-treesitter*: 
 17. *@stevearc*: 
 18. *@HiPhish*: 
 19. *@nvm-sh*: 
