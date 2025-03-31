@@ -63,6 +63,8 @@ EXTERNAL                                            *nwscript-ee-lsp-external*
 
 ## Installation
 
+With lazy.nvim <https://github.com/folke/lazy.nvim>
+
 >lua
     return { -- Plug'n'play no extra configuration required
       "StefanoND/nwscript-ee-lsp.nvim",
@@ -114,8 +116,6 @@ My Personal Install ~
 <
 
 ## Configuration
-
-With lazy.nvim <https://github.com/folke/lazy.nvim>
 
 ### lpsconfig
 
