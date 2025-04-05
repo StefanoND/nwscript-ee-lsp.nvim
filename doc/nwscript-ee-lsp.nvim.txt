@@ -1,4 +1,4 @@
-*nwscript-ee-lsp.nvim.txt*      For NVIM v0.8.0     Last change: 2025 March 31
+*nwscript-ee-lsp.nvim.txt*      For NVIM v0.8.0     Last change: 2025 April 05
 
 ==============================================================================
 Table of Contents                     *nwscript-ee-lsp.nvim-table-of-contents*
@@ -353,6 +353,7 @@ for more info.
 ## Changelog
 
 >
+    Added support for square brackets (only top level works)
     Added support for rainbow-delimiters
     Added support for Conform plugin
     nwscript-ee-language-server plugin is no longer needed (buildlsp.sh takes care of it now)
