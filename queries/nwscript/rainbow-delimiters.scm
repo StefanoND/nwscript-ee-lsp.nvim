@@ -22,6 +22,15 @@
 ; Square brackets
 (vector_specifier
   "[" @delimiter
+  (number_literal) @number
+  "," @delimiter
+  (number_literal) @number
+  "," @delimiter
+  (number_literal) @number
+  "]" @delimiter @sentinel) @container
+
+(vector_specifier
+  "[" @delimiter
   "]" @delimiter @sentinel) @container
 
 ; Curly brackets

@@ -330,6 +330,7 @@ Keymaps not listed here are using your own configured keymaps or the plugin's de
 <a name="CHANGELOG"></a>
 ## Changelog
 
+    Added support for square brackets (only top level works)
     Added support for rainbow-delimiters
     Added support for Conform plugin
     nwscript-ee-language-server plugin is no longer needed (buildlsp.sh takes care of it now)

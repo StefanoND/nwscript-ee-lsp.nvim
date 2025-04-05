@@ -113,16 +113,10 @@
 (number_literal) @number
 
 ; Vector
-(vector_specifier [
+(vector_specifier
   "["
-  (number_literal) @number
-  ","
-  (number_literal) @number
-  ","
-  (number_literal) @number
-  "]"
-  ] @vector)
-(vector_specifier) @vector
+  "]") @container
+(vector_specifier) @container
 
 (nwn_constant) @constant.builtin
 ((identifier) @constant

@@ -26,7 +26,10 @@
     attr(@string.node) kind = "string"
 }
 
-(vector_specifier) @vector
+(vector_specifier
+  "["
+  "]"
+) @container
 {
     node @vector_specifier.node
     attr (@vector_specifier.node) kind = "vector specifier"
