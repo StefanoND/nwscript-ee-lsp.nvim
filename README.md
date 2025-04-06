@@ -330,7 +330,7 @@ Keymaps not listed here are using your own configured keymaps or the plugin's de
 <a name="CHANGELOG"></a>
 ## Changelog
 
-    Added support for square brackets (only top level works)
+    Added support for square brackets (only top level works), check "Note" bellow
     Added support for rainbow-delimiters
     Added support for Conform plugin
     nwscript-ee-language-server plugin is no longer needed (buildlsp.sh takes care of it now)
@@ -341,3 +341,13 @@ Keymaps not listed here are using your own configured keymaps or the plugin's de
     Removed lsp_signature since I changed to blink.cmp and it has signature support
     Removed default settings, I don't want to force my personal settings into others
     Removed default capabilities, I don't want to force my personal settings into others
+
+<a name="NOTE"></a>
+## Note
+
+### square-brackets
+
+As you can see in the image below, square-brackets inside square-brackets doesn't work
+
+![square-brackets](assets/squarebrackets.png)
+
