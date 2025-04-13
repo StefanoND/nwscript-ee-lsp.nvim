@@ -156,6 +156,14 @@ M.configDevIcons = function()
 
     devicons.setup()
   end
+
+  if funcs.isLoaded("mini.icons") then
+    require("mini.icons").setup({
+      filetype = {
+        nwscript = { glyph = "", hl = "MiniIconsBlue" },
+      },
+    })
+  end
 end
 
 M.configFolds = function()

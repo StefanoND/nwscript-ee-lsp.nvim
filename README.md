@@ -1,4 +1,5 @@
 <a name="NWSCRIPT_LSP"></a>
+
 # nwscript-ee-lsp.nvim
 
 NWScript: EE LSP is a Neovim plugin for the NWScript language
@@ -9,6 +10,7 @@ adding/removing features and/or snippets.
 Contributions and PRs are welcome.
 
 <a name="FEATURES"></a>
+
 ## Features
 
 - NWScript filetype support and extension
@@ -20,13 +22,14 @@ Contributions and PRs are welcome.
 - [doxygen](https://github.com/doxygen/doxygen) support
 - [neogen](https://github.com/danymat/neogen) support
 - [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) fold support
-- [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons) Icon support
+- [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons) and [mini.icons](https://github.com/echasnovski/mini.icons) Icon support
 - [plenary](https://github.com/nvim-lua/plenary.nvim) support
 - [rainbow-delimiters](https://github.com/HiPhish/rainbow-delimiters.nvim) Colored Parentheses and Brackets support
 - [treesitter](https://github.com/nvim-treesitter/nvim-treesitter) Syntax highlighting
 - [which-key](https://github.com/folke/which-key.nvim) keymap hints support
 
 <a name="REQUIREMENTS"></a>
+
 ## Requirements
 
 ### Required
@@ -44,11 +47,11 @@ Contributions and PRs are welcome.
 - [neogen](https://github.com/danymat/neogen) -- Optional, Annotation generator
 - [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) -- Optional, Fold support
 - [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons) -- Optional, Icon support for NWScript
+- [mini.icons](https://github.com/echasnovski/mini.icons) -- Optional, Icon support for NWScript
 - [plenary](https://github.com/nvim-lua/plenary.nvim) -- Optional, Provides utility functions for plugins .nss extension
 - [rainbow-delimiters](https://github.com/HiPhish/rainbow-delimiters.nvim) -- Optional, Colored Parentheses and Brackets
 - [treesitter](https://github.com/nvim-treesitter/nvim-treesitter) -- Optional, syntax highlighting
 - [which-key](https://github.com/folke/which-key.nvim) -- Optional, Displays keymap hints
-
 
 ### External
 
@@ -61,6 +64,7 @@ Contributions and PRs are welcome.
 - [doxygen](https://github.com/doxygen/doxygen) -- Optional, Documentation Generation
 
 <a name="INSTALLATION"></a>
+
 ## Installation
 
 With [lazy.nvim](https://github.com/folke/lazy.nvim)
@@ -93,7 +97,7 @@ return { -- NWScript
     "kevinhwang91/nvim-ufo",
     "numToStr/Comment.nvim",
     "nvim-lua/plenary.nvim",
-    "nvim-tree/nvim-web-devicons",
+    "echasnovski/mini.nvim", -- I use it with mock nvim-web-devicons
     "nvim-treesitter/nvim-treesitter",
     "stevearc/conform.nvim",
     {
@@ -117,10 +121,30 @@ return { -- NWScript
 
   </details>
 
+<details><summary>If using mini.icons</summary>
+
+```lua
+  -- mini.lua
+  return {
+    "echasnovski/mini.nvim",
+    -- dependencies = "nvim-tree/nvim-web-devicons", -- Only needed if you want nvim-web-devicons installed
+    init = function()
+      package.preload["nvim-web-devicons"] = function()
+        require("mini.icons").mock_nvim_web_devicons()
+        return package.loaded["nvim-web-devicons"]
+      end
+    end,
+  }
+```
+
+</details>
+
 <a name="CONFIGURATION"></a>
+
 ## Configuration
 
 <a name="CONFIGURATION_LSPCONFIG"></a>
+
 ### lpsconfig
 
 ```lua
@@ -208,6 +232,7 @@ return {
 </details>
 
 <a name="BUFFERLINE"></a>
+
 ### Bufferline
 
 You must add "get_element_icon" somewhere in your "options" table in bufferline setup:
@@ -229,13 +254,14 @@ return {
   }
 ```
 
-
 <a name="NVM"></a>
+
 ## Building [nwscript-ee-language-server](https://github.com/implicit-image/nwscript-ee-language-server) automatically
 
 You must have at least [nvm](https://github.com/nvm-sh/nvm) installed for this to work, you can copy-paste the code bellow
 
 <a name="NVM_BASH"></a>
+
 ### Bash
 
 ```bash
@@ -247,6 +273,7 @@ export NVM_DIR="$HOME/.config/nvm" && \
 ```
 
 <a name="NVM_BASH_MULTILINE"></a>
+
 <details><summary>Same command as above but in a single line in case your terminal have issues with multi-line</summary>
 
 ```bash
@@ -258,6 +285,7 @@ NVM_VERSION=$(curl -s "https://api.github.com/repos/nvm-sh/nvm/releases/latest" 
 If you don't want to manually [building-and-running](https://github.com/implicit-image/nwscript-ee-language-server/blob/main/README.md#building-and-running) the LSP server, you can just add "autoBuild = true" in your setup() like so:
 
 Make sure you have nvm installed mentioned [above](#NVM)
+
 ```lua
     nwscript.setup({
       autoBuild = true,
@@ -267,11 +295,13 @@ Make sure you have nvm installed mentioned [above](#NVM)
 The above will run [this](https://github.com/StefanoND/nwscript-ee-lsp.nvim/blob/trunk/buildlsp.sh) script silently, there'll be a nwscript.log at the plugin's root folder.
 
 <a name="KEYMAPS"></a>
+
 ## Keymaps
 
 Keymaps not listed here are using your own configured keymaps or the plugin's default keymaps
 
 <a name="KEYMAPS_DEFAULT"></a>
+
 ### Default
 
 | Keymap      | Description                     |
@@ -282,6 +312,7 @@ Keymaps not listed here are using your own configured keymaps or the plugin's de
 | <leader>nwu | Unpack module to project folder |
 
 <a name="TODO"></a>
+
 ## TODO
 
 [-] Add more snippets (Needs mode snippets)
@@ -293,12 +324,14 @@ Keymaps not listed here are using your own configured keymaps or the plugin's de
 \*: Not exactly pre-built but auto-build option. Check [here](https://github.com/StefanoND/nwscript-ee-lsp.nvim?tab=readme-ov-file#building-nwscript-ee-language-server-automatically) for more info.
 
 <a name="THANKS"></a>
+
 ## Special Thanks
 
 - [@squattingmonk](https://github.com/squattingmonk) for his nvim [config](https://github.com/squattingmonk/dotfiles/tree/master/nvim/.config/nvim) which I used as a starting point for my own config for nwscript
 - [@implicit-image](https://github.com/implicit-image) for his emacs [config](https://github.com/implicit-image/lsp-nwscript.el) which I used as base to "translate" to neovim
 
 <a name="CREDITS"></a>
+
 ## Credits
 
 - [@neovim](https://github.com/neovim) for [Neovim](https://github.com/neovim/neovim)
@@ -315,6 +348,7 @@ Keymaps not listed here are using your own configured keymaps or the plugin's de
 - [@numToStr](https://github.com/numToStr) for [Comment](https://github.com/numToStr/Comment.nvim)
 - [@nvim-lua](https://github.com/nvim-lua) for [plenary](https://github.com/nvim-lua/plenary.nvim)
 - [@nvim-tree](https://github.com/nvim-tree) for [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
+- [@echasnovski](https://github.com/echasnovski) for [mini.icons](https://github.com/echasnovski/mini.icons)
 - [@nvim-treesitter](https://github.com/nvim-treesitter) for [treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 - [@stevearc](https://github.com/stevearc) for [conform](https://github.com/stevearc/conform.nvim)
 - [@HiPhish](https://github.com/HiPhish) for [rainbow-delimiters](https://github.com/HiPhish/rainbow-delimiters.nvim)
@@ -328,8 +362,10 @@ Keymaps not listed here are using your own configured keymaps or the plugin's de
 - [@yarnpkg](https://github.com/yarnpkg) for [yarn](https://github.com/yarnpkg/berry)
 
 <a name="CHANGELOG"></a>
+
 ## Changelog
 
+    Added support for mini.icons
     Added support for square brackets (only top level works), check "Note" bellow
     Added support for rainbow-delimiters
     Added support for Conform plugin
@@ -343,6 +379,7 @@ Keymaps not listed here are using your own configured keymaps or the plugin's de
     Removed default capabilities, I don't want to force my personal settings into others
 
 <a name="NOTE"></a>
+
 ## Note
 
 ### square-brackets
@@ -350,4 +387,3 @@ Keymaps not listed here are using your own configured keymaps or the plugin's de
 As you can see in the image below, square-brackets inside square-brackets doesn't work
 
 ![square-brackets](assets/squarebrackets.png)
-
