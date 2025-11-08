@@ -1,3 +1,7 @@
+# Use my other [nwscript_ls.nvim](https://github.com/StefanoND/nwscript_ls.nvim) plugin instead
+
+---
+
 <a name="NWSCRIPT_LSP"></a>
 
 # nwscript-ee-lsp.nvim
